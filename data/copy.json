@@ -124,7 +124,7 @@
       "h1": "CPC MInst Launcher",
       "lead": "The program list a service bench actually needs: your tools grouped and searchable, one click from launch. The same profile works in Windows and in WinPE - no installer, no runtime, no console windows.",
       "secondary": { "label": "See the builder", "href": "/sfx-builder" },
-      "heroShot": { "img": "launcher-main.png", "alt": "CPC MInst Launcher showing a WinPE profile: grouped tool list, search field, tool sidebar and the info bar of the selected program" },
+      "heroShot": { "img": "launcher-main.png", "alt": "CPC MInst Launcher at its default window size: Windows PE profile, three groups of tools, search field and the info bar of the selected program" },
       "sections": [
         { "h": "Groups, not folders", "p": "Tools are organised into groups - Backup and Restore, Hard Disk, Diagnostics - that you can create, rename, reorder, sort A-Z or hide. Nothing depends on where a file happens to sit on disk." },
         { "h": "Type to find", "p": "Start typing and the list narrows immediately, without pressing Enter. Backspace widens it again. Groups collapse to the matches, so a 200-item stick still takes two keystrokes." },
