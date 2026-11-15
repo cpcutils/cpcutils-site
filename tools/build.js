@@ -37,7 +37,7 @@ function nav(active = '') {
   return `<header class="topbar">
   <div class="wrap topbar-inner">
     <a class="brand" href="/"><span class="brand-mark" aria-hidden="true"></span><span class="brand-name">CPC Utils</span></a>
-    <nav class="nav" aria-label="Main">
+    <nav class="nav" id="main-nav" aria-label="Main">
       <div class="nav-item">
         <a class="nav-link${active === 'products' ? ' is-active' : ''}" href="/#products">Products ${icon('chevron-down', 14)}</a>
         <div class="menu">${productItems}<div class="menu-note">More tools are on the way.</div></div>
@@ -57,6 +57,7 @@ function nav(active = '') {
       <button class="theme-btn" id="theme-toggle" type="button" aria-label="Toggle light and dark theme" title="Light / dark">${icon('sun', 18)}</button>
       <a class="btn btn-primary nav-cta" href="/download">${icon('download', 16)} Free Download</a>
     </nav>
+    <button class="nav-burger" id="nav-burger" type="button" aria-label="Menu" aria-controls="main-nav" aria-expanded="false"><span class="i-menu">${icon('menu', 22)}</span><span class="i-x">${icon('x', 22)}</span></button>
   </div>
 </header>`;
 }
@@ -358,7 +359,48 @@ write('legal/privacy.html', stub('Privacy', 'Privacy', 'What the website and the
 write('legal/third-party.html', stub('Third-party licenses', 'Third-party licenses', 'Lucide icons (ISC), 7-Zip (LGPL), TweetNaCl (public domain).'));
 write('assets/favicon.svg', '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#191919"/><path d="M10 22V10h4l3 6 3-6h4v12h-3v-7l-3 6h-2l-3-6v7z" fill="#8B7BFF"/></svg>');
 write('robots.txt', 'User-agent: *\nAllow: /\nSitemap: https://cpcutils.com/sitemap.xml\n');
-write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${['', 'sfx-builder', 'launcher', 'download', 'buy', 'faq', 'blog', 'about', 'contact'].map(u => `  <url><loc>https://cpcutils.com/${u}</loc></url>`).join('\n')}\n</urlset>\n`);
+/* ---------- docs: a meglevo sugo bebontezese ---------- */
+const HELP_SRC = process.env.CPC_HELP_SRC || 'G:\\7zip_project\\help';
+function buildDocs() {
+  const en = path.join(HELP_SRC, 'en');
+  if (!fs.existsSync(en)) { console.warn('Docs: help forras nem talalhato ->', en); return []; }
+  const idx = fs.readFileSync(path.join(en, 'index.html'), 'utf8');
+  const chapters = [];
+  const re = /<a href="(\d\d-[^"]+\.html)"><span class="n">(\d+)<\/span>([^<]+)<\/a>/g;
+  let m;
+  while ((m = re.exec(idx))) chapters.push({ href: m[1], n: m[2], title: m[3] });
+  for (const f of fs.readdirSync(en).filter(x => x.endsWith('.html'))) {
+    let html = fs.readFileSync(path.join(en, f), 'utf8');
+    html = html.replace(/<a class="lang" href="\.\.\/hu\/[^"]*">[^<]*<\/a>/, '<a class="lang" href="/docs">&larr; CPC Utils Docs</a>');
+    if (!/rel="canonical"/.test(html)) html = html.replace('</head>', `<link rel="canonical" href="${SITE}/docs/en/${f.replace(/\.html$/, '')}">\n</head>`);
+    write('docs/en/' + f, html);
+  }
+  fs.mkdirSync(path.join(OUT, 'docs/assets/img'), { recursive: true });
+  fs.copyFileSync(path.join(HELP_SRC, 'assets/help.css'), path.join(OUT, 'docs/assets/help.css'));
+  fs.cpSync(path.join(HELP_SRC, 'assets/img/en'), path.join(OUT, 'docs/assets/img/en'), { recursive: true });
+  return chapters;
+}
+
+const chapters = buildDocs();
+
+write('docs/index.html', page({
+  title: 'Documentation — CPC Utils',
+  description: 'The complete CPC 7z SFX Builder user guide: interface, source, installer mode, build, unpacker, verification and troubleshooting.',
+  active: 'docs',
+  canonical: SITE + '/docs',
+  content: `<section class="page-head"><div class="wrap">
+    <h1>Documentation</h1>
+    <p class="lead">The full CPC 7z SFX Builder user guide — 13 chapters, the same text the program shows when you press F1.</p>
+  </div></section>
+  <section class="section"><div class="wrap">
+    <div class="doc-grid">${chapters.map(c => `<a class="card doc-card reveal" href="/docs/en/${c.href.replace(/\.html$/, '')}"><span class="step-no">${c.n}</span><h3>${esc(c.title)}</h3></a>`).join('')}</div>
+    <p class="hint" style="margin-top:26px">The guide is English only on the web; the program itself ships with English and Hungarian help.</p>
+  </div></section>`
+}));
+
+const urls = ['', 'sfx-builder', 'launcher', 'download', 'buy', 'faq', 'blog', 'about', 'contact', 'docs']
+  .concat(chapters.map(c => 'docs/en/' + c.href.replace(/\.html$/, '')));
+write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(u => `  <url><loc>https://cpcutils.com/${u}</loc></url>`).join('\n')}\n</urlset>\n`);
 write('_headers', `/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  X-Frame-Options: SAMEORIGIN\n  X-Robots-Tag: noindex, nofollow\n/assets/*\n  Cache-Control: public, max-age=86400\n`);
 
 console.log('Kesz:', fs.readdirSync(OUT).join(', '));

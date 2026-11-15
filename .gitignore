@@ -1,4 +1,12 @@
-﻿site/
+# generalt oldalak (tools/build.js allitja elo)
+site/*.html
+site/legal/
+site/docs/
+site/sitemap.xml
+site/robots.txt
+site/_headers
+site/assets/favicon.svg
+
 .wrangler/
 node_modules/
 *.log
