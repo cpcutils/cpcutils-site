@@ -43,6 +43,7 @@ a:hover{color:var(--accent-text)}
 .nav-link .chev{width:9px;height:9px;border-right:1.6px solid currentColor;border-bottom:1.6px solid currentColor;transform:rotate(45deg) translateY(-2px);opacity:.7}
 /* dropdown */
 .menu{position:absolute;top:calc(100% + 8px);left:0;min-width:260px;background:var(--bar2);border:1px solid var(--border);border-radius:var(--radius);padding:8px;box-shadow:0 24px 60px rgba(0,0,0,.45);display:none}
+.menu::before{content:"";position:absolute;left:0;right:0;top:-10px;height:10px}
 .nav-item:hover .menu,.nav-item:focus-within .menu{display:block}
 .menu a{display:block;padding:9px 12px;border-radius:var(--radius-sm);color:var(--text-soft);font-size:.92rem}
 .menu a:hover{background:var(--hover);color:var(--text)}
