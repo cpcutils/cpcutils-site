@@ -1,0 +1,60 @@
+{
+  "brand": {
+    "name": "CPC Utils",
+    "company": "Central PC Service Bt.",
+    "domain": "https://cpcutils.com",
+    "email": "info@cpcutils.com",
+    "year": 2026
+  },
+  "products": [
+    {
+      "id": "sfx-builder",
+      "name": "CPC 7z SFX Builder",
+      "tagline": "Build self-extracting 7-Zip packages visually.",
+      "status": "available",
+      "statusLabel": "Available",
+      "accent": true,
+      "platform": "Windows 7–11",
+      "icon": "package-plus",
+      "bullets": [
+        "Full file list with typed filtering",
+        "Installer mode with wizard",
+        "Signed output with payload integrity",
+        "About 2 MB, no .NET or runtime"
+      ],
+      "api": "https://cpc-activate-dev.odd-wood-edb6.workers.dev/v1/latest/sfx-builder"
+    },
+    {
+      "id": "launcher",
+      "name": "CPC MInst Launcher",
+      "tagline": "One profile, Windows and WinPE.",
+      "status": "soon",
+      "statusLabel": "Coming soon",
+      "accent": false,
+      "platform": "Windows 7–11 · WinPE",
+      "icon": "grid-2x2",
+      "bullets": [
+        "Same profile in Windows and WinPE",
+        "Portable, no dependencies",
+        "No console windows"
+      ],
+      "api": null
+    },
+    {
+      "id": "next-slot",
+      "name": "More tools",
+      "tagline": "The same idea, applied to other jobs.",
+      "status": "placeholder",
+      "statusLabel": "Planned",
+      "accent": false,
+      "platform": "Windows",
+      "icon": "wrench",
+      "bullets": [
+        "Small, single-exe utilities",
+        "Portable-first, no installers",
+        "Settings live next to the exe"
+      ],
+      "api": null
+    }
+  ]
+}

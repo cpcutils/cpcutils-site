@@ -1,0 +1,119 @@
+{
+  "meta": {
+    "title": "CPC Utils — CPC 7z SFX Builder and CPC MInst Launcher",
+    "description": "CPC Utils makes portable Windows tools: CPC 7z SFX Builder for self-extracting 7-Zip packages and CPC MInst Launcher for Windows and WinPE. Free download, no .NET, no runtime."
+  },
+  "hero": {
+    "pillTop": "New: CPC 7z SFX Builder 1.0.8.3 — free download",
+    "h1Lines": ["Build", "portable", "Windows packages"],
+    "sub": "CPC 7z SFX Builder turns a folder or an archive into one self-extracting exe: choose what runs, where it unpacks, and what happens after. CPC MInst Launcher carries the same profile from Windows into WinPE.",
+    "ctaPrimary": "Free Download",
+    "ctaSecondary": "Explore features",
+    "trust": ["12 languages built-in", "Windows 7–11", "No .NET or runtime"],
+    "shotCard": { "k": "One tool, one workflow", "p": "Source, behaviour, installer mode and verification in a single window." }
+  },
+  "umbrella": {
+    "h2": "Two tools today, one brand for the next ones",
+    "p": "Every CPC Utils product is a single portable executable with no runtime dependencies, so it behaves the same on a clean Windows install, a technician's WinPE stick, or an everyday desktop."
+  },
+  "productCard": { "learnMore": "Learn more", "download": "Free Download", "soon": "Coming soon" },
+  "steps": {
+    "h2": "Three steps to your first package",
+    "sub": "No scripts to write, no configuration files to hand-edit.",
+    "items": [
+      { "h": "Choose your files", "p": "Point CPC 7z SFX Builder at a folder or an archive. The file list is complete and stays filterable as you type." },
+      { "h": "Set the options", "p": "Pick where the package unpacks, which program starts, and which preparation scripts run before it, in your order." },
+      { "h": "Build the package", "p": "One click produces a single exe. Signing and payload binding are one switch away." }
+    ]
+  },
+  "features": {
+    "h2": "Built for real packages",
+    "sub": "The details that decide whether a package is usable at a customer site.",
+    "items": [
+      { "h": "Typed filtering", "p": "Type a few characters and the list narrows instantly, even with thousands of files in the source." },
+      { "h": "Root first", "p": "Files in the package root come first, then folder contents alphabetically." },
+      { "h": "Install location", "p": "Temp, LocalAppData, AppData, ProgramData, or next to the package — deletion is a separate decision." },
+      { "h": "Ordered hooks", "p": "Preparation scripts run after extraction and before the main program, in the order you selected." },
+      { "h": "Installer mode", "p": "Optional wizard, target folder, shortcuts and an uninstall entry, from the same project." },
+      { "h": "Signed and bound", "p": "Authenticode signing plus a payload hash, so a modified package fails verification." }
+    ]
+  },
+  "spotlight": {
+    "h2": "Repack and unpack with a live log",
+    "p": "The source is scanned once and every executable is listed with its folder in front of the name. Typing filters the list in place; arrow keys, Page Up/Down, Home/End and Enter work the way you expect. The header always shows how many matches you have out of how many files.",
+    "h2b": "Installer mode, without a second project",
+    "pb": "Switch it on and the same package gets a wizard, a target folder, desktop and Start menu shortcuts and an uninstall entry. Switch it off and you are back to a plain portable package."
+  },
+  "gallery": {
+    "h2": "Proof, not promises",
+    "sub": "The Check page reports configuration, payload, stub and integrity separately. It says Passed only when every line is green.",
+    "tabs": [
+      
+      { "id": "error", "label": "Build failed", "img": "09-build-error.png", "alt": "A failed build with the reason in red" },
+      { "id": "unpack", "label": "Unpack a package", "img": "10-unpacker.png", "alt": "Unpacking an existing package with progress" },
+      { "id": "verify", "label": "Verify", "img": "11-verify.png", "alt": "Verification result of a package" }
+    ]
+  },
+  "portable": {
+    "h2": "Why portable matters",
+    "items": [
+      "No installer, no runtime, no .NET",
+      "Runs from a USB stick on repair benches and client PCs",
+      "Settings live next to the exe; the registry is read-only",
+      "Delete the folder and the tool is gone"
+    ]
+  },
+  "faq": {
+    "h2": "Questions we get",
+    "items": [
+      { "q": "Is CPC 7z SFX Builder free?", "a": "Yes. The free edition builds complete packages. A Pro edition removes the splash screen and allows your own branding. Details are in the license file that ships with each release." },
+      { "q": "Does CPC 7z SFX Builder need .NET or an installation?", "a": "No. It is one portable exe that talks to the Windows API directly. Copy it to a USB drive or a network share and run it." },
+      { "q": "Does CPC MInst Launcher work in WinPE?", "a": "Yes. It uses the same profile in Windows and in WinPE, so technicians carry one set of launch items instead of two." },
+      { "q": "Will my packages pass SmartScreen?", "a": "Signing the output with your own certificate is supported. Without a certificate Windows shows the usual warning; payload binding still detects later modification." },
+      { "q": "What does a package from CPC 7z SFX Builder contain?", "a": "An extraction stub, your compressed files, and a configuration block. Optionally a signature and a payload hash." },
+      { "q": "Where are my settings stored?", "a": "In a profile file next to the exe, or in the folder you choose. The tools read the registry for environment detection only." }
+    ]
+  },
+  "buy": {
+    "h2": "Buy Now",
+    "p": "The free edition is a full builder. A Pro edition is planned: it removes the splash screen and lets you use your own branding. Pricing and checkout are not live yet.",
+    "cta": "Free Download"
+  },
+  "cta": {
+    "h2": "Download CPC 7z SFX Builder and build your first package",
+    "p": "No account, no email. The download always points at the current release."
+  },
+  "footer": {
+    "columns": [
+      { "h": "Products", "links": [["CPC 7z SFX Builder", "sfx-builder"], ["CPC MInst Launcher", "launcher"], ["Download", "download"]] },
+      { "h": "Resources", "links": [["Docs", "docs"], ["FAQ", "faq"], ["Changelog", "changelog"]] },
+      { "h": "Company", "links": [["About", "about"], ["Contact", "contact"], ["Buy Now", "buy"]] },
+      { "h": "Legal", "links": [["EULA", "legal/eula"], ["Privacy", "legal/privacy"], ["Third-party licenses", "legal/third-party"]] }
+    ],
+    "copyright": "© 2026 Central PC Service Bt. All rights reserved."
+  },
+  "productPages": {
+    "sfx-builder": {
+      "title": "CPC 7z SFX Builder — visual self-extracting package builder",
+      "h1": "CPC 7z SFX Builder",
+      "lead": "A visual editor for 7-Zip self-extracting packages: choose the source, decide how it unpacks and what it runs, then build one exe.",
+      "sections": [
+        { "h": "The file list", "p": "Every executable in the source appears once, root files first, with the folder shown in front of the name. Typing filters the list as you go." },
+        { "h": "What the package does", "p": "Choose the program to start, optional parameters, a finish message, and preparation scripts that run after extraction in the order you picked." },
+        { "h": "Where it unpacks", "p": "Temp, LocalAppData, AppData, ProgramData or next to the package. Deleting the files after the run is a separate switch on purpose." },
+        { "h": "Installer mode", "p": "Add a wizard, a target folder, desktop and Start menu shortcuts, and an uninstall entry — or keep it as a plain portable package." },
+        { "h": "Verification", "p": "The built package can carry a signature and a payload hash. The Check page reports configuration, content, stub and integrity separately." }
+      ]
+    },
+    "launcher": {
+      "title": "CPC MInst Launcher — one profile for Windows and WinPE",
+      "h1": "CPC MInst Launcher",
+      "lead": "CPC MInst Launcher is a launcher for service technicians: the same profile in Windows and in WinPE, portable, no dependencies.",
+      "sections": [
+        { "h": "Same profile everywhere", "p": "Define your tools once and carry the same layout into WinPE and into normal Windows." },
+        { "h": "No console windows", "p": "Tools start without flashing command windows, which keeps technician sessions readable." },
+        { "h": "Portable by design", "p": "No installer and no runtime. Delete the folder and nothing is left behind." }
+      ]
+    }
+  }
+}
