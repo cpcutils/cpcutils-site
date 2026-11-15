@@ -103,6 +103,8 @@ a:hover{color:var(--accent-text)}
 .section-head{max-width:720px;margin-bottom:40px}
 .section-sub{max-width:64ch}
 .page-head{padding:72px 0 28px;border-bottom:1px solid var(--border)}
+.page-head.hero .hero-grid h1{font-size:clamp(2rem,4vw,3.2rem)}
+.hero-grid .zoomwrap img{border-radius:12px;border:1px solid var(--border);box-shadow:0 24px 60px rgba(0,0,0,.45)}
 .eyebrow{font-family:"Oxanium",system-ui,sans-serif;text-transform:uppercase;letter-spacing:.16em;font-size:.76rem;color:var(--accent-text);font-weight:700;margin:0 0 14px}
 
 /* cards */
@@ -237,7 +239,6 @@ a:hover{color:var(--accent-text)}
 .split img:hover{transform:translateY(-4px) scale(1.01);box-shadow:0 34px 80px rgba(0,0,0,.55)}
 .zoomwrap{position:relative;display:block;cursor:zoom-in}
 .zoomwrap img{display:block;width:100%;height:auto}
-.zoomwrap:hover @media (hover:none){}
 
 /* lightbox */
 .lb{position:fixed;inset:0;z-index:120;display:none;align-items:center;justify-content:center;background:rgba(8,8,10,.94);backdrop-filter:blur(4px);padding:32px}

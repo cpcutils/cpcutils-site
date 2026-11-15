@@ -142,7 +142,7 @@ function productCards() {
       <p class="product-tag">${esc(p.tagline)}</p>
       <ul class="ticks">${p.bullets.map(b => `<li>${esc(b)}</li>`).join('')}</ul>
       <div class="product-foot">
-        <a class="btn btn-ghost btn-sm" href="/${p.id === 'next-slot' ? 'contact' : p.id}">${esc(p.api ? copy.productCard.learnMore : copy.productCard.soon)}</a>
+        <a class="btn btn-ghost btn-sm" href="/${p.id === 'next-slot' ? 'contact' : p.id}">${esc(p.id === 'next-slot' ? copy.productCard.talk : copy.productCard.learnMore)}</a>
         ${p.api ? `<a class="btn btn-primary btn-sm" href="/download">${icon('download', 15)} ${esc(copy.productCard.download)}</a>` : ''}
       </div>
     </article>`).join('');
@@ -164,7 +164,7 @@ const home = page({
       <p class="hero-sub reveal">${esc(copy.hero.sub)}</p>
       <div class="hero-actions reveal">
         <a class="btn btn-primary btn-lg" href="/download">${icon('download', 18)} ${esc(copy.hero.ctaPrimary)}</a>
-        <a class="btn btn-ghost btn-lg" href="#features">${esc(copy.hero.ctaSecondary)} ${icon('arrow', 16)}</a>
+        <a class="btn btn-ghost btn-lg" href="#features">${esc(copy.hero.ctaSecondary)} ${icon('arrow-right', 16)}</a>
       </div>
       <ul class="trust reveal">${copy.hero.trust.map(t => `<li>${esc(t)}</li>`).join('')}</ul>
       <a class="version-pill reveal" href="/download"><b id="version-text">latest release</b></a>
@@ -207,7 +207,7 @@ const home = page({
     <div class="reveal">
       <h2>${esc(copy.spotlight.h2)}</h2>
       <p>${esc(copy.spotlight.p)}</p>
-      <a class="btn btn-ghost" href="/sfx-builder">${esc(copy.productCard.learnMore)} ${icon('arrow', 15)}</a>
+      <a class="btn btn-ghost" href="/sfx-builder">${esc(copy.productCard.learnMore)} ${icon('arrow-right', 15)}</a>
     </div>
     <div class="zoomwrap reveal" data-zoom="/assets/img/spot-unpack.png" role="button" tabindex="0" aria-label="Enlarge screenshot"><img src="/assets/img/spot-unpack.png" alt="Unpacking a package at 55% with the live log and a cancel button" loading="lazy"></div>
   </div>
@@ -219,7 +219,7 @@ const home = page({
     <div class="reveal">
       <h2>${esc(copy.spotlight.h2b)}</h2>
       <p>${esc(copy.spotlight.pb)}</p>
-      <a class="btn btn-ghost" href="/download">${esc(copy.hero.ctaPrimary)} ${icon('arrow', 15)}</a>
+      <a class="btn btn-ghost" href="/download">${esc(copy.hero.ctaPrimary)} ${icon('arrow-right', 15)}</a>
     </div>
   </div>
 </section>
@@ -257,28 +257,59 @@ const home = page({
 function productPage(id) {
   const p = products.products.find(x => x.id === id);
   const c = copy.productPages[id];
+  const zoom = (s, lazy) => `<div class="zoomwrap reveal" data-zoom="/assets/img/${s.img}" role="button" tabindex="0" aria-label="Enlarge screenshot"><img src="/assets/img/${s.img}" alt="${esc(s.alt)}"${lazy ? ' loading="lazy"' : ''}></div>`;
+  const link = (l) => l ? `<a class="btn btn-ghost" href="${l.href}">${esc(l.label)} ${icon('arrow-right', 15)}</a>` : '';
+
+  const actions = p.api
+    ? `<a class="btn btn-primary btn-lg" href="/download">${icon('download', 18)} ${esc(copy.hero.ctaPrimary)}</a>`
+    : `<a class="btn btn-primary btn-lg" href="${c.cta ? c.cta.actions[0].href : '/contact'}">${esc(c.cta ? c.cta.actions[0].label : 'Ask about availability')} ${icon('arrow-right', 15)}</a>`;
+  const secondary = c.secondary
+    ? `<a class="btn btn-ghost btn-lg" href="${c.secondary.href}">${esc(c.secondary.label)} ${icon('arrow-right', 15)}</a>` : '';
+  const head = `
+      <p class="pill"><span class="tag">${esc(p.statusLabel)}</span> ${esc(p.platform)}</p>
+      <h1>${esc(c.h1)}</h1>
+      <p class="hero-sub">${esc(c.lead)}</p>
+      <div class="hero-actions">${actions}${secondary}</div>`;
+
+  const hero = c.heroShot
+    ? `<section class="page-head hero"><div class="wrap hero-grid"><div>${head}</div>${zoom(c.heroShot)}</div></section>`
+    : `<section class="page-head hero"><div class="wrap">${head}</div></section>`;
+
+  const sections = `<section class="section"><div class="wrap prose-grid">
+      ${c.sections.map(s => `<article class="card prose-card reveal"><h2>${esc(s.h)}</h2><p>${esc(s.p)}</p></article>`).join('')}
+    </div></section>`;
+
+  const features = c.features ? `<section class="section section-alt"><div class="wrap">
+      <div class="section-head"><h2 class="reveal">${esc(c.features.h)}</h2>${c.features.sub ? `<p class="section-sub reveal">${esc(c.features.sub)}</p>` : ''}</div>
+      <div class="feature-grid">${c.features.items.map(f => `<article class="card feature-card reveal"><h3>${esc(f.h)}</h3><p>${esc(f.p)}</p></article>`).join('')}</div>
+    </div></section>` : '';
+
+  const spotlight = c.spotlight ? `<section class="section"><div class="wrap split${c.spotlight.reverse ? ' reverse' : ''}">
+      ${zoom(c.spotlight, true)}
+      <div class="reveal"><h2>${esc(c.spotlight.h)}</h2><p>${esc(c.spotlight.p)}</p>${link(c.spotlight.link)}</div>
+    </div></section>` : '';
+
+  const closing = c.closing ? `<section class="section section-alt"><div class="wrap split">
+      <div class="reveal"><h2>${esc(c.closing.h)}</h2><p>${esc(c.closing.p)}</p>${link(c.closing.link)}</div>
+    </div></section>` : '';
+
+  const faqBlock = c.faq ? `<section class="section"><div class="wrap">
+      <div class="section-head"><h2 class="reveal">${esc(c.faq.h)}</h2></div>
+      <div class="faq">${c.faq.items.map((f, i) => `<details class="faq-item reveal"${i === 0 ? ' open' : ''}><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join('')}</div>
+    </div></section>` : '';
+
+  const ctaBlock = c.cta ? `<section class="cta-band"><div class="wrap cta-inner">
+      <h2>${esc(c.cta.h)}</h2><p>${esc(c.cta.p)}</p>
+      <div class="cta-actions">${c.cta.actions.map(a => `<a class="btn ${a.kind === 'primary' ? 'btn-primary' : 'btn-ghost'} btn-lg" href="${a.href}">${esc(a.label)}</a>`).join('')}</div>
+    </div></section>` : '';
+
   return page({
     title: c.title,
     description: c.lead,
     active: 'products',
     ld: ldProduct(p, c),
     canonical: SITE + '/' + p.id,
-    content: `<section class="page-head hero"><div class="wrap">
-      <p class="pill"><span class="tag">${esc(p.statusLabel)}</span> ${esc(p.platform)}</p>
-      <h1>${esc(c.h1)}</h1>
-      <p class="hero-sub">${esc(c.lead)}</p>
-      <div class="hero-actions">
-        ${p.api ? `<a class="btn btn-primary btn-lg" href="/download">${icon('download', 18)} ${esc(copy.hero.ctaPrimary)}</a>` : `<a class="btn btn-ghost btn-lg" href="/contact">Ask about availability</a>`}
-        <a class="btn btn-ghost btn-lg" href="/docs">Docs ${icon('arrow', 15)}</a>
-      </div>
-    </div></section>
-    <section class="section"><div class="wrap prose-grid">
-      ${c.sections.map(s => `<article class="card prose-card reveal"><h2>${esc(s.h)}</h2><p>${esc(s.p)}</p></article>`).join('')}
-    </div></section>
-    <section class="section section-alt"><div class="wrap split">
-      <div class="reveal"><h2>Everything in one window</h2><p>Source, behaviour, installer options and verification live in the same project — no export, no second tool.</p><a class="btn btn-ghost" href="/download">${esc(copy.hero.ctaPrimary)} ${icon('arrow-right', 15)}</a></div>
-
-    </div></section>`
+    content: hero + sections + features + spotlight + closing + faqBlock + ctaBlock
   });
 }
 
@@ -304,7 +335,7 @@ const download = page({
       <a class="btn btn-primary btn-lg" id="dl-btn" href="#" rel="noopener">${icon('download', 18)} Free Download</a>
       <p class="hint">No account, no email. The executable is not code-signed yet, so Windows may show the SmartScreen prompt.</p>
     </article>
-    <p class="hint" style="margin-top:24px">CPC MInst Launcher: coming soon. <a href="/launcher">What it will do</a>.</p>
+    <p class="hint" style="margin-top:24px">CPC MInst Launcher is in beta and not on this page yet. <a href="/launcher">What it does</a> \u00b7 <a href="/contact">Ask for the beta build</a>.</p>
   </div></section>`,
   scripts: `<script src="/assets/download.js?v=${BUILDV}" defer></script>`
 });

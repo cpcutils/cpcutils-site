@@ -16,7 +16,7 @@
     "h2": "Two tools today, one brand for the next ones",
     "p": "Every CPC Utils product is a single portable executable with no runtime dependencies, so it behaves the same on a clean Windows install, a technician's WinPE stick, or an everyday desktop."
   },
-  "productCard": { "learnMore": "Learn more", "download": "Free Download", "soon": "Coming soon" },
+  "productCard": { "learnMore": "Learn more", "download": "Free Download", "soon": "Coming soon", "talk": "Get in touch" },
   "steps": {
     "h2": "Three steps to your first package",
     "sub": "No scripts to write, no configuration files to hand-edit.",
@@ -97,23 +97,74 @@
       "title": "CPC 7z SFX Builder — visual self-extracting package builder",
       "h1": "CPC 7z SFX Builder",
       "lead": "A visual editor for 7-Zip self-extracting packages: choose the source, decide how it unpacks and what it runs, then build one exe.",
+      "secondary": { "label": "Docs", "href": "/docs" },
       "sections": [
         { "h": "The file list", "p": "Every executable in the source appears once, root files first, with the folder shown in front of the name. Typing filters the list as you go." },
         { "h": "What the package does", "p": "Choose the program to start, optional parameters, a finish message, and preparation scripts that run after extraction in the order you picked." },
         { "h": "Where it unpacks", "p": "Temp, LocalAppData, AppData, ProgramData or next to the package. Deleting the files after the run is a separate switch on purpose." },
         { "h": "Installer mode", "p": "Add a wizard, a target folder, desktop and Start menu shortcuts, and an uninstall entry — or keep it as a plain portable package." },
         { "h": "Verification", "p": "The built package can carry a signature and a payload hash. The Check page reports configuration, content, stub and integrity separately." }
-      ]
+      ],
+      "closing": {
+        "h": "Everything in one window",
+        "p": "Source, behaviour, installer options and verification live in the same project - no export, no second tool.",
+        "link": { "label": "Free Download", "href": "/download" }
+      },
+      "cta": {
+        "h": "Download CPC 7z SFX Builder and build your first package",
+        "p": "No account, no email. The download always points at the current release.",
+        "actions": [
+          { "label": "Free Download", "href": "/download", "kind": "primary" },
+          { "label": "Buy Now", "href": "/buy" }
+        ]
+      }
     },
     "launcher": {
-      "title": "CPC MInst Launcher — one profile for Windows and WinPE",
+      "title": "CPC MInst Launcher - one tool list for Windows and WinPE",
       "h1": "CPC MInst Launcher",
-      "lead": "CPC MInst Launcher is a launcher for service technicians: the same profile in Windows and in WinPE, portable, no dependencies.",
+      "lead": "The program list a service bench actually needs: your tools grouped and searchable, one click from launch. The same profile works in Windows and in WinPE - no installer, no runtime, no console windows.",
+      "secondary": { "label": "See the builder", "href": "/sfx-builder" },
+      "heroShot": { "img": "launcher-main.png", "alt": "CPC MInst Launcher showing a WinPE profile: grouped tool list, search field, tool sidebar and the info bar of the selected program" },
       "sections": [
-        { "h": "Same profile everywhere", "p": "Define your tools once and carry the same layout into WinPE and into normal Windows." },
-        { "h": "No console windows", "p": "Tools start without flashing command windows, which keeps technician sessions readable." },
-        { "h": "Portable by design", "p": "No installer and no runtime. Delete the folder and nothing is left behind." }
-      ]
+        { "h": "Groups, not folders", "p": "Tools are organised into groups - Backup and Restore, Hard Disk, Diagnostics - that you can create, rename, reorder, sort A-Z or hide. Nothing depends on where a file happens to sit on disk." },
+        { "h": "Type to find", "p": "Start typing and the list narrows immediately, without pressing Enter. Backspace widens it again. Groups collapse to the matches, so a 200-item stick still takes two keystrokes." },
+        { "h": "Profiles", "p": "The profile switch at the top swaps the whole list: load, duplicate, rename, delete, import or export. Profiles are MInstAll-compatible .ini files, so an existing collection does not have to be rebuilt." },
+        { "h": "Same list in PE", "p": "Items can be flagged PE-only or 64-bit-only, and the ones marked autorun run in order when the launcher is started with --autorun, skipping anything whose OS does not match. Settings that make no sense in PE - starting with Windows, for one - are disabled instead of silently failing." },
+        { "h": "Safe editing", "p": "Every save writes a backup first; if the backup cannot be written, nothing is saved and you are told why. Deleting an item asks whether the file goes too, and the shortcuts generated for it are removed with it." },
+        { "h": "Icons and shortcuts", "p": "Each item takes its icon from the program itself or from the icon library, and can create a desktop or Start menu shortcut. Start folder and arguments are optional extras." }
+      ],
+      "spotlight": { "img": "launcher-search.png", "alt": "Three partition tools left after typing partition: the search filters the grouped list while the info bar shows size, path and platform", "h": "Two keystrokes instead of a scroll", "p": "Filtering happens on the list you already have, not in a new window: type a few letters, watch the groups collapse to the matching tools, and the info bar tells you the size, the path behind the {Patch} token and whether the item is 32-bit, 64-bit or both.", "link": { "label": "Ask about the beta", "href": "/contact" }, "reverse": true },
+      "features": {
+        "h": "What is in the window",
+        "sub": "A launcher for people who run the same tools every day and do not want to hunt for them.",
+        "items": [
+          { "h": "Grouped list", "p": "Groups with icons, collapsible in place, sorted by hand or A-Z." },
+          { "h": "Search as you type", "p": "Filters immediately, Backspace widens, no dialog in the way." },
+          { "h": "MInstAll profiles", "p": "Reads the .ini profiles technicians already have; not affiliated with the original author." },
+          { "h": "PE-aware items", "p": "PE-only, 64-bit-only and autorun flags, all shown in the list." },
+          { "h": "Tray and snap", "p": "After launching it can stay in the tray, or snap to the right edge as a narrow tool strip." },
+          { "h": "One portable exe", "p": "About 730 KB, settings in ui.dat next to it, no .NET and no runtime to install." }
+        ]
+      },
+      "faq": {
+        "h": "Questions about the launcher",
+        "items": [
+          { "q": "Is CPC MInst Launcher free?", "a": "The free edition is planned to contain every function. A Supporter and a Brand edition remove the splash screen and put your own name and logo in the header. Pricing is not live yet." },
+          { "q": "Does it replace MInstAll?", "a": "It reads the same .ini profile format, so existing profiles open as they are. It is an independent program and is not affiliated with the original author." },
+          { "q": "Does it run in WinPE?", "a": "Yes, with the same profile and no installer. Autorun items start with the shell; Windows-only settings such as starting with the system are disabled in PE." },
+          { "q": "Which Windows versions are supported?", "a": "Windows 7, 8, 10 and 11 on 64-bit systems, and the 64-bit WinPE builds used on service media. Individual items can be marked 64-bit only, so a mixed collection still shows only what fits the running system." },
+          { "q": "Can I try it now?", "a": "The beta is not on the download page yet. Write to info@cpcutils.com and we will send the current build with a test profile." },
+          { "q": "How does it handle a missing tool?", "a": "The item stays in the list marked as not found, with its path in the info bar, so a broken stick is visible before a client is sitting next to it." }
+        ]
+      },
+      "cta": {
+        "h": "The launcher is in beta",
+        "p": "It is not on the download page yet. Ask for the current build if you want to try it on your own bench or in a PE image.",
+        "actions": [
+          { "label": "Ask about the beta", "href": "/contact", "kind": "primary" },
+          { "label": "See the builder", "href": "/sfx-builder" }
+        ]
+      }
     }
   }
 }

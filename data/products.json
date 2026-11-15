@@ -31,12 +31,13 @@
       "status": "soon",
       "statusLabel": "Coming soon",
       "accent": false,
-      "platform": "Windows 7–11 · WinPE",
+      "platform": "Windows 7–11 and WinPE",
       "icon": "grid-2x2",
       "bullets": [
+        "Grouped tool list with type-to-search",
+        "MInstAll-compatible profiles",
         "Same profile in Windows and WinPE",
-        "Portable, no dependencies",
-        "No console windows"
+        "About 730 KB, single portable exe"
       ],
       "api": null
     },
