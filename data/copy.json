@@ -538,6 +538,24 @@
         "sub": "The Check page reports configuration, payload, stub and integrity separately. It says Passed only when every line is green.",
         "img": "gal-verify.png",
         "alt": "Verification result: configuration authentic, payload intact, result passed"
+      },
+      "langs": {
+        "h": "Interface languages",
+        "sub": "Twelve languages, each one a single text file: a new one arrives with an update, not with a new build.",
+        "items": [
+          "Deutsch",
+          "English",
+          "Magyar",
+          "Polski",
+          "Français",
+          "Español",
+          "Português (Brasil)",
+          "Italiano",
+          "Čeština",
+          "Română",
+          "Русский",
+          "Türkçe"
+        ]
       }
     },
     "launcher": {
@@ -653,6 +671,24 @@
             "label": "See the builder",
             "href": "/sfx-builder"
           }
+        ]
+      },
+      "langs": {
+        "h": "Interface languages",
+        "sub": "The same twelve languages, in the same order. The interface name is read from the language file itself.",
+        "items": [
+          "Deutsch",
+          "English",
+          "Magyar",
+          "Polski",
+          "Français",
+          "Español",
+          "Português (Brasil)",
+          "Italiano",
+          "Čeština",
+          "Română",
+          "Русский",
+          "Türkçe"
         ]
       }
     }

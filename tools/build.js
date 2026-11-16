@@ -274,6 +274,11 @@ function productPage(id) {
       ${c.gallery.img ? zoom(c.gallery, true) : ''}
     </div></section>` : '';
 
+  const langs = c.langs ? `<section class="section"><div class="wrap">
+      <div class="section-head"><h2 class="reveal">${esc(c.langs.h)}</h2>${c.langs.sub ? `<p class="section-sub reveal">${esc(c.langs.sub)}</p>` : ''}</div>
+      <ul class="lang-list">${c.langs.items.map(x => `<li class="lang-chip reveal">${esc(x)}</li>`).join('')}</ul>
+    </div></section>` : '';
+
   const closing = c.closing ? `<section class="section section-alt"><div class="wrap split">
       <div class="reveal"><h2>${esc(c.closing.h)}</h2><p>${esc(c.closing.p)}</p>${link(c.closing.link)}</div>
     </div></section>` : '';
@@ -294,7 +299,7 @@ function productPage(id) {
     active: 'products',
     ld: ldProduct(p, c),
     canonical: SITE + '/' + p.id,
-    content: hero + sections + steps + features + spotlight + spotlight2 + gallery + closing + faqBlock + ctaBlock
+    content: hero + sections + steps + features + spotlight + spotlight2 + gallery + langs + closing + faqBlock + ctaBlock
   });
 }
 

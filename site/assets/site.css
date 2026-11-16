@@ -276,3 +276,8 @@ a:hover{color:var(--accent-text)}
   .rel-table thead th:nth-child(3),.rel-table tbody td:nth-child(3){display:none}
   .rel-table thead th:nth-child(4),.rel-table tbody td:nth-child(4){display:none}
 }
+
+/* nyelvlista (2026-11-16) */
+.lang-list{list-style:none;padding:0;margin:6px 0 0;display:flex;flex-wrap:wrap;gap:10px}
+.lang-chip{border:1px solid var(--border);background:var(--bar2);color:var(--text-soft);border-radius:var(--pill);padding:7px 14px;font-size:.9rem;line-height:1}
+.lang-chip:hover{border-color:var(--accent-link);color:var(--text)}
