@@ -196,7 +196,14 @@ const home = page({
   <div class="wrap">
     <div class="section-head"><h2 class="reveal">${esc(copy.home.whatIs.h)}</h2><p class="section-sub reveal">${esc(copy.home.whatIs.sub)}</p></div>
     <div class="prose-grid">
-      ${products.products.filter(p => p.status !== 'placeholder').map(p => `<article class="card prose-card reveal"><h2>${esc(p.name)}</h2><p>${esc(p.blurb || p.tagline)}</p><p><a class="btn btn-ghost" href="/${p.id}">${esc(copy.productCard.learnMore)} ${icon('arrow-right', 15)}</a></p></article>`).join('')}
+      ${products.products.filter(p => p.status !== 'placeholder').map(p => `<article class="card prose-card reveal">
+        <h2>${esc(p.name)}</h2>
+        <p class="prose-lead">${esc(p.tagline)}</p>
+        <p class="prose-body">${esc(p.long || p.blurb || p.tagline)}</p>
+        <ul class="ticks">${p.bullets.map(b => `<li>${esc(b)}</li>`).join('')}</ul>
+        <p class="prose-spec">${esc(p.spec || '')}</p>
+        <p><a class="btn btn-ghost" href="/${p.id}">${esc(copy.productCard.learnMore)} ${icon('arrow-right', 15)}</a></p>
+      </article>`).join('')}
     </div>
   </div>
 </section>

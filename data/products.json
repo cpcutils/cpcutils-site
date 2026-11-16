@@ -12,6 +12,8 @@
       "name": "CPC 7z SFX Builder",
       "tagline": "Self-extracting 7-Zip packages, built visually.",
       "blurb": "Turns a folder or an existing archive into one self-extracting exe, with installer mode, signing and a Check page that says Passed only when every line is green.",
+      "long": "Point it at a program folder or an existing archive and the builder produces a single .exe that unpacks itself on the target machine: no archiver, no admin rights, no .NET, no runtime. Installer mode adds wizard pages, shortcuts and an uninstall entry, and the same package can be built without a window for unattended deployment. The result can be signed with your own certificate from the Windows certificate store, with a timestamp. Before you ship, the Check page unpacks the built exe and tests it, and says Passed only when every line is green. Sources: 7z, zip, rar, tar, gz, bz2, xz, cab and iso. Any number of build profiles, 12 interface languages.",
+      "spec": "2 MB · 64-bit Windows · 12 languages · Free, Pro $30",
       "status": "available",
       "statusLabel": "Available",
       "accent": true,
@@ -20,7 +22,8 @@
       "bullets": [
         "Folder or archive in, one exe out",
         "Search a 6,500-file list by typing",
-        "Check the result before you ship",
+        "Installer mode, signing, silent builds",
+        "Check page tests the result before you ship",
         "2 MB, no .NET, no runtime"
       ],
       "api": "https://cpc-activate-dev.odd-wood-edb6.workers.dev/v1/latest/sfx-builder"
@@ -30,6 +33,8 @@
       "name": "CPC MInst Launcher",
       "tagline": "One tool list for Windows and WinPE.",
       "blurb": "A grouped, searchable tool list that carries one profile from Windows into WinPE, and opens the MInstAll .ini you already have.",
+      "long": "Every portable tool you carry sits in one grouped, searchable list: disk tools, diagnostics, backup and restore, password resets, file managers. Type a few letters and the item is there; press Enter and it runs with the profile you picked. Profiles are plain .ini files in the MInstAll format, so the menu you already built keeps working: edit it in Notepad, keep it on the stick, carry it between machines. The launcher creates desktop and Start menu shortcuts, including inside WinPE, and its tray icon waits for the shell to come up instead of giving up on first boot. One native 64-bit exe, no runtime, 12 interface languages.",
+      "spec": "734 KB · Windows and WinPE · 12 languages · Free, $20, $60",
       "status": "soon",
       "statusLabel": "Beta",
       "accent": false,
@@ -39,6 +44,7 @@
         "Grouped tool list with type-to-search",
         "One profile, Windows and WinPE",
         "Opens your existing MInstAll .ini",
+        "Shortcuts on the desktop and in the Start menu",
         "734 KB, single portable exe"
       ],
       "api": null

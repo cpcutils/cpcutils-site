@@ -285,3 +285,11 @@ a:hover{color:var(--accent-text)}
 .gal-item{margin:0}.gal-item figcaption{font-size:.86rem;color:var(--text-dim);padding:8px 4px 0}
 .gal-item .zoomwrap{border-radius:12px;overflow:hidden;border:1px solid var(--border)}
 .gal-item img{display:block;width:100%;height:auto}
+
+.product-body{font-size:.95rem;line-height:1.65;color:var(--text-dim);margin:0 0 14px}
+.product-spec{font-size:.82rem;line-height:1.5;color:var(--text-dim);border-top:1px solid var(--border);padding-top:10px;margin:0 0 16px;font-variant-numeric:tabular-nums}
+.prose-card h2{font-size:1.35rem;margin:0 0 6px}
+.prose-lead{font-size:1rem;font-weight:600;color:var(--text);margin:0 0 12px}
+.prose-body{font-size:.95rem;line-height:1.68;color:var(--text-dim);margin:0 0 14px}
+.prose-card .ticks{margin:0 0 14px}
+.prose-spec{font-size:.82rem;line-height:1.5;color:var(--text-dim);border-top:1px solid var(--border);padding-top:10px;margin:0 0 16px;font-variant-numeric:tabular-nums}
