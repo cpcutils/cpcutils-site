@@ -1,165 +1,273 @@
 {
   "meta": {
-    "title": "CPC Utils — CPC 7z SFX Builder and CPC MInst Launcher",
-    "description": "CPC Utils makes portable Windows tools: CPC 7z SFX Builder for self-extracting 7-Zip packages and CPC MInst Launcher for Windows and WinPE. Free download, no .NET, no runtime."
+    "title": "CPC 7z SFX Builder — self-extracting exe builder for Windows",
+    "description": "Build one self-extracting 7-Zip exe from a folder or an archive. Installer mode, verification and a Check page in one 2 MB tool. No .NET, no runtime."
   },
   "hero": {
-    "pillTop": "New: CPC 7z SFX Builder 1.0.8.3 — free download",
-    "h1Lines": ["Build", "portable", "Windows packages"],
-    "sub": "CPC 7z SFX Builder turns a folder or an archive into one self-extracting exe: choose what runs, where it unpacks, and what happens after. CPC MInst Launcher carries the same profile from Windows into WinPE.",
+    "pillTop": "CPC 7z SFX Builder 1.0.8.3 — free download",
+    "h1Lines": ["Turn a folder", "into one", "self-extracting exe"],
+    "sub": "Pick a folder or an existing archive. Choose the program that starts after unpacking, where the files go, and what cleanup happens. Then build one portable exe. No scripts, no .NET, no runtime.",
     "ctaPrimary": "Free Download",
-    "ctaSecondary": "Explore features",
-    "trust": ["12 languages built-in", "Windows 7–11", "No .NET or runtime"],
-    "shotCard": { "k": "One tool, one workflow", "p": "Source, behaviour, installer mode and verification in a single window." }
+    "ctaSecondary": "See what it does",
+    "trust": ["64-bit Windows", "2 MB, no runtime", "folder or archive source", "12 languages planned", "no account, no email"],
+    "shotCard": { "k": "One window, start to finish", "p": "Source files, launch settings, installer mode and the Check page sit in the same project." }
   },
   "umbrella": {
-    "h2": "Two tools today, one brand for the next ones",
-    "p": "Every CPC Utils product is a single portable executable with no runtime dependencies, so it behaves the same on a clean Windows install, a technician's WinPE stick, or an everyday desktop."
+    "h2": "Two tools, one rule: it runs",
+    "p": "Every CPC Utils product is one portable exe with nothing to install. It works the same on a clean Windows machine, a technician's WinPE stick, or your own desktop."
   },
   "productCard": { "learnMore": "Learn more", "download": "Free Download", "soon": "Coming soon", "talk": "Get in touch" },
   "steps": {
-    "h2": "Three steps to your first package",
-    "sub": "No scripts to write, no configuration files to hand-edit.",
+    "h2": "From folder to finished exe",
+    "sub": "No scripts, no configuration files, no second tool.",
     "items": [
-      { "h": "Choose your files", "p": "Point CPC 7z SFX Builder at a folder or an archive. The file list is complete and stays filterable as you type." },
-      { "h": "Set the options", "p": "Pick where the package unpacks, which program starts, and which preparation scripts run before it, in your order." },
-      { "h": "Build the package", "p": "One click produces a single exe. Signing and payload binding are one switch away." }
+      { "h": "Point it at your source", "p": "Pick a folder or an existing archive. The whole file list appears, root files first, with a live match count." },
+      { "h": "Say what happens next", "p": "Choose the program to start, where it unpacks, and any setup steps that run before it, in the order you set." },
+      { "h": "Build and check", "p": "One click produces the exe. The Check page turns green only when the config, the content and the integrity check all pass." }
     ]
   },
   "features": {
-    "h2": "Built for real packages",
-    "sub": "The details that decide whether a package is usable at a customer site.",
+    "h2": "Built for packages that have to work on someone else's machine",
+    "sub": "The details that decide whether a package survives a customer site.",
     "items": [
-      { "h": "Typed filtering", "p": "Type a few characters and the list narrows instantly, even with thousands of files in the source." },
-      { "h": "Root first", "p": "Files in the package root come first, then folder contents alphabetically." },
-      { "h": "Install location", "p": "Temp, LocalAppData, AppData, ProgramData, or next to the package — deletion is a separate decision." },
-      { "h": "Ordered hooks", "p": "Preparation scripts run after extraction and before the main program, in the order you selected." },
-      { "h": "Installer mode", "p": "Optional wizard, target folder, shortcuts and an uninstall entry, from the same project." },
-      { "h": "Signed and bound", "p": "Authenticode signing plus a payload hash, so a modified package fails verification." }
+      { "h": "Find one file among thousands", "p": "Type a few letters and the list narrows as you go. 6,500 files shrink to the match count in the header." },
+      { "h": "Your main exe stays on top", "p": "Root files appear first, then folders A to Z. You stop scrolling past DLLs to find the launcher." },
+      { "h": "You control where files land", "p": "Unpack to Temp, a user folder, ProgramData, or beside the package. Cleanup is a separate switch, so nothing vanishes by accident." },
+      { "h": "Run setup steps in order", "p": "Add batch or command steps that run after extraction and before the main program, in exactly the sequence you set." },
+      { "h": "One switch makes it an installer", "p": "Turn installer mode on and the same project gets a wizard, shortcuts and an uninstall entry. Turn it off and it is a portable exe again." },
+      { "h": "Check before you ship", "p": "Every package carries a config signature and a content hash. Change the exe afterwards and the Check page catches it." }
     ]
   },
   "spotlight": {
-    "h2": "Repack and unpack with a live log",
-    "p": "The source is scanned once and every executable is listed with its folder in front of the name. Typing filters the list in place; arrow keys, Page Up/Down, Home/End and Enter work the way you expect. The header always shows how many matches you have out of how many files.",
-    "h2b": "Installer mode, without a second project",
-    "pb": "Switch it on and the same package gets a wizard, a target folder, desktop and Start menu shortcuts and an uninstall entry. Switch it off and you are back to a plain portable package."
+    "h2": "Repack an existing self-extracting exe",
+    "p": "Drop in a finished exe and the unpacker lists its contents without running it. Change what you need, then build again. You do not have to start from scratch.",
+    "h2b": "A package that can prove itself",
+    "pb": "The Check page reports the config, the payload and the integrity separately, and says Passed only when every line is green. A customer's machine is the wrong place to find out."
   },
   "gallery": {
     "h2": "Proof, not promises",
-    "sub": "The Check page reports configuration, payload, stub and integrity separately. It says Passed only when every line is green.",
-    "tabs": [
-      
-      { "id": "error", "label": "Build failed", "img": "09-build-error.png", "alt": "A failed build with the reason in red" },
-      { "id": "unpack", "label": "Unpack a package", "img": "10-unpacker.png", "alt": "Unpacking an existing package with progress" },
-      { "id": "verify", "label": "Verify", "img": "11-verify.png", "alt": "Verification result of a package" }
-    ]
+    "sub": "The Check page reports configuration, payload, stub and integrity separately. It says Passed only when every line is green."
   },
   "portable": {
-    "h2": "Why portable matters",
+    "h2": "Why portable still matters",
     "items": [
-      "No installer, no runtime, no .NET",
-      "Runs from a USB stick on repair benches and client PCs",
-      "Settings live next to the exe; the registry is read-only",
+      "No installer, no .NET, no runtime to add to an image",
+      "Runs from a USB stick, a bench machine or a WinPE image",
+      "Settings are plain files next to the exe; nothing to register",
       "Delete the folder and the tool is gone"
     ]
   },
   "faq": {
     "h2": "Questions we get",
     "items": [
-      { "q": "Is CPC 7z SFX Builder free?", "a": "Yes. The free edition builds complete packages. A Pro edition removes the splash screen and allows your own branding. Details are in the license file that ships with each release." },
-      { "q": "Does CPC 7z SFX Builder need .NET or an installation?", "a": "No. It is one portable exe that talks to the Windows API directly. Copy it to a USB drive or a network share and run it." },
-      { "q": "Does CPC MInst Launcher work in WinPE?", "a": "Yes. It uses the same profile in Windows and in WinPE, so technicians carry one set of launch items instead of two." },
-      { "q": "Will my packages pass SmartScreen?", "a": "Signing the output with your own certificate is supported. Without a certificate Windows shows the usual warning; payload binding still detects later modification." },
-      { "q": "What does a package from CPC 7z SFX Builder contain?", "a": "An extraction stub, your compressed files, and a configuration block. Optionally a signature and a payload hash." },
-      { "q": "Where are my settings stored?", "a": "In a profile file next to the exe, or in the folder you choose. The tools read the registry for environment detection only." }
+      { "q": "Is it really free?", "a": "Yes, and the packages are yours: anything you build with the free edition can be used without limits. Free adds a short branding splash to the package it builds. Pro ($30, perpetual) removes it, adds installer mode and silent packages, and includes 12 months of updates and support." },
+      { "q": "Do I need .NET or an installation?", "a": "No. It is one portable exe that talks to the Windows API directly. Copy it to a USB stick, a network share or a WinPE image and run it." },
+      { "q": "Which sources can I use?", "a": "A folder or an existing archive. 7z, zip, rar, tar, cab and iso are all supported, and archive contents are added without recompressing what is already compressed." },
+      { "q": "Can I check a package before I ship it?", "a": "Yes. The Check page reports config, content and integrity separately, and only says Passed when every line is green." },
+      { "q": "Will Windows warn the user?", "a": "Two separate things. The builder itself is being signed with a Microsoft-trusted certificate, so Windows shows Central PC Service as the publisher when you run the tool. A package you build is yours: we do not sign it. You can sign it yourself: the Build page takes a code-signing certificate from the Windows certificate store and adds a timestamp, and then Windows shows your name instead of Unknown publisher. Without a signature Windows shows the usual warning, and the package's own integrity check still catches any later modification." },
+      { "q": "What does the Pro edition add?", "a": "Installer mode, silent packages without a window, and no splash screen in the output. The free edition already builds complete packages, and you may use them without limits. The full matrix is on the Pricing page." },
+      { "q": "How many languages does the interface have?", "a": "Three are finished: German, English and Hungarian. Twelve are planned. Each language is a single file, so the next ones arrive with an update rather than a separate build." },
+      { "q": "Does it use 7-Zip's own SFX module?", "a": "No. The extractor inside every package is our own build from the LZMA SDK 24.08 with our patches: a branded splash during long extractions, error messages in plain language instead of raw Win32 codes, and our icon when you do not choose one. The SDK is public domain, so no third-party module decides when your packages get fixed." },
+      { "q": "How much do the licences cost?", "a": "CPC 7z SFX Builder is free; Pro is $30 perpetual, with 12 months of updates and an optional $10/year renewal. CPC MInst Launcher is free with every function; Supporter is $20 and Brand $60. Full matrix on the Pricing page." },
+      { "q": "How do I buy a licence?", "a": "Checkout is being prepared. Until it is live, write to support@cpcutils.com with the product name and your company details; the key and the invoice arrive by email, usually the same day." }
     ]
   },
   "buy": {
-    "h2": "Buy Now",
-    "p": "The free edition is a full builder. A Pro edition is planned: it removes the splash screen and lets you use your own branding. Pricing and checkout are not live yet.",
+    "h2": "Pricing",
+    "p": "Two tools, two simple models. The free editions are complete tools, not demos. The paid editions remove the splash screen, add your own branding, and unlock the features that matter when the package carries your name.",
     "cta": "Free Download"
   },
+  "pricing": {
+    "h1": "Pricing",
+    "lead": "Two tools, two straightforward models. Every free edition is a complete tool: the paid editions change the branding and add the last few percent that matters when you ship packages to someone else.",
+    "howto": "Checkout is not live yet. To buy a licence today, write to support@cpcutils.com with the product name and your company details. You will get the key and the invoice by email, usually the same day.",
+    "note": "All prices in USD. Licences are perpetual. The optional renewal adds 12 months of updates and support; when it lapses the program keeps working and keeps building, it simply stops receiving updates.",
+    "products": [
+      {
+        "name": "CPC 7z SFX Builder",
+        "sub": "Free builds and ships packages you can use without limits. Pro removes the splash screen from the builder and from the package, and unlocks installer mode.",
+        "note": "Activation happens on the License page inside the program: enter the key, confirm, and the instance switches to Pro. Activation needs an internet connection once, and the licence is bound to the workstation.",
+        "plans": [
+          {
+            "name": "Free",
+            "price": "$0",
+            "per": "forever",
+            "sub": "Everything you need to build and ship a self-extracting package.",
+            "items": [
+              { "t": "Package build from a folder or an archive", "on": true },
+              { "t": "7z, zip, rar, tar, cab and iso sources", "on": true },
+              { "t": "AES-256 password protection", "on": true },
+              { "t": "Mandatory integrity protection", "on": true },
+              { "t": "Unpacker and Check page", "on": true },
+            { "t": "Updates and technical support", "on": false },
+              { "t": "Unlimited use of the packages you build", "on": true },
+              { "t": "Installer mode: shortcuts, uninstall entry, UAC", "on": false },
+              { "t": "Silent package with no window", "on": false },
+              { "t": "No splash: neither in the builder nor in the package", "on": false }
+            ],
+            "cta": "Download free",
+            "ctaHref": "/download"
+          },
+          {
+            "name": "Pro",
+            "price": "$30",
+            "per": "one-time, perpetual",
+            "sub": "For packages that carry your name and your installer.",
+            "highlight": true,
+            "items": [
+              { "t": "Everything in Free", "on": true },
+              { "t": "Installer mode: wizard, shortcuts, uninstall entry, UAC", "on": true },
+              { "t": "Silent package with no window", "on": true },
+              { "t": "No splash: neither in the builder nor in the package", "on": true },
+              { "t": "Integrity protection made optional", "on": true },
+              { "t": "12 months of updates and technical support", "on": true },
+              { "t": "Optional renewal: $10 per year", "on": true }
+            ],
+            "cta": "Buy Pro",
+            "ctaHref": "/contact"
+          }
+        ]
+      },
+      {
+        "name": "CPC MInst Launcher",
+        "sub": "Every function is in the free edition. The paid editions only change what the header looks like, and remove the splash screen.",
+        "note": "There is no feature gating on the launcher: groups, search, profiles, WinPE behaviour and autorun are all in the free edition, in Windows and in PE alike.",
+        "plans": [
+          {
+            "name": "Free",
+            "price": "$0",
+            "per": "forever",
+            "sub": "Every function, for as long as you want it.",
+            "items": [
+              { "t": "Every function: groups, search, profiles", "on": true },
+              { "t": "Windows and WinPE from one profile", "on": true },
+              { "t": "Opens an existing MInstAll collection", "on": true },
+              { "t": "Desktop and Start-menu shortcut generation", "on": true },
+              { "t": "Short splash screen at start", "on": true },
+              { "t": "CPC header and support line", "on": true },
+              { "t": "Your own name in the header", "on": false },
+              { "t": "Your own logo, in PE too", "on": false }
+            ],
+            "cta": "Ask for the beta build",
+            "ctaHref": "/contact"
+          },
+          {
+            "name": "Supporter",
+            "price": "$20",
+            "per": "one-time, perpetual",
+            "sub": "For the technician who does not want someone else's splash screen.",
+            "items": [
+              { "t": "Everything in Free", "on": true },
+              { "t": "No splash screen", "on": true },
+              { "t": "\"Licensed to: your name\" in the header", "on": true },
+              { "t": "Support line removed", "on": true },
+              { "t": "Beta channel access", "on": true },
+              { "t": "12 months of updates", "on": true },
+              { "t": "Optional renewal: $10 per year", "on": true }
+            ],
+            "cta": "Get Supporter",
+            "ctaHref": "/contact"
+          },
+          {
+            "name": "Brand",
+            "price": "$60",
+            "per": "one-time, perpetual",
+            "sub": "For a shop that hands the stick to a customer.",
+            "items": [
+              { "t": "Everything in Supporter", "on": true },
+              { "t": "Your own company name in the header", "on": true },
+              { "t": "Your own logo, in PE as well", "on": true },
+              { "t": "Signed branding token, checked offline", "on": true },
+              { "t": "12 months of updates", "on": true },
+              { "t": "Optional renewal: $10 per year", "on": true }
+            ],
+            "cta": "Get Brand",
+            "ctaHref": "/contact"
+          }
+        ]
+      }
+    ]
+  },
   "cta": {
-    "h2": "Download CPC 7z SFX Builder and build your first package",
+    "h2": "Your first package is about two minutes away",
     "p": "No account, no email. The download always points at the current release."
   },
   "footer": {
     "columns": [
       { "h": "Products", "links": [["CPC 7z SFX Builder", "sfx-builder"], ["CPC MInst Launcher", "launcher"], ["Download", "download"]] },
       { "h": "Resources", "links": [["Docs", "docs"], ["FAQ", "faq"], ["Changelog", "changelog"]] },
-      { "h": "Company", "links": [["About", "about"], ["Contact", "contact"], ["Buy Now", "buy"]] },
+      { "h": "Company", "links": [["About", "about"], ["Contact", "contact"], ["Pricing", "buy"]] },
       { "h": "Legal", "links": [["EULA", "legal/eula"], ["Privacy", "legal/privacy"], ["Third-party licenses", "legal/third-party"]] }
     ],
     "copyright": "© 2026 Central PC Service Bt. All rights reserved."
   },
   "productPages": {
     "sfx-builder": {
-      "title": "CPC 7z SFX Builder — visual self-extracting package builder",
+      "title": "CPC 7z SFX Builder - self-extracting 7-Zip package builder",
       "h1": "CPC 7z SFX Builder",
-      "lead": "A visual editor for 7-Zip self-extracting packages: choose the source, decide how it unpacks and what it runs, then build one exe.",
+      "lead": "Visual builder for self-extracting 7-Zip packages: folder or archive in, one portable exe out, with installer mode and verification.",
       "secondary": { "label": "Docs", "href": "/docs" },
       "sections": [
-        { "h": "The file list", "p": "Every executable in the source appears once, root files first, with the folder shown in front of the name. Typing filters the list as you go." },
-        { "h": "What the package does", "p": "Choose the program to start, optional parameters, a finish message, and preparation scripts that run after extraction in the order you picked." },
-        { "h": "Where it unpacks", "p": "Temp, LocalAppData, AppData, ProgramData or next to the package. Deleting the files after the run is a separate switch on purpose." },
-        { "h": "Installer mode", "p": "Add a wizard, a target folder, desktop and Start menu shortcuts, and an uninstall entry — or keep it as a plain portable package." },
-        { "h": "Verification", "p": "The built package can carry a signature and a payload hash. The Check page reports configuration, content, stub and integrity separately." }
+        { "h": "See every file at a glance", "p": "The full source list loads root files first, folders A to Z after them. Type to filter, and the header shows the match count." },
+        { "h": "Set what runs after unpacking", "p": "Pick the program to start, add parameters, a finish message, and preparation steps that run after extraction in the order you choose." },
+        { "h": "Choose where files go", "p": "Unpack to Temp, a user folder, ProgramData or beside the package. Deleting the files after the run is a separate switch, so nothing disappears by accident." },
+        { "h": "Installer mode", "p": "Add a wizard, a target folder, desktop and Start-menu shortcuts and an uninstall entry, or keep it a plain portable package. Same project, one switch." },
+        { "h": "Verify before you ship", "p": "Every package can carry a config signature and a content hash, and the Check page reports config, content and integrity separately." },
+        { "h": "Languages", "p": "German, English and Hungarian are finished today. Twelve are planned, and one language is a single text file, so the next ones arrive with an update rather than a new build. The interface comes first, the help follows." }
       ],
       "closing": {
         "h": "Everything in one window",
-        "p": "Source, behaviour, installer options and verification live in the same project - no export, no second tool.",
+        "p": "Source files, launch settings, installer mode and the Check page sit in the same project. No export, no second tool.",
         "link": { "label": "Free Download", "href": "/download" }
       },
       "cta": {
-        "h": "Download CPC 7z SFX Builder and build your first package",
+        "h": "Build your first package today",
         "p": "No account, no email. The download always points at the current release.",
         "actions": [
           { "label": "Free Download", "href": "/download", "kind": "primary" },
-          { "label": "Buy Now", "href": "/buy" }
+          { "label": "Buy Pro", "href": "/buy" }
         ]
       }
     },
     "launcher": {
-      "title": "CPC MInst Launcher - one tool list for Windows and WinPE",
+      "title": "CPC MInst Launcher — one tool list for Windows and WinPE",
       "h1": "CPC MInst Launcher",
-      "lead": "The program list a service bench actually needs: your tools grouped and searchable, one click from launch. The same profile works in Windows and in WinPE - no installer, no runtime, no console windows.",
+      "lead": "Tool list for a service bench: grouped, searchable, one click to launch, same profile in Windows and WinPE. No installer, no runtime.",
       "secondary": { "label": "See the builder", "href": "/sfx-builder" },
       "heroShot": { "img": "launcher-main.png", "alt": "CPC MInst Launcher at its default window size: Windows PE profile, three groups of tools, search field and the info bar of the selected program" },
       "sections": [
-        { "h": "Groups, not folders", "p": "Tools are organised into groups - Backup and Restore, Hard Disk, Diagnostics - that you can create, rename, reorder, sort A-Z or hide. Nothing depends on where a file happens to sit on disk." },
-        { "h": "Type to find", "p": "Start typing and the list narrows immediately, without pressing Enter. Backspace widens it again. Groups collapse to the matches, so a 200-item stick still takes two keystrokes." },
-        { "h": "Profiles", "p": "The profile switch at the top swaps the whole list: load, duplicate, rename, delete, import or export. Profiles are MInstAll-compatible .ini files, so an existing collection does not have to be rebuilt." },
-        { "h": "Same list in PE", "p": "Items can be flagged PE-only or 64-bit-only, and the ones marked autorun run in order when the launcher is started with --autorun, skipping anything whose OS does not match. Settings that make no sense in PE - starting with Windows, for one - are disabled instead of silently failing." },
-        { "h": "Safe editing", "p": "Every save writes a backup first; if the backup cannot be written, nothing is saved and you are told why. Deleting an item asks whether the file goes too, and the shortcuts generated for it are removed with it." },
-        { "h": "Icons and shortcuts", "p": "Each item takes its icon from the program itself or from the icon library, and can create a desktop or Start menu shortcut. Start folder and arguments are optional extras." }
+        { "h": "Groups, not folders", "p": "Backup, Diagnostics, Disk: groups you create, rename, reorder, sort or hide. Nothing depends on where a file happens to sit on disk." },
+        { "h": "Type to find", "p": "Start typing and the list narrows without pressing Enter; Backspace widens it again. Groups collapse to the matches, so a 200-item stick takes two keystrokes." },
+        { "h": "Profiles", "p": "The switch at the top swaps the whole list: load, duplicate, rename, delete, import or export. An existing MInstAll collection opens as it is, without rebuilding." },
+        { "h": "Same list in PE", "p": "Flag items for WinPE or 64-bit only, and let autorun items start in order, skipping anything whose OS does not match. Settings that make no sense in PE are disabled instead of failing silently." },
+        { "h": "Safe editing", "p": "Every save writes a timestamped backup first. If the backup cannot be written, nothing is saved and you are told why. The last ten backups are kept." },
+        { "h": "Icons and shortcuts", "p": "Icons come from the program itself, from the icon library, or from a file you pick. Desktop and Start-menu shortcuts are generated for you, and removed when the item goes." }
       ],
-      "spotlight": { "img": "launcher-search.png", "alt": "Three partition tools left after typing partition: the search filters the grouped list while the info bar shows size, path and platform", "h": "Two keystrokes instead of a scroll", "p": "Filtering happens on the list you already have, not in a new window: type a few letters, watch the groups collapse to the matching tools, and the info bar tells you the size, the path behind the {Patch} token and whether the item is 32-bit, 64-bit or both.", "link": { "label": "Ask about the beta", "href": "/contact" }, "reverse": true },
+      "spotlight": { "img": "launcher-search.png", "alt": "Three partition tools left after typing partition: the search filters the grouped list while the info bar shows size, path and platform", "h": "Two keystrokes instead of a scroll", "p": "Filtering happens on the list you already have, not in a new window. Type a few letters, watch the groups collapse to matching tools, and read the size, path and OS from the info bar.", "link": { "label": "Ask about the beta", "href": "/contact" }, "reverse": true },
       "features": {
-        "h": "What is in the window",
-        "sub": "A launcher for people who run the same tools every day and do not want to hunt for them.",
+        "h": "The parts you use every day",
+        "sub": "Small things that decide whether a launcher survives a working day.",
         "items": [
-          { "h": "Grouped list", "p": "Groups with icons, collapsible in place, sorted by hand or A-Z." },
-          { "h": "Search as you type", "p": "Filters immediately, Backspace widens, no dialog in the way." },
-          { "h": "MInstAll profiles", "p": "Reads the .ini profiles technicians already have; not affiliated with the original author." },
-          { "h": "PE-aware items", "p": "PE-only, 64-bit-only and autorun flags, all shown in the list." },
-          { "h": "Tray and snap", "p": "After launching it can stay in the tray, or snap to the right edge as a narrow tool strip." },
-          { "h": "One portable exe", "p": "About 730 KB, settings in ui.dat next to it, no .NET and no runtime to install." }
+          { "h": "Stays out of your way", "p": "After launching it can live in the tray, or snap to the right edge as a narrow tool strip that follows the taskbar." },
+          { "h": "Keyboard first", "p": "F10 runs, F2 edits, F3 opens the side bar, Del removes, and the arrow keys move an item inside its group." },
+          { "h": "Not found is still visible", "p": "An item whose file is missing stays in the list, marked, with the expected path in the info bar." },
+          { "h": "One portable exe", "p": "About 734 KB, settings live next to it, no .NET and no runtime to install." }
         ]
       },
       "faq": {
         "h": "Questions about the launcher",
         "items": [
-          { "q": "Is CPC MInst Launcher free?", "a": "The free edition is planned to contain every function. A Supporter and a Brand edition remove the splash screen and put your own name and logo in the header. Pricing is not live yet." },
-          { "q": "Does it replace MInstAll?", "a": "It reads the same .ini profile format, so existing profiles open as they are. It is an independent program and is not affiliated with the original author." },
-          { "q": "Does it run in WinPE?", "a": "Yes, with the same profile and no installer. Autorun items start with the shell; Windows-only settings such as starting with the system are disabled in PE." },
-          { "q": "Which Windows versions are supported?", "a": "Windows 7, 8, 10 and 11 on 64-bit systems, and the 64-bit WinPE builds used on service media. Individual items can be marked 64-bit only, so a mixed collection still shows only what fits the running system." },
-          { "q": "Can I try it now?", "a": "The beta is not on the download page yet. Write to info@cpcutils.com and we will send the current build with a test profile." },
-          { "q": "How does it handle a missing tool?", "a": "The item stays in the list marked as not found, with its path in the info bar, so a broken stick is visible before a client is sitting next to it." }
+          { "q": "Is it free?", "a": "Yes, and not as a demo: every function is in the free edition, including WinPE. Supporter ($20) removes the splash screen and shows your name; Brand ($60) puts your own company name and logo in the header, in PE as well. Both are perpetual with 12 months of updates." },
+          { "q": "Does it replace MInstAll?", "a": "It reads and writes the same profile format, so your existing collection opens as it is. It is an independent program, a launcher rather than an installer." },
+          { "q": "Does it run in WinPE?", "a": "Yes, with the same profile. Autorun items start with the shell; settings that only make sense in Windows, such as starting with the system, are disabled in PE." },
+          { "q": "Do I have to rebuild my tool collection?", "a": "No. Load your existing profile and it appears grouped as before. Fields the launcher does not use are preserved when it saves." },
+          { "q": "What happens if a tool goes missing?", "a": "The item stays in the list marked as not found, with its path in the info bar. A broken stick is visible before a client sits down." },
+          { "q": "Can I try it now?", "a": "The build is not on the download page yet. Write to support@cpcutils.com and we will send the current build with a test profile." }
         ]
       },
       "cta": {
         "h": "The launcher is in beta",
-        "p": "It is not on the download page yet. Ask for the current build if you want to try it on your own bench or in a PE image.",
+        "p": "Ask for the current build and a test profile; we will send both.",
         "actions": [
           { "label": "Ask about the beta", "href": "/contact", "kind": "primary" },
           { "label": "See the builder", "href": "/sfx-builder" }

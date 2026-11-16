@@ -44,7 +44,7 @@ function nav(active = '') {
       </div>
       ${link('/download', 'Download', 'download')}
       ${link('/docs', 'Docs', 'docs')}
-      ${link('/buy', 'Buy Now', 'buy')}
+      ${link('/buy', 'Pricing', 'buy')}
       ${link('/blog', 'Blog', 'blog')}
       <div class="nav-item">
         <a class="nav-link" href="/contact">Contact ${icon('chevron-down', 14)}</a>
@@ -340,16 +340,30 @@ const download = page({
   scripts: `<script src="/assets/download.js?v=${BUILDV}" defer></script>`
 });
 
+const planCard = p => `<article class="card plan${p.highlight ? ' plan-hl' : ''}">
+      <h3>${esc(p.name)}</h3>
+      <div class="plan-price">${esc(p.price)}${p.per ? `<span>${esc(p.per)}</span>` : ''}</div>
+      <p class="plan-sub">${esc(p.sub)}</p>
+      <ul class="plan-list">${p.items.map(i => `<li class="${i.on ? 'on' : 'off'}"><span class="tick">${i.on ? '&#10003;' : '&mdash;'}</span>${esc(i.t)}</li>`).join('')}</ul>
+      <a class="btn ${p.highlight ? 'btn-primary' : 'btn-ghost'}" href="${esc(p.ctaHref)}">${esc(p.cta)}</a>
+    </article>`;
+
 const buy = page({
-  title: 'Buy Now — CPC Utils',
-  description: 'CPC 7z SFX Builder is free to download. A Pro edition with custom branding is planned; checkout is not live yet.',
+  title: 'Pricing — CPC Utils',
+  description: 'CPC 7z SFX Builder: free, or Pro at $30. CPC MInst Launcher: every function free; Supporter $20, Brand $60. Perpetual licences.',
   active: 'buy',
   canonical: SITE + '/buy',
-  content: `<section class="page-head"><div class="wrap"><h1>${esc(copy.buy.h2)}</h1><p class="lead">${esc(copy.buy.p)}</p>
+  content: `<section class="page-head"><div class="wrap"><h1>${esc(copy.pricing.h1)}</h1><p class="lead">${esc(copy.pricing.lead)}</p>
     <div class="hero-actions"><a class="btn btn-primary btn-lg" href="/download">${icon('download', 18)} ${esc(copy.buy.cta)}</a></div></div></section>
-    <section class="section"><div class="wrap prose-grid">
-      <article class="card prose-card"><h2>Free edition</h2><p>Complete package building, installer mode, signing support and the built-in help. A short splash screen is shown in the package.</p></article>
-      <article class="card prose-card"><h2>Pro edition (planned)</h2><p>No splash screen and custom branding. Pricing and checkout will be announced here.</p></article>
+    ${copy.pricing.products.map(pr => `<section class="section"><div class="wrap">
+      <div class="section-head"><h2>${esc(pr.name)}</h2><p class="section-sub">${esc(pr.sub)}</p></div>
+      <div class="plan-grid">${pr.plans.map(planCard).join('')}</div>
+      ${pr.note ? `<p class="hint" style="margin-top:18px">${esc(pr.note)}</p>` : ''}
+    </div></section>`).join('')}
+    <section class="section section-alt"><div class="wrap">
+      <h2>How to buy</h2>
+      <p>${esc(copy.pricing.howto)}</p>
+      <p class="hint">${esc(copy.pricing.note)}</p>
     </div></section>`
 });
 
@@ -384,7 +398,12 @@ write('faq.html', faq);
 write('blog.html', stub('Blog', 'Blog', 'Notes about building packages, WinPE deployment and the tools behind CPC Utils.'));
 write('changelog.html', stub('Changelog', 'Changelog', 'Release notes per product, generated from the build history.'));
 write('about.html', stub('About', 'About CPC Utils', 'A small Hungarian company building portable Windows tools for technicians and developers.'));
-write('contact.html', stub('Contact', 'Contact', 'Write to info@cpcutils.com.'));
+write('contact.html', stub('Contact', 'Contact', 'Licences, purchasing and beta access: support@cpcutils.com. General questions: info@cpcutils.com.'));
+write('404.html', page({
+  title: 'Page not found — CPC Utils',
+  description: 'This page does not exist.',
+  content: `<section class="page-head"><div class="wrap"><h1>This page unpacked somewhere else</h1><p class="lead">The link you followed points at a page that is not here. The front page, the download and the docs are a good place to restart.</p><div class="hero-actions"><a class="btn btn-primary" href="/">Back to the start</a><a class="btn btn-ghost" href="/download">Free download</a></div></div></section>`
+}));
 write('legal/eula.html', stub('EULA', 'End user license', 'License terms for CPC Utils products.'));
 write('legal/privacy.html', stub('Privacy', 'Privacy', 'What the website and the tools store. Short answer: as little as possible.'));
 write('legal/third-party.html', stub('Third-party licenses', 'Third-party licenses', 'Lucide icons (ISC), 7-Zip (LGPL), TweetNaCl (public domain).'));
@@ -414,23 +433,50 @@ function buildDocs() {
 
 const chapters = buildDocs();
 
+/* ---------- launcher docs ---------- */
+const HELP_SRC_LAUNCHER = process.env.CPC_HELP_SRC_LAUNCHER || 'G:\\CPC_Soft\\launcher\\help';
+function buildLauncherDocs() {
+  const en = path.join(HELP_SRC_LAUNCHER, 'en');
+  if (!fs.existsSync(en)) { console.warn('Docs: launcher help nem talalhato ->', en); return []; }
+  const idx = fs.readFileSync(path.join(en, 'index.html'), 'utf8');
+  const list = [];
+  const re = /<a href="(\d\d-[^"]+\.html)"><span class="n">(\d+)<\/span>([^<]+)<\/a>/g;
+  let mm;
+  while ((mm = re.exec(idx))) list.push({ href: mm[1], n: mm[2], title: mm[3] });
+  for (const f of fs.readdirSync(en).filter(x => x.endsWith('.html'))) {
+    let html = fs.readFileSync(path.join(en, f), 'utf8');
+    html = html.replace(/<a class="lang" href="\.\.\/(hu|en)\/[^"]*">[^<]*<\/a>/, '<a class="lang" href="/docs">&larr; CPC Utils Docs</a>');
+    if (!/rel="canonical"/.test(html)) html = html.replace('</head>', '<link rel="canonical" href="' + SITE + '/docs/launcher/en/' + f.replace(/\.html$/, '') + '">\n</head>');
+    write('docs/launcher/en/' + f, html);
+  }
+  const imgSrc = path.join(HELP_SRC_LAUNCHER, 'assets', 'img', 'en');
+  const imgOut = path.join(OUT, 'docs', 'launcher', 'assets', 'img', 'en');
+  if (fs.existsSync(imgSrc)) { fs.mkdirSync(imgOut, { recursive: true }); fs.cpSync(imgSrc, imgOut, { recursive: true }); }
+  return list;
+}
+const launcherChapters = buildLauncherDocs();
+
 write('docs/index.html', page({
   title: 'Documentation — CPC Utils',
-  description: 'The complete CPC 7z SFX Builder user guide: interface, source, installer mode, build, unpacker, verification and troubleshooting.',
+  description: 'User guides for CPC 7z SFX Builder and CPC MInst Launcher: interface, sources, installer mode, profiles, WinPE and command line.',
   active: 'docs',
   canonical: SITE + '/docs',
   content: `<section class="page-head"><div class="wrap">
     <h1>Documentation</h1>
-    <p class="lead">The full CPC 7z SFX Builder user guide — 13 chapters, the same text the program shows when you press F1.</p>
+    <p class="lead">The complete user guide for both tools. English only on the web; the programs ship with their own interface languages.</p>
   </div></section>
   <section class="section"><div class="wrap">
+    <h2>CPC 7z SFX Builder</h2>
     <div class="doc-grid">${chapters.map(c => `<a class="card doc-card reveal" href="/docs/en/${c.href.replace(/\.html$/, '')}"><span class="step-no">${c.n}</span><h3>${esc(c.title)}</h3></a>`).join('')}</div>
+    <h2 style="margin-top:38px">CPC MInst Launcher</h2>
+    <div class="doc-grid">${launcherChapters.map(c => `<a class="card doc-card reveal" href="/docs/launcher/en/${c.href.replace(/\.html$/, '')}"><span class="step-no">${c.n}</span><h3>${esc(c.title)}</h3></a>`).join('')}</div>
     <p class="hint" style="margin-top:26px">The guide is English only on the web; the program itself ships with English and Hungarian help.</p>
   </div></section>`
 }));
 
 const urls = ['', 'sfx-builder', 'launcher', 'download', 'buy', 'faq', 'blog', 'about', 'contact', 'docs']
-  .concat(chapters.map(c => 'docs/en/' + c.href.replace(/\.html$/, '')));
+  .concat(chapters.map(c => 'docs/en/' + c.href.replace(/\.html$/, '')))
+  .concat(launcherChapters.map(c => 'docs/launcher/en/' + c.href.replace(/\.html$/, '')));
 write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(u => `  <url><loc>https://cpcutils.com/${u}</loc></url>`).join('\n')}\n</urlset>\n`);
 write('_headers', `/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  X-Frame-Options: SAMEORIGIN\n  X-Robots-Tag: noindex, nofollow\n/assets/*\n  Cache-Control: public, max-age=86400\n`);
 

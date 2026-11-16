@@ -10,34 +10,34 @@
     {
       "id": "sfx-builder",
       "name": "CPC 7z SFX Builder",
-      "tagline": "Build self-extracting 7-Zip packages visually.",
+      "tagline": "Self-extracting 7-Zip packages, built visually.",
       "status": "available",
       "statusLabel": "Available",
       "accent": true,
-      "platform": "Windows 7–11",
+      "platform": "64-bit Windows",
       "icon": "package-plus",
       "bullets": [
-        "Full file list with typed filtering",
-        "Installer mode with wizard",
-        "Signed output with payload integrity",
-        "About 2 MB, no .NET or runtime"
+        "Folder or archive in, one exe out",
+        "Search a 6,500-file list by typing",
+        "Check the result before you ship",
+        "2 MB, no .NET, no runtime"
       ],
       "api": "https://cpc-activate-dev.odd-wood-edb6.workers.dev/v1/latest/sfx-builder"
     },
     {
       "id": "launcher",
       "name": "CPC MInst Launcher",
-      "tagline": "One profile, Windows and WinPE.",
+      "tagline": "One tool list for Windows and WinPE.",
       "status": "soon",
-      "statusLabel": "Coming soon",
+      "statusLabel": "Beta",
       "accent": false,
-      "platform": "Windows 7–11 and WinPE",
+      "platform": "Windows and WinPE",
       "icon": "grid-2x2",
       "bullets": [
         "Grouped tool list with type-to-search",
-        "MInstAll-compatible profiles",
-        "Same profile in Windows and WinPE",
-        "About 730 KB, single portable exe"
+        "One profile, Windows and WinPE",
+        "Opens your existing MInstAll .ini",
+        "734 KB, single portable exe"
       ],
       "api": null
     },
@@ -52,7 +52,7 @@
       "icon": "wrench",
       "bullets": [
         "Small, single-exe utilities",
-        "Portable-first, no installers",
+        "Portable first, nothing to install",
         "Settings live next to the exe"
       ],
       "api": null
