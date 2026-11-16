@@ -283,4 +283,5 @@ a:hover{color:var(--accent-text)}
 .lang-chip:hover{border-color:var(--accent-link);color:var(--text)}
 .gal-grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));align-items:start}
 .gal-item{margin:0}.gal-item figcaption{font-size:.86rem;color:var(--text-dim);padding:8px 4px 0}
+.gal-item .zoomwrap{border-radius:12px;overflow:hidden;border:1px solid var(--border)}
 .gal-item img{display:block;width:100%;height:auto}
