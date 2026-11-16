@@ -83,7 +83,7 @@
       },
       {
         "q": "How many languages does the interface have?",
-        "a": "Three are finished: German, English and Hungarian. Twelve are planned. Each language is a single file, so the next ones arrive with an update rather than a separate build."
+        "a": "Twelve: German, English, Hungarian, Polish, French, Spanish, Portuguese, Italian, Czech, Romanian, Russian and Turkish. Each language is a single file, so the next ones arrive with an update rather than a separate build."
       },
       {
         "q": "Does it use 7-Zip's own SFX module?",
@@ -438,7 +438,7 @@
         },
         {
           "h": "Languages",
-          "p": "German, English and Hungarian are finished today. Twelve are planned, and one language is a single text file, so the next ones arrive with an update rather than a new build. The interface comes first, the help follows."
+          "p": "Twelve languages ship in the current build: German, English, Hungarian, Polish, French, Spanish, Portuguese, Italian, Czech, Romanian, Russian and Turkish. Each one is a single text file, so the next ones arrive with an update rather than a new build. The interface comes first, the help follows."
         }
       ],
       "closing": {
@@ -701,7 +701,7 @@
         },
         {
           "q": "Which languages are supported?",
-          "a": "German, English and Hungarian are finished. Twelve interface languages are planned for the builder; each one is a single file, so new ones arrive with an update."
+          "a": "Twelve: German, English, Hungarian, Polish, French, Spanish, Portuguese, Italian, Czech, Romanian, Russian and Turkish. Each one is a single file, so new ones arrive with an update."
         },
         {
           "q": "Where is the documentation?",
