@@ -385,15 +385,27 @@ write('launcher.html', productPage('launcher'));
 write('download.html', download);
 write('buy.html', buy);
 write('faq.html', faq);
+// --- kiadastortenet a data/changelog.json-bol (tools/changelog.js generalja) ---
+const chlog = (() => {
+  try { return JSON.parse(fs.readFileSync(path.join(DATA, 'changelog.json'), 'utf8')); } catch { return null; }
+})();
+const fmtSize = b => b >= 1048576 ? (b / 1048576).toFixed(1) + ' MB' : Math.round(b / 1024) + ' KB';
+const relTable = p => p.releases.length
+  ? `<div class="rel-wrap"><table class="rel-table"><thead><tr><th>Version</th><th>Date</th><th>Size</th><th>SHA-256</th></tr></thead><tbody>
+${p.releases.map(r => `<tr><td class="mono">${esc(r.version)}</td><td>${esc(r.date)}</td><td>${fmtSize(r.size)}</td><td class="mono">${esc(r.sha.slice(0, 16))}…</td></tr>`).join('\n')}
+</tbody></table></div>`
+  : '<p class="hint">No public release recorded yet.</p>';
+
 write('changelog.html', page({
   title: 'Changelog — CPC Utils',
-  description: 'Release history for CPC 7z SFX Builder and CPC MInst Launcher: version, date, size and SHA256 of every release.',
+  description: 'Release history for CPC 7z SFX Builder and CPC MInst Launcher: version, date, size and SHA-256 of every recorded build.',
   canonical: SITE + '/changelog',
-  content: `<section class="page-head"><div class="wrap"><h1>Changelog</h1><p class="lead">Every release is recorded with its version, date, size and SHA256. The download page always shows the current one.</p></div></section>
-  <section class="section"><div class="wrap prose-grid">
-    <article class="card prose-card"><h2>CPC 7z SFX Builder</h2><p>The release manifest carries the exact version, the date, the size and the SHA256 of the executable, and the download button always points at the current build.</p><p><a href="/download">Version and checksum</a></p></article>
-    <article class="card prose-card"><h2>CPC MInst Launcher</h2><p>In beta. Each build carries its build number; the first public release will be listed here with the same details.</p><p><a href="/contact">Ask for the current build</a></p></article>
-  </div></section>`
+  content: `<section class="page-head"><div class="wrap"><h1>Changelog</h1><p class="lead">Every build is recorded with its version, date, size and SHA-256. The download page always shows the current one.</p></div></section>
+  ${chlog ? chlog.products.map(p => `<section class="section"><div class="wrap">
+    <div class="section-head"><h2 class="reveal">${esc(p.name)}</h2></div>
+    ${relTable(p)}
+  </div></section>`).join('\n  ') : `<section class="section"><div class="wrap"><p class="hint">Release history is being assembled. <a href="/download">Current version and checksum</a></p></div></section>`}
+  <section class="section section-alt"><div class="wrap"><p class="hint">SHA-256 values are shortened for the table; the full checksum is on the <a href="/download">download page</a> and in the release manifest the program reads.</p></div></section>`
 }));
 
 write('about.html', page({

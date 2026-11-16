@@ -1,0 +1,185 @@
+{
+  "generated": "2026-11-16 10:43:43",
+  "products": [
+    {
+      "id": "sfx-builder",
+      "name": "CPC 7z SFX Builder",
+      "releases": [
+        {
+          "date": "2026-11-16",
+          "version": "1.0.8.8",
+          "build": 808,
+          "size": 2078720,
+          "sha": "cf0678d62af19036a751605fa80a5aa09b776262e3e9dbebc13bebc87227f323"
+        },
+        {
+          "date": "2026-11-16",
+          "version": "1.0.8.7",
+          "build": 807,
+          "size": 2078720,
+          "sha": "d09abf39ca7a06f43d661c0f5ed7142d7469aeadd103fffa2edeb8d23c524120"
+        },
+        {
+          "date": "2026-11-15",
+          "version": "1.0.8.6",
+          "build": 806,
+          "size": 2079232,
+          "sha": "55bfe5e1dbb401ef626f20db315635a78483d15f9c441696a7839cdc13ddc8be"
+        },
+        {
+          "date": "2026-11-15",
+          "version": "1.0.8.5",
+          "build": 805,
+          "size": 2079232,
+          "sha": "ae97dc6cf3957fa078afc38a288ef5957a9ee8a8f237ead8041bbe0ba0be1678"
+        },
+        {
+          "date": "2026-11-15",
+          "version": "1.0.8.4",
+          "build": 804,
+          "size": 2078720,
+          "sha": "25f79492b0b9f352846ce62bf6004f62f654873e2676b78736b89ecb2577dca0"
+        },
+        {
+          "date": "2026-11-15",
+          "version": "1.0.8.3",
+          "build": 803,
+          "size": 2074624,
+          "sha": "16191afd064e10ae74eb39641043ecaeb94c3e8d7ea07797df4c9357a1dda317"
+        },
+        {
+          "date": "2026-11-15",
+          "version": "1.0.8.2",
+          "build": 802,
+          "size": 2074624,
+          "sha": "61b9730a01c1877dcede03410e58b3158da1ec472e957dd8fcbfee73578f92f9"
+        },
+        {
+          "date": "2026-11-15",
+          "version": "1.0.8.1",
+          "build": 801,
+          "size": 2074624,
+          "sha": "3690ab8ad5c345a6ee051b963ad71a5297d8da18e1ca582886d54131729b3467"
+        },
+        {
+          "date": "2026-11-15",
+          "version": "1.0.8.0",
+          "build": 800,
+          "size": 2074624,
+          "sha": "aa4aa7ba6186938eabc812c283e84beacb49e3b8ff61a29d75a96d05f804e02d"
+        },
+        {
+          "date": "2026-11-15",
+          "version": "1.0.7.99",
+          "build": 799,
+          "size": 2074624,
+          "sha": "d427c948ad1d0a15dcc8504f6aa53118753ece8061931d5ab9a1163a0d697183"
+        },
+        {
+          "date": "2026-11-15",
+          "version": "1.0.7.98",
+          "build": 798,
+          "size": 2074624,
+          "sha": "7771f613765f2e9da3aa1ccd7caabba773b0e5b636ab45aec59f80e45da0921a"
+        },
+        {
+          "date": "2026-11-15",
+          "version": "1.0.7.97",
+          "build": 797,
+          "size": 2074624,
+          "sha": "f174151c6b5b92e97b21039fb2057b691ebb5d20c5433084110baf9d8a3bbbe5"
+        }
+      ]
+    },
+    {
+      "id": "launcher",
+      "name": "CPC MInst Launcher",
+      "releases": [
+        {
+          "date": "2026-11-16",
+          "version": "1.0.1.2",
+          "build": 102,
+          "size": 751616,
+          "sha": "a51df619df7837f72295ac28e20fb38a0a48a444b41e8224cf5a577a078663fc"
+        },
+        {
+          "date": "2026-11-16",
+          "version": "1.0.1.1",
+          "build": 101,
+          "size": 751616,
+          "sha": "9a9e064bdd7a5e6c8cf2f8ffa2ec8416b39451fc3da2fd54d81196dd6464ff1e"
+        },
+        {
+          "date": "2026-11-16",
+          "version": "1.0.1.0",
+          "build": 100,
+          "size": 751616,
+          "sha": "fbfbdff4253ae8790c3283a1f888c297722dcde7daeb4d775b362566327698c5"
+        },
+        {
+          "date": "2026-11-16",
+          "version": "1.0.0.99",
+          "build": 99,
+          "size": 751616,
+          "sha": "fc5ae04c62693796e1f19a9af4ad3c82dec2c3218fed17b9c10f3c17cd94fd45"
+        },
+        {
+          "date": "2026-11-16",
+          "version": "1.0.0.98",
+          "build": 98,
+          "size": 751616,
+          "sha": "02718be790c3d89f7bd75b35e37b18927e5803d35a35c8eb8f61ff4312e7f5c3"
+        },
+        {
+          "date": "2026-11-15",
+          "version": "1.0.0.97",
+          "build": 97,
+          "size": 751104,
+          "sha": "4041e1a40bc880c0e5bea892299b60a1b6e182a91575213e7eb87e4d7974eae3"
+        },
+        {
+          "date": "2026-11-15",
+          "version": "1.0.0.96",
+          "build": 96,
+          "size": 751104,
+          "sha": "5836a4e7233ea0372f7751d37bf91ca86886a69fdde263f582482edd2fd23e78"
+        },
+        {
+          "date": "2026-11-15",
+          "version": "1.0.0.95",
+          "build": 95,
+          "size": 751104,
+          "sha": "b550c919026971a61125909175c81598f7a8abf03db887f6cfad747137799a37"
+        },
+        {
+          "date": "2026-11-15",
+          "version": "1.0.0.94",
+          "build": 94,
+          "size": 751104,
+          "sha": "b81561dd89bd20e4f709ee43cf2ec7762d596348e11ebebf7fd03cf94aa65ed8"
+        },
+        {
+          "date": "2026-11-15",
+          "version": "1.0.0.93",
+          "build": 93,
+          "size": 751104,
+          "sha": "26b1d70222274d4b3553a33d9a1547b4895f44f21b8d41759a3779041c17afd7"
+        },
+        {
+          "date": "2026-11-15",
+          "version": "1.0.0.92",
+          "build": 92,
+          "size": 751104,
+          "sha": "ee4fd096b4e5c547adcb19e132d9d955a8121a21df67837fea0c37d16c395b99"
+        },
+        {
+          "date": "2026-11-15",
+          "version": "1.0.0.91",
+          "build": 91,
+          "size": 751104,
+          "sha": "2ba7ff0128feb1a809dd813890a51cfa3eb7ebb28a29f8a446b2cbcf497bcae8"
+        }
+      ]
+    }
+  ]
+}

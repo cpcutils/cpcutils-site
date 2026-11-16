@@ -263,3 +263,16 @@ a:hover{color:var(--accent-text)}
 .plan-list li.off{color:#9A9AA4}
 .plan-list li.off .tick{color:#7A7A84}
 .plan .btn{margin-top:auto;text-align:center}
+
+/* kiadastortenet tabla (2026-11-16) */
+.rel-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.rel-table{width:100%;border-collapse:collapse;font-size:.9rem}
+.rel-table thead th{text-align:left;font-weight:600;font-size:.78rem;letter-spacing:.04em;text-transform:uppercase;color:var(--text-dim);padding:8px 12px;border-bottom:1px solid var(--border)}
+.rel-table tbody td{padding:10px 12px;border-bottom:1px solid var(--border);color:var(--text-soft);white-space:nowrap}
+.rel-table tbody tr:last-child td{border-bottom:0}
+.rel-table tbody tr:hover td{background:var(--hover)}
+.rel-table .mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--text)}
+@media (max-width:560px){
+  .rel-table thead th:nth-child(3),.rel-table tbody td:nth-child(3){display:none}
+  .rel-table thead th:nth-child(4),.rel-table tbody td:nth-child(4){display:none}
+}
