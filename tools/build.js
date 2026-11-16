@@ -45,7 +45,6 @@ function nav(active = '') {
       ${link('/download', 'Download', 'download')}
       ${link('/docs', 'Docs', 'docs')}
       ${link('/buy', 'Pricing', 'buy')}
-      ${link('/blog', 'Blog', 'blog')}
       <div class="nav-item">
         <a class="nav-link" href="/contact">Contact ${icon('chevron-down', 14)}</a>
         <div class="menu">
@@ -333,7 +332,7 @@ const download = page({
         <div><dt>SHA-256</dt><dd id="dl-sha" class="mono">—</dd></div>
       </dl>
       <a class="btn btn-primary btn-lg" id="dl-btn" href="#" rel="noopener">${icon('download', 18)} Free Download</a>
-      <p class="hint">No account, no email. The executable is not code-signed yet, so Windows may show the SmartScreen prompt.</p>
+      <p class="hint">No account, no email. The program is not code-signed yet, so Windows may show the SmartScreen prompt. A package you build can carry your own signature.</p>
     </article>
     <p class="hint" style="margin-top:24px">CPC MInst Launcher is in beta and not on this page yet. <a href="/launcher">What it does</a> \u00b7 <a href="/contact">Ask for the beta build</a>.</p>
   </div></section>`,
@@ -395,18 +394,81 @@ write('launcher.html', productPage('launcher'));
 write('download.html', download);
 write('buy.html', buy);
 write('faq.html', faq);
-write('blog.html', stub('Blog', 'Blog', 'Notes about building packages, WinPE deployment and the tools behind CPC Utils.'));
-write('changelog.html', stub('Changelog', 'Changelog', 'Release notes per product, generated from the build history.'));
-write('about.html', stub('About', 'About CPC Utils', 'A small Hungarian company building portable Windows tools for technicians and developers.'));
-write('contact.html', stub('Contact', 'Contact', 'Licences, purchasing and beta access: support@cpcutils.com. General questions: info@cpcutils.com.'));
+write('changelog.html', page({
+  title: 'Changelog — CPC Utils',
+  description: 'Release history for CPC 7z SFX Builder and CPC MInst Launcher: version, date, size and SHA256 of every release.',
+  canonical: SITE + '/changelog',
+  content: `<section class="page-head"><div class="wrap"><h1>Changelog</h1><p class="lead">Every release is recorded with its version, date, size and SHA256. The download page always shows the current one.</p></div></section>
+  <section class="section"><div class="wrap prose-grid">
+    <article class="card prose-card"><h2>CPC 7z SFX Builder</h2><p>The release manifest carries the exact version, the date, the size and the SHA256 of the executable, and the download button always points at the current build.</p><p><a href="/download">Version and checksum</a></p></article>
+    <article class="card prose-card"><h2>CPC MInst Launcher</h2><p>In beta. Each build carries its build number; the first public release will be listed here with the same details.</p><p><a href="/contact">Ask for the current build</a></p></article>
+  </div></section>`
+}));
+
+write('about.html', page({
+  title: 'About — CPC Utils',
+  description: 'CPC Utils is built by Central PC Service Bt., a Hungarian company that repairs and builds PCs. The tools are used on real machines before they are sold.',
+  canonical: SITE + '/about',
+  content: `<section class="page-head"><div class="wrap"><h1>Built on a service bench, not in a marketing department</h1>
+  <p class="lead">CPC Utils is the software arm of Central PC Service Bt., a Hungarian company that repairs and builds PCs for businesses and home users.</p></div></section>
+  <section class="section"><div class="wrap prose-grid">
+    <article class="card prose-card"><h2>Why these tools exist</h2><p>We build them for ourselves first. Every package on a customer machine, every service stick and every WinPE image here is made with the same programs we sell. When something is annoying in daily use, it gets fixed; when a feature only looks good in a screenshot, it does not get built.</p></article>
+    <article class="card prose-card"><h2>What that means for you</h2><ul><li>A single portable executable: nothing to install, no .NET, no runtime.</li><li>Settings next to the program, not in the registry.</li><li>No account, no telemetry, no email required to download.</li><li>Output you can check before it leaves your hands.</li></ul></article>
+  </div>
+  <p class="hint" style="margin-top:26px">Written in Hungary. Support in English and Hungarian: <a href="/contact">contact</a>.</p></section>`
+}));
+
+write('contact.html', page({
+  title: 'Contact — CPC Utils',
+  description: 'Licences, purchasing, beta builds and bug reports: support@cpcutils.com. General questions: info@cpcutils.com.',
+  canonical: SITE + '/contact',
+  content: `<section class="page-head"><div class="wrap"><h1>Contact</h1><p class="lead">Two addresses, so nothing gets lost.</p></div></section>
+  <section class="section"><div class="wrap prose-grid">
+    <article class="card prose-card"><h2>Licences and product support</h2><p><strong>support@cpcutils.com</strong></p><ul><li>Buying a licence, renewal, lost key</li><li>Beta builds of CPC MInst Launcher</li><li>Bug reports and package problems</li></ul></article>
+    <article class="card prose-card"><h2>Everything else</h2><p><strong>info@cpcutils.com</strong></p><ul><li>General questions about the company</li><li>Partnerships and volume licences</li><li>Anything that does not fit the first column</li></ul></article>
+  </div>
+  <section class="section"><div class="wrap"><h2>What to include in a bug report</h2><p>The program version, your Windows version, what you did and what happened. If a package misbehaves: the build log from the Build page saved to a text file, and the package size. That is usually enough to reproduce it. Write in English or Hungarian.</p></div></section></section>`
+}));
 write('404.html', page({
   title: 'Page not found — CPC Utils',
   description: 'This page does not exist.',
   content: `<section class="page-head"><div class="wrap"><h1>This page unpacked somewhere else</h1><p class="lead">The link you followed points at a page that is not here. The front page, the download and the docs are a good place to restart.</p><div class="hero-actions"><a class="btn btn-primary" href="/">Back to the start</a><a class="btn btn-ghost" href="/download">Free download</a></div></div></section>`
 }));
-write('legal/eula.html', stub('EULA', 'End user license', 'License terms for CPC Utils products.'));
-write('legal/privacy.html', stub('Privacy', 'Privacy', 'What the website and the tools store. Short answer: as little as possible.'));
-write('legal/third-party.html', stub('Third-party licenses', 'Third-party licenses', 'Lucide icons (ISC), 7-Zip (LGPL), TweetNaCl (public domain).'));
+write('legal/eula.html', page({
+  title: 'End user license — CPC Utils',
+  description: 'Licence summary for CPC Utils products: perpetual licence, 12 months of updates and support, one workstation, no redistribution.',
+  canonical: SITE + '/legal/eula',
+  content: `<section class="page-head"><div class="wrap"><h1>End user license</h1><p class="lead">A plain summary. The binding text ships with every release and is shown on the License page inside the program.</p></div></section>
+  <section class="section"><div class="wrap prose-grid">
+    <article class="card prose-card"><h2>What you get</h2><ul><li>The licence is <strong>perpetual</strong>: the version you buy keeps working.</li><li>It includes <strong>12 months of updates and support</strong>. When that period ends the program still works; it simply stops receiving updates.</li><li>Activation is bound to the workstation where you activate it, and needs an internet connection once.</li></ul></article>
+    <article class="card prose-card"><h2>What you may not do</h2><ul><li>Redistribute or resell the licensed edition as your own product.</li><li>Share one key across machines it was not activated on.</li><li>Remove the licence or branding notices from the program itself.</li></ul></article>
+  </div>
+  <p class="hint" style="margin-top:26px">Moving to another machine? The program exports the licence to a password-protected key file — <a href="/docs">see the documentation</a>. Questions about a specific case: <a href="/contact">contact</a>.</p></section>`
+}));
+
+write('legal/privacy.html', page({
+  title: 'Privacy — CPC Utils',
+  description: 'What the website and the programs store: no advertising trackers, no account, no telemetry from the tools.',
+  canonical: SITE + '/legal/privacy',
+  content: `<section class="page-head"><div class="wrap"><h1>Privacy</h1><p class="lead">Short version: the website does not follow you, and the programs do not report on you.</p></div></section>
+  <section class="section"><div class="wrap prose-grid">
+    <article class="card prose-card"><h2>The website</h2><ul><li>No advertising trackers and no profiling cookies.</li><li>No account and no newsletter: downloading requires no email address.</li><li>The download page asks our release endpoint for the current version, which records the request like any web server does.</li></ul></article>
+    <article class="card prose-card"><h2>The programs</h2><ul><li>No telemetry, no usage statistics, no crash uploading.</li><li>Settings are stored next to the executable, not in the cloud.</li><li>Activation contacts our licence server once and sends the key plus a machine-bound identifier; nothing else.</li></ul></article>
+  </div>
+  <p class="hint" style="margin-top:26px">Data requests, deletion, anything unclear: <a href="/contact">info@cpcutils.com</a>.</p></section>`
+}));
+
+write('legal/third-party.html', page({
+  title: 'Third-party licenses — CPC Utils',
+  description: 'Open source components used by CPC Utils: Lucide icons (ISC), 7-Zip (LGPL), LZMA SDK (public domain), TweetNaCl (public domain).',
+  canonical: SITE + '/legal/third-party',
+  content: `<section class="page-head"><div class="wrap"><h1>Third-party licenses</h1><p class="lead">The components we build on, and the licence each one carries.</p></div></section>
+  <section class="section"><div class="wrap prose-grid">
+    <article class="card prose-card"><h2>In the programs</h2><ul><li><strong>LZMA SDK</strong> — public domain. The extractor inside every built package is our own build of it.</li><li><strong>7-Zip</strong> — GNU LGPL. The compression engine; its licence text ships with the program.</li><li><strong>TweetNaCl</strong> — public domain. Ed25519 signature primitives.</li></ul></article>
+    <article class="card prose-card"><h2>On the website</h2><ul><li><strong>Lucide</strong> icons — ISC licence.</li><li><strong>Oxanium</strong> and <strong>Inter</strong> typefaces — SIL Open Font License, self-hosted.</li><li>No CDN, no third-party script, no external font request.</li></ul></article>
+  </div>
+  <p class="hint" style="margin-top:26px">The complete licence texts ship with each release and are linked from the program's License page.</p></section>`
+}));
 write('assets/favicon.svg', '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#191919"/><path d="M10 22V10h4l3 6 3-6h4v12h-3v-7l-3 6h-2l-3-6v7z" fill="#8B7BFF"/></svg>');
 write('robots.txt', 'User-agent: *\nAllow: /\nSitemap: https://cpcutils.com/sitemap.xml\n');
 /* ---------- docs: a meglevo sugo bebontezese ---------- */
@@ -474,7 +536,7 @@ write('docs/index.html', page({
   </div></section>`
 }));
 
-const urls = ['', 'sfx-builder', 'launcher', 'download', 'buy', 'faq', 'blog', 'about', 'contact', 'docs']
+const urls = ['', 'sfx-builder', 'launcher', 'download', 'buy', 'faq', 'about', 'contact', 'docs']
   .concat(chapters.map(c => 'docs/en/' + c.href.replace(/\.html$/, '')))
   .concat(launcherChapters.map(c => 'docs/launcher/en/' + c.href.replace(/\.html$/, '')));
 write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(u => `  <url><loc>https://cpcutils.com/${u}</loc></url>`).join('\n')}\n</urlset>\n`);
