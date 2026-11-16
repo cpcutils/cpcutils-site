@@ -544,7 +544,8 @@ write('docs/index.html', page({
   </div></section>`
 }));
 
-const urls = ['', 'sfx-builder', 'launcher', 'download', 'buy', 'faq', 'about', 'contact', 'docs']
+const urls = ['', 'sfx-builder', 'launcher', 'download', 'buy', 'faq', 'about', 'contact', 'changelog', 'docs',
+    'docs/en', 'docs/launcher/en', 'legal/eula', 'legal/privacy', 'legal/third-party']
   .concat(chapters.map(c => 'docs/en/' + c.href.replace(/\.html$/, '')))
   .concat(launcherChapters.map(c => 'docs/launcher/en/' + c.href.replace(/\.html$/, '')));
 write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(u => `  <url><loc>https://cpcutils.com/${u}</loc></url>`).join('\n')}\n</urlset>\n`);
