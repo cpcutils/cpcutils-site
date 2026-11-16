@@ -199,7 +199,7 @@ const home = page({
       ${products.products.filter(p => p.status !== 'placeholder').map(p => `<article class="card prose-card reveal">
         <h2>${esc(p.name)}</h2>
         <p class="prose-lead">${esc(p.tagline)}</p>
-        <p class="prose-body">${esc(p.long || p.blurb || p.tagline)}</p>
+        ${(Array.isArray(p.long) ? p.long : [p.long || p.blurb || p.tagline]).map(t => `<p class="prose-body">${esc(t)}</p>`).join('')}
         <ul class="ticks">${p.bullets.map(b => `<li>${esc(b)}</li>`).join('')}</ul>
         <p class="prose-spec">${esc(p.spec || '')}</p>
         <p><a class="btn btn-ghost" href="/${p.id}">${esc(copy.productCard.learnMore)} ${icon('arrow-right', 15)}</a></p>

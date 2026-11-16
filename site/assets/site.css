@@ -170,13 +170,13 @@ a:hover{color:var(--accent-text)}
 .hint{font-size:.86rem;color:var(--text-dim)}
 
 /* prose */
-.prose-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.prose-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:26px;align-items:stretch}
 .doc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
 .doc-card{display:flex;align-items:center;gap:14px;padding:16px 18px}
 .doc-card h3{margin:0;font-size:1rem;font-weight:600}
 .doc-card:hover{border-color:var(--accent-hi);transform:translateY(-2px);box-shadow:0 18px 44px rgba(0,0,0,.35)}
-.prose-card h2{font-size:1.08rem;margin-bottom:8px}
-.prose-card p{margin:0;font-size:.95rem}
+.prose-card{padding:34px 36px 30px;display:flex;flex-direction:column}
+.prose-card h2{font-size:1.45rem;line-height:1.25;margin:0 0 10px}
 
 /* footer */
 .footer{border-top:1px solid var(--border);background:var(--bar);padding:60px 0 26px;margin-top:20px}
@@ -288,8 +288,8 @@ a:hover{color:var(--accent-text)}
 
 .product-body{font-size:.95rem;line-height:1.65;color:var(--text-dim);margin:0 0 14px}
 .product-spec{font-size:.82rem;line-height:1.5;color:var(--text-dim);border-top:1px solid var(--border);padding-top:10px;margin:0 0 16px;font-variant-numeric:tabular-nums}
-.prose-card h2{font-size:1.35rem;margin:0 0 6px}
-.prose-lead{font-size:1rem;font-weight:600;color:var(--text);margin:0 0 12px}
-.prose-body{font-size:.95rem;line-height:1.68;color:var(--text-dim);margin:0 0 14px}
-.prose-card .ticks{margin:0 0 14px}
-.prose-spec{font-size:.82rem;line-height:1.5;color:var(--text-dim);border-top:1px solid var(--border);padding-top:10px;margin:0 0 16px;font-variant-numeric:tabular-nums}
+.prose-lead{font-size:1.02rem;line-height:1.55;font-weight:600;color:var(--text);margin:0 0 18px}
+.prose-body{font-size:1rem;line-height:1.8;color:var(--text-soft);margin:0 0 18px}
+.prose-card .ticks{margin:6px 0 24px;gap:13px}
+.prose-spec{font-size:.85rem;line-height:1.6;color:var(--text-dim);border-top:1px solid var(--border);padding-top:16px;margin:0 0 22px;font-variant-numeric:tabular-nums}
+.prose-card p:last-child{margin-top:auto;margin-bottom:0}
