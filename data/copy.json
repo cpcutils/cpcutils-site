@@ -418,7 +418,7 @@
       "sections": [
         {
           "h": "See every file at a glance",
-          "p": "The full source list loads root files first, folders A to Z after them. Type to filter, and the header shows the match count."
+          "p": "The full source list loads root files first, folders A to Z after them. The footer keeps the running file count and the total size, so the size of the job is visible before the build starts."
         },
         {
           "h": "Set what runs after unpacking",
@@ -488,7 +488,7 @@
         "items": [
           {
             "h": "Find one file among thousands",
-            "p": "Type a few letters and the list narrows as you go. 6,500 files shrink to the match count in the header."
+            "p": "Type a few letters and the selection jumps to the first matching name — no scrolling past thousands of DLLs to find the launcher."
           },
           {
             "h": "Your main exe stays on top",
@@ -500,7 +500,7 @@
           },
           {
             "h": "Run setup steps in order",
-            "p": "Add batch or command steps that run after extraction and before the main program, in exactly the sequence you set."
+            "p": "Pre-install entries run after extraction and before the main program, left to right, in exactly the order you list them."
           },
           {
             "h": "One switch makes it an installer",
@@ -536,8 +536,23 @@
       "gallery": {
         "h": "Proof, not promises",
         "sub": "The Check page reports configuration, payload, stub and integrity separately. It says Passed only when every line is green.",
-        "img": "gal-verify.png",
-        "alt": "Verification result: configuration authentic, payload intact, result passed"
+        "items": [
+          {
+            "img": "gal-verify.png",
+            "alt": "Verification result: configuration authentic, payload intact, result passed",
+            "caption": "Every line green before you ship"
+          },
+          {
+            "img": "builder-filelist.png",
+            "alt": "Source file list with the running count of files and total size",
+            "caption": "Thousands of files, counted while scanning"
+          },
+          {
+            "img": "builder-preinstall.png",
+            "alt": "Run page with the pre-install entries filled in, left to right",
+            "caption": "Pre-install entries run in the order given"
+          }
+        ]
       },
       "langs": {
         "h": "Interface languages",
@@ -705,8 +720,18 @@
       "gallery": {
         "h": "Settings that fit in one screen",
         "sub": "Language, startup behaviour, text size, tray behaviour and the log — no tabs, no registry, nothing to install.",
-        "img": "launcher-settings.png",
-        "alt": "Settings window of CPC MInst Launcher in English"
+        "items": [
+          {
+            "img": "launcher-settings.png",
+            "alt": "Settings window of CPC MInst Launcher: language, startup, text size, tray behaviour",
+            "caption": "Settings — one screen, no registry"
+          },
+          {
+            "img": "launcher-backup.png",
+            "alt": "Timestamped profile backups in the _backup folder",
+            "caption": "Every save leaves a timestamped backup"
+          }
+        ]
       }
     }
   },

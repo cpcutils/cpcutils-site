@@ -269,9 +269,10 @@ function productPage(id) {
       <div class="reveal"><h2>${esc(c.spotlight2.h)}</h2><p>${esc(c.spotlight2.p)}</p>${link(c.spotlight2.link)}</div>
     </div></section>` : '';
 
+  const galleryImgs = c.gallery ? (c.gallery.items || (c.gallery.img ? [c.gallery] : [])) : [];
   const gallery = c.gallery ? `<section class="section"><div class="wrap">
       <div class="section-head"><h2 class="reveal">${esc(c.gallery.h)}</h2>${c.gallery.sub ? `<p class="section-sub reveal">${esc(c.gallery.sub)}</p>` : ''}</div>
-      ${c.gallery.img ? zoom(c.gallery, true) : ''}
+      <div class="gal-grid">${galleryImgs.map(g => `<figure class="gal-item reveal">${zoom(g, true)}${g.caption ? `<figcaption>${esc(g.caption)}</figcaption>` : ''}</figure>`).join('')}</div>
     </div></section>` : '';
 
   const langs = c.langs ? `<section class="section"><div class="wrap">
