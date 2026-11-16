@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Output - CPC 7z SFX Builder</title>
+<style>/* CPC 7z SFX Builder - Help stylesheet
+ * Paletta: G:\CPC_Soft\_shell\theme-dark.json (Explorer-dark, design v2)
+ * Csak lokalis betu, csak lokalis fajlok - nincs CDN, nincs webfont.
+ */
+
+:root {
+  --bg:        #191919;
+  --panel:     #1C1C1C;
+  --panel-2:   #232323;
+  --border:    #333333;
+  --text:      #F0F0F0;
+  --text-ctrl: #C8C8C8;
+  --dim:       #9A9A9A;
+  --accent:    #4133A0;
+  --glyph:     #5B4BC4;
+  --link:      #8B7BFF;
+  --ok:        #2ECC71;
+  --warn:      #F39C12;
+  --err:       #E86060;
+  --radius:    5px;
+  --nav-w:     272px;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  background: var(--bg);
+  /* mindig van fuggoleges gordito-sav: nem ugrik a tartalom oldalvaltaskor */
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 15px/1.6 "Segoe UI", "Segoe UI Web (West European)", Tahoma, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ------------------------------------------------------------------ topbar */
+
+.top {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: 56px;
+  padding: 0 24px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.brand {
+  font-size: 15px;
+  color: var(--text);
+  letter-spacing: .2px;
+}
+
+.brand span {
+  margin-left: 10px;
+  padding: 1px 7px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--dim);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .8px;
+}
+
+a.lang {
+  color: var(--dim);
+  text-decoration: none;
+  font-size: 13px;
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+a.lang:hover { color: var(--text); background: var(--panel-2); }
+
+/* ------------------------------------------------------------------ layout */
+
+.wrap {
+  display: flex;
+  align-items: flex-start;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+aside {
+  flex: 0 0 var(--nav-w);
+  width: var(--nav-w);
+  position: sticky;
+  top: 56px;
+  max-height: calc(100vh - 56px);
+  overflow-y: auto;
+  padding: 24px 16px 40px 0;
+}
+
+nav ul { list-style: none; margin: 0; padding: 0; }
+
+nav a {
+  display: flex;
+  gap: 10px;
+  padding: 7px 10px;
+  border-radius: var(--radius);
+  color: var(--text-ctrl);
+  text-decoration: none;
+  font-size: 13.5px;
+  line-height: 1.35;
+}
+
+nav a:hover { background: var(--panel-2); color: var(--text); }
+
+nav li.on a {
+  background: #2D2D2D;
+  color: var(--text);
+  box-shadow: inset 2px 0 0 var(--glyph);
+}
+
+nav .n {
+  flex: 0 0 18px;
+  color: var(--dim);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+main {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: 780px;
+  /* rovid oldal se csokkenjen össze: a labléc ne ugorjon fel */
+  min-height: calc(100vh - 260px);
+  padding: 24px 0 64px;
+}
+
+/* ---------------------------------------------------------------- tartalom */
+
+h1 {
+  margin: 8px 0 20px;
+  font-size: 26px;
+  line-height: 1.25;
+  font-weight: 600;
+  letter-spacing: -.2px;
+}
+
+h2 {
+  margin: 36px 0 12px;
+  font-size: 19px;
+  font-weight: 600;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+h3 {
+  margin: 26px 0 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+h4 {
+  margin: 20px 0 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-ctrl);
+  text-transform: uppercase;
+  letter-spacing: .6px;
+}
+
+p { margin: 0 0 12px; }
+
+ul, ol { margin: 0 0 14px; padding-left: 22px; }
+
+li { margin: 0 0 6px; }
+
+li::marker { color: var(--dim); }
+
+strong { font-weight: 600; color: #FFFFFF; }
+
+em { color: var(--text-ctrl); }
+
+a { color: var(--link); text-decoration: none; }
+
+a:hover { text-decoration: underline; }
+
+code {
+  font-family: Consolas, "Cascadia Mono", monospace;
+  font-size: 13px;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 1px 5px;
+  color: #E0E0E0;
+}
+
+pre {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  overflow-x: auto;
+  margin: 0 0 16px;
+}
+
+pre code {
+  background: none;
+  border: 0;
+  padding: 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+hr {
+  height: 1px;
+  border: 0;
+  background: var(--border);
+  margin: 28px 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0 20px;
+  font-size: 14px;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+th {
+  color: var(--text-ctrl);
+  font-weight: 600;
+  background: var(--panel);
+  font-size: 12.5px;
+  text-transform: none;
+}
+
+tbody tr:hover { background: var(--panel-2); }
+
+td:first-child { color: var(--text); }
+
+/* tipp / figyelmeztetes */
+.note {
+  margin: 16px 0;
+  padding: 12px 16px;
+  background: var(--panel);
+  border-left: 3px solid var(--glyph);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.note > :last-child { margin-bottom: 0; }
+
+/* kepernyokep */
+figure {
+  margin: 20px 0;
+  padding: 0;
+}
+
+figure img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--panel);
+}
+
+figcaption {
+  margin-top: 8px;
+  font-size: 12.5px;
+  color: var(--dim);
+}
+
+/* helyorzo, amig nincs kesz kepernyokep */
+figure.ph .ph-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  min-height: 120px;
+  padding: 20px;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  background: repeating-linear-gradient(45deg, #1C1C1C, #1C1C1C 10px, #1E1E1E 10px, #1E1E1E 20px);
+  color: var(--dim);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+figure.ph .ph-box span {
+  text-transform: none;
+  letter-spacing: 0;
+  font-family: Consolas, monospace;
+  color: #6E6E6E;
+}
+
+/* lapozo + labléc */
+.pager {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 40px 0 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13.5px;
+}
+
+.pager a { color: var(--text-ctrl); }
+
+.pager a:hover { color: var(--text); }
+
+footer {
+  margin-top: 28px;
+  font-size: 12px;
+  color: #6E6E6E;
+}
+
+/* ------------------------------------------------------------------ mobil */
+
+@media (max-width: 860px) {
+  .wrap { display: block; padding: 0 16px; }
+  aside {
+    position: static;
+    width: auto;
+    max-height: none;
+    padding: 16px 0 24px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 8px;
+  }
+  nav ul { display: flex; flex-wrap: wrap; gap: 4px; }
+  nav a { padding: 5px 8px; }
+  main { max-width: none; }
+  h1 { font-size: 22px; }
+}
+
+/* ---------------------------------------------------------------- nyomtatas */
+
+@media print {
+  html, body { background: #FFFFFF; color: #1A1A1A; }
+  .top, aside, .pager { display: none; }
+  .wrap { display: block; padding: 0; max-width: none; }
+  main { max-width: none; }
+  h1, h2, h3, strong { color: #000000; }
+  a { color: #0B4F9E; }
+  code, pre { background: #F4F4F4; border-color: #CCCCCC; color: #1A1A1A; }
+  figure img { border-color: #CCCCCC; }
+}
+
+
+/* kep-nagyitas: fekete hatter, ugyanabban az ablakban.
+   A nagyitott kep <img>, max a sajat mereteig (1004 px) - NEM nagyitja fel. */
+figure a.zoom { position: relative; display: block; cursor: zoom-in; }
+figure a.zoom::after {
+  content: "";
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #4A4A4A;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, .72) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23F0F0F0' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M16.2 16.2 21 21'/%3E%3C/svg%3E") center / 16px 16px no-repeat;
+  opacity: 0;
+  transition: opacity .15s ease;
+  pointer-events: none;
+}
+figure a.zoom:hover::after, figure a.zoom:focus-visible::after { opacity: 1; }
+a.lb { display: none; }
+a.lb:target {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  padding: 40px;
+  background: rgba(0, 0, 0, .92);
+  cursor: zoom-out;
+}
+a.lb img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  border: 1px solid #3A3A3A;
+  box-shadow: 0 10px 48px rgba(0, 0, 0, .65);
+}
+a.lb .x {
+  position: fixed;
+  top: 14px;
+  right: 20px;
+  font-size: 26px;
+  line-height: 1;
+  color: #C8C8C8;
+  text-decoration: none;
+}
+a.lb:hover .x { color: #FFFFFF; }
+html:has(a.lb:target) { overflow: hidden; }
+@media print { a.lb, a.lb:target, figure a.zoom::after { display: none !important; } }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand">CPC 7z SFX Builder<span>Help</span></div>
+  <a class="lang" href="../hu/05-output.html">Magyar</a>
+</header>
+<div class="wrap">
+  <aside>
+    <nav><ul><li><a href="01-what-is-it.html"><span class="n">1</span>Purpose of the Application</a></li><li><a href="02-interface.html"><span class="n">2</span>The window at a glance</a></li><li><a href="03-profiles.html"><span class="n">3</span>Profiles</a></li><li><a href="04-source.html"><span class="n">4</span>Source</a></li><li class="on"><a href="05-output.html"><span class="n">5</span>Output</a></li><li><a href="06-password.html"><span class="n">6</span>Password</a></li><li><a href="07-run.html"><span class="n">7</span>Run</a></li><li><a href="08-installer.html"><span class="n">8</span>Installer mode</a></li><li><a href="09-build.html"><span class="n">9</span>Build</a></li><li><a href="10-unpacker.html"><span class="n">10</span>Unpacker</a></li><li><a href="11-verify.html"><span class="n">11</span>Verify a package</a></li><li><a href="12-license.html"><span class="n">12</span>License</a></li><li><a href="13-faq.html"><span class="n">13</span>Troubleshooting and FAQ</a></li></ul></nav>
+  </aside>
+  <main>
+    <h1>Output</h1>
+    <p>The <strong>Output</strong> tab defines the final executable parameters, including the destination directory, filename, compression level, and graphical assets (icon).</p>
+<figure id="fig-en-05-output-1"><a class="zoom" href="#z-en-05-output-1" title="Enlarge"><img src="../assets/img/en/05-output.png" alt="The Output tab"></a><figcaption>The Output tab</figcaption></figure><a class="lb" id="z-en-05-output-1" href="#fig-en-05-output-1" title="Close"><img src="../assets/img/en/05-output.png" alt="The Output tab"><span class="x">&times;</span></a>
+<h2>Output Settings</h2>
+<table><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td><strong>Output folder</strong></td><td>The destination directory for the generated executable.</td></tr><tr><td><strong>File name</strong></td><td>The name of the executable, without the extension. For example, <code>Setup_v1</code>.</td></tr><tr><td><strong>Compression level</strong></td><td>Determines the compression ratio. Available values are <strong>0</strong>, <strong>1</strong>, <strong>3</strong>, <strong>5</strong>, <strong>7</strong>, and <strong>9</strong> (0 = store-only, 9 = maximum). When repacking an existing archive, the level is fixed at <strong>5</strong>.</td></tr><tr><td><strong>If the file exists</strong></td><td>Conflict resolution strategy for existing output files: <strong>overwrite</strong>, <strong>skip</strong> or <strong>rename</strong>. <strong>Ask</strong> is available only when the stub can ask (installer with wizard) – not for portable packages and not for a silent installer.</td></tr><tr><td><strong>SFX icon</strong></td><td>The icon of the generated executable. If omitted, the built-in CPC icon is applied.</td></tr></tbody></table>
+<h2>Icon Synchronization</h2>
+<p>The executable icon setting is globally synchronized across the <strong>Source</strong> and <strong>Output</strong> tabs. Modifying either field updates the same underlying configuration value. If omitted, the default CPC icon is applied.</p>
+<h2>Build Steps</h2>
+<ol><li>Select an <strong>Output folder</strong>.</li><li>Specify a <strong>File name</strong>, for example <code>DriverPack_v3</code>.</li><li>Select a <strong>Compression level</strong>. The available values are 0, 1, 3, 5, 7, and 9; level 5 is the recommended starting value. Level 9 is appropriate only when output size takes precedence over build time. Repacking an existing archive always uses level 5.</li><li>Configure <strong>If the file exists</strong> according to the workflow requirements.</li></ol>
+<p>The <code>.exe</code> extension is appended automatically to the output file. If the conflict resolution is set to <strong>Overwrite</strong>, existing binaries with identical names are replaced without prompting. Consistent naming conventions, such as version numbers, ensure that output files remain unambiguously identifiable.</p>
+    <div class="pager"><a class="prev" href="04-source.html">&larr; Source</a><a class="next" href="06-password.html">Password &rarr;</a></div>
+    <footer>Help &middot; 2026-11-15 &middot; Central PC Service Bt.</footer>
+  </main>
+</div>
+</body>
+</html>

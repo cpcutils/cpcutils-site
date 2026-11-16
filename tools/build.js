@@ -480,7 +480,10 @@ write('legal/third-party.html', page({
 write('assets/favicon.svg', '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#191919"/><path d="M10 22V10h4l3 6 3-6h4v12h-3v-7l-3 6h-2l-3-6v7z" fill="#8B7BFF"/></svg>');
 write('robots.txt', 'User-agent: *\nAllow: /\nSitemap: https://cpcutils.com/sitemap.xml\n');
 /* ---------- docs: a meglevo sugo bebontezese ---------- */
-const HELP_SRC = process.env.CPC_HELP_SRC || 'G:\\7zip_project\\help';
+/* 2026-11-16: a repoba tett masolat elsobbseget kap (docs-src), hogy a build
+   ne fuggjon a G: meghajtotol. Az eredeti szerkesztheto forras a G: marad. */
+const HELP_LOCAL = path.join(__dirname, '..', 'docs-src', 'sfx-builder');
+const HELP_SRC = process.env.CPC_HELP_SRC || (fs.existsSync(path.join(HELP_LOCAL, 'en')) ? HELP_LOCAL : 'G:\\7zip_project\\help');
 function buildDocs() {
   const en = path.join(HELP_SRC, 'en');
   if (!fs.existsSync(en)) { console.warn('Docs: help forras nem talalhato ->', en); return []; }
@@ -504,7 +507,8 @@ function buildDocs() {
 const chapters = buildDocs();
 
 /* ---------- launcher docs ---------- */
-const HELP_SRC_LAUNCHER = process.env.CPC_HELP_SRC_LAUNCHER || 'G:\\CPC_Soft\\launcher\\help';
+const HELP_LOCAL_LAUNCHER = path.join(__dirname, '..', 'docs-src', 'launcher');
+const HELP_SRC_LAUNCHER = process.env.CPC_HELP_SRC_LAUNCHER || (fs.existsSync(path.join(HELP_LOCAL_LAUNCHER, 'en')) ? HELP_LOCAL_LAUNCHER : 'G:\\CPC_Soft\\launcher\\help');
 function buildLauncherDocs() {
   const en = path.join(HELP_SRC_LAUNCHER, 'en');
   if (!fs.existsSync(en)) { console.warn('Docs: launcher help nem talalhato ->', en); return []; }

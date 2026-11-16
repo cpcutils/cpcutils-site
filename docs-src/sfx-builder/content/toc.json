@@ -1,0 +1,20 @@
+{
+  "product": "CPC 7z SFX Builder",
+  "defaultLang": "en",
+  "langs": ["en", "hu"],
+  "chapters": [
+    { "id": "01-what-is-it",  "en": "Purpose of the Application",   "hu": "A program célja" },
+    { "id": "02-interface",   "en": "The window at a glance",   "hu": "A felület áttekintése" },
+    { "id": "03-profiles",    "en": "Profiles",                 "hu": "Profilok" },
+    { "id": "04-source",      "en": "Source",                   "hu": "Forrás" },
+    { "id": "05-output",      "en": "Output",                   "hu": "Kimenet" },
+    { "id": "06-password",  "en": "Password",               "hu": "Jelszó" },
+    { "id": "07-run",         "en": "Run",                      "hu": "Futtatás" },
+    { "id": "08-installer",   "en": "Installer mode",           "hu": "Telepítő mód" },
+    { "id": "09-build",       "en": "Build",                    "hu": "Összeállítás" },
+    { "id": "10-unpacker",    "en": "Unpacker",                             "hu": "Csomag kicsomagolása" },
+    { "id": "11-verify",      "en": "Verify a package",         "hu": "Csomag ellenőrzése" },
+    { "id": "12-license",     "en": "License",                  "hu": "Licenc" },
+    { "id": "13-faq",         "en": "Troubleshooting and FAQ",              "hu": "Hibaelhárítás és GYIK" }
+  ]
+}

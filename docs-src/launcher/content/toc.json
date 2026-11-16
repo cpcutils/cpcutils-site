@@ -1,0 +1,15 @@
+{
+  "product": "CPC MInst Launcher",
+  "defaultLang": "en",
+  "langs": ["en"],
+  "chapters": [
+    { "id": "01-what-is-it",     "en": "Purpose of the Application" },
+    { "id": "02-interface",      "en": "The window at a glance" },
+    { "id": "03-groups",         "en": "Groups" },
+    { "id": "04-search",         "en": "Search" },
+    { "id": "05-profiles",       "en": "Profiles" },
+    { "id": "06-icons",          "en": "Icons and shortcuts" },
+    { "id": "07-winpe",          "en": "WinPE" },
+    { "id": "08-command-line",   "en": "Command line and files" }
+  ]
+}

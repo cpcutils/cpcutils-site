@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Build - CPC 7z SFX Builder</title>
+<style>/* CPC 7z SFX Builder - Help stylesheet
+ * Paletta: G:\CPC_Soft\_shell\theme-dark.json (Explorer-dark, design v2)
+ * Csak lokalis betu, csak lokalis fajlok - nincs CDN, nincs webfont.
+ */
+
+:root {
+  --bg:        #191919;
+  --panel:     #1C1C1C;
+  --panel-2:   #232323;
+  --border:    #333333;
+  --text:      #F0F0F0;
+  --text-ctrl: #C8C8C8;
+  --dim:       #9A9A9A;
+  --accent:    #4133A0;
+  --glyph:     #5B4BC4;
+  --link:      #8B7BFF;
+  --ok:        #2ECC71;
+  --warn:      #F39C12;
+  --err:       #E86060;
+  --radius:    5px;
+  --nav-w:     272px;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  background: var(--bg);
+  /* mindig van fuggoleges gordito-sav: nem ugrik a tartalom oldalvaltaskor */
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 15px/1.6 "Segoe UI", "Segoe UI Web (West European)", Tahoma, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ------------------------------------------------------------------ topbar */
+
+.top {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: 56px;
+  padding: 0 24px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.brand {
+  font-size: 15px;
+  color: var(--text);
+  letter-spacing: .2px;
+}
+
+.brand span {
+  margin-left: 10px;
+  padding: 1px 7px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--dim);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .8px;
+}
+
+a.lang {
+  color: var(--dim);
+  text-decoration: none;
+  font-size: 13px;
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+a.lang:hover { color: var(--text); background: var(--panel-2); }
+
+/* ------------------------------------------------------------------ layout */
+
+.wrap {
+  display: flex;
+  align-items: flex-start;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+aside {
+  flex: 0 0 var(--nav-w);
+  width: var(--nav-w);
+  position: sticky;
+  top: 56px;
+  max-height: calc(100vh - 56px);
+  overflow-y: auto;
+  padding: 24px 16px 40px 0;
+}
+
+nav ul { list-style: none; margin: 0; padding: 0; }
+
+nav a {
+  display: flex;
+  gap: 10px;
+  padding: 7px 10px;
+  border-radius: var(--radius);
+  color: var(--text-ctrl);
+  text-decoration: none;
+  font-size: 13.5px;
+  line-height: 1.35;
+}
+
+nav a:hover { background: var(--panel-2); color: var(--text); }
+
+nav li.on a {
+  background: #2D2D2D;
+  color: var(--text);
+  box-shadow: inset 2px 0 0 var(--glyph);
+}
+
+nav .n {
+  flex: 0 0 18px;
+  color: var(--dim);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+main {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: 780px;
+  /* rovid oldal se csokkenjen össze: a labléc ne ugorjon fel */
+  min-height: calc(100vh - 260px);
+  padding: 24px 0 64px;
+}
+
+/* ---------------------------------------------------------------- tartalom */
+
+h1 {
+  margin: 8px 0 20px;
+  font-size: 26px;
+  line-height: 1.25;
+  font-weight: 600;
+  letter-spacing: -.2px;
+}
+
+h2 {
+  margin: 36px 0 12px;
+  font-size: 19px;
+  font-weight: 600;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+h3 {
+  margin: 26px 0 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+h4 {
+  margin: 20px 0 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-ctrl);
+  text-transform: uppercase;
+  letter-spacing: .6px;
+}
+
+p { margin: 0 0 12px; }
+
+ul, ol { margin: 0 0 14px; padding-left: 22px; }
+
+li { margin: 0 0 6px; }
+
+li::marker { color: var(--dim); }
+
+strong { font-weight: 600; color: #FFFFFF; }
+
+em { color: var(--text-ctrl); }
+
+a { color: var(--link); text-decoration: none; }
+
+a:hover { text-decoration: underline; }
+
+code {
+  font-family: Consolas, "Cascadia Mono", monospace;
+  font-size: 13px;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 1px 5px;
+  color: #E0E0E0;
+}
+
+pre {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  overflow-x: auto;
+  margin: 0 0 16px;
+}
+
+pre code {
+  background: none;
+  border: 0;
+  padding: 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+hr {
+  height: 1px;
+  border: 0;
+  background: var(--border);
+  margin: 28px 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0 20px;
+  font-size: 14px;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+th {
+  color: var(--text-ctrl);
+  font-weight: 600;
+  background: var(--panel);
+  font-size: 12.5px;
+  text-transform: none;
+}
+
+tbody tr:hover { background: var(--panel-2); }
+
+td:first-child { color: var(--text); }
+
+/* tipp / figyelmeztetes */
+.note {
+  margin: 16px 0;
+  padding: 12px 16px;
+  background: var(--panel);
+  border-left: 3px solid var(--glyph);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.note > :last-child { margin-bottom: 0; }
+
+/* kepernyokep */
+figure {
+  margin: 20px 0;
+  padding: 0;
+}
+
+figure img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--panel);
+}
+
+figcaption {
+  margin-top: 8px;
+  font-size: 12.5px;
+  color: var(--dim);
+}
+
+/* helyorzo, amig nincs kesz kepernyokep */
+figure.ph .ph-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  min-height: 120px;
+  padding: 20px;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  background: repeating-linear-gradient(45deg, #1C1C1C, #1C1C1C 10px, #1E1E1E 10px, #1E1E1E 20px);
+  color: var(--dim);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+figure.ph .ph-box span {
+  text-transform: none;
+  letter-spacing: 0;
+  font-family: Consolas, monospace;
+  color: #6E6E6E;
+}
+
+/* lapozo + labléc */
+.pager {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 40px 0 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13.5px;
+}
+
+.pager a { color: var(--text-ctrl); }
+
+.pager a:hover { color: var(--text); }
+
+footer {
+  margin-top: 28px;
+  font-size: 12px;
+  color: #6E6E6E;
+}
+
+/* ------------------------------------------------------------------ mobil */
+
+@media (max-width: 860px) {
+  .wrap { display: block; padding: 0 16px; }
+  aside {
+    position: static;
+    width: auto;
+    max-height: none;
+    padding: 16px 0 24px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 8px;
+  }
+  nav ul { display: flex; flex-wrap: wrap; gap: 4px; }
+  nav a { padding: 5px 8px; }
+  main { max-width: none; }
+  h1 { font-size: 22px; }
+}
+
+/* ---------------------------------------------------------------- nyomtatas */
+
+@media print {
+  html, body { background: #FFFFFF; color: #1A1A1A; }
+  .top, aside, .pager { display: none; }
+  .wrap { display: block; padding: 0; max-width: none; }
+  main { max-width: none; }
+  h1, h2, h3, strong { color: #000000; }
+  a { color: #0B4F9E; }
+  code, pre { background: #F4F4F4; border-color: #CCCCCC; color: #1A1A1A; }
+  figure img { border-color: #CCCCCC; }
+}
+
+
+/* kep-nagyitas: fekete hatter, ugyanabban az ablakban.
+   A nagyitott kep <img>, max a sajat mereteig (1004 px) - NEM nagyitja fel. */
+figure a.zoom { position: relative; display: block; cursor: zoom-in; }
+figure a.zoom::after {
+  content: "";
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #4A4A4A;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, .72) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23F0F0F0' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M16.2 16.2 21 21'/%3E%3C/svg%3E") center / 16px 16px no-repeat;
+  opacity: 0;
+  transition: opacity .15s ease;
+  pointer-events: none;
+}
+figure a.zoom:hover::after, figure a.zoom:focus-visible::after { opacity: 1; }
+a.lb { display: none; }
+a.lb:target {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  padding: 40px;
+  background: rgba(0, 0, 0, .92);
+  cursor: zoom-out;
+}
+a.lb img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  border: 1px solid #3A3A3A;
+  box-shadow: 0 10px 48px rgba(0, 0, 0, .65);
+}
+a.lb .x {
+  position: fixed;
+  top: 14px;
+  right: 20px;
+  font-size: 26px;
+  line-height: 1;
+  color: #C8C8C8;
+  text-decoration: none;
+}
+a.lb:hover .x { color: #FFFFFF; }
+html:has(a.lb:target) { overflow: hidden; }
+@media print { a.lb, a.lb:target, figure a.zoom::after { display: none !important; } }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand">CPC 7z SFX Builder<span>Help</span></div>
+  <a class="lang" href="../hu/09-build.html">Magyar</a>
+</header>
+<div class="wrap">
+  <aside>
+    <nav><ul><li><a href="01-what-is-it.html"><span class="n">1</span>Purpose of the Application</a></li><li><a href="02-interface.html"><span class="n">2</span>The window at a glance</a></li><li><a href="03-profiles.html"><span class="n">3</span>Profiles</a></li><li><a href="04-source.html"><span class="n">4</span>Source</a></li><li><a href="05-output.html"><span class="n">5</span>Output</a></li><li><a href="06-password.html"><span class="n">6</span>Password</a></li><li><a href="07-run.html"><span class="n">7</span>Run</a></li><li><a href="08-installer.html"><span class="n">8</span>Installer mode</a></li><li class="on"><a href="09-build.html"><span class="n">9</span>Build</a></li><li><a href="10-unpacker.html"><span class="n">10</span>Unpacker</a></li><li><a href="11-verify.html"><span class="n">11</span>Verify a package</a></li><li><a href="12-license.html"><span class="n">12</span>License</a></li><li><a href="13-faq.html"><span class="n">13</span>Troubleshooting and FAQ</a></li></ul></nav>
+  </aside>
+  <main>
+    <h1>Build</h1>
+    <p>The <strong>Build</strong> tab consolidates all active configurations. It provides a final validation summary before the build and flags any unconfigured or missing parameters.</p>
+<figure id="fig-en-09-build-1"><a class="zoom" href="#z-en-09-build-1" title="Enlarge"><img src="../assets/img/en/09-build-done.png" alt="The Build tab - after a successful build"></a><figcaption>The Build tab - after a successful build</figcaption></figure><a class="lb" id="z-en-09-build-1" href="#fig-en-09-build-1" title="Close"><img src="../assets/img/en/09-build-done.png" alt="The Build tab - after a successful build"><span class="x">&times;</span></a>
+<h2>Pre-Build Summary</h2>
+<p>The summary panel validates the following core parameters:</p>
+<table><thead><tr><th>Line</th><th>Description</th></tr></thead><tbody><tr><td><strong>Source</strong></td><td>The directory or archive queued for packaging.</td></tr><tr><td><strong>Output</strong></td><td>The destination path and file name of the generated executable.</td></tr><tr><td><strong>Password</strong></td><td><code>yes</code> if payload encryption is enabled, <code>none</code> if not.</td></tr><tr><td><strong>Run</strong></td><td>The executable launched after extraction.</td></tr><tr><td><strong>Integrity</strong></td><td>Whether the payload carries its SHA256 seal.</td></tr><tr><td><strong>Last build</strong></td><td>The date and size of the most recent output. If no build has been made yet and no output file exists in the output folder, the row reads <code>no build yet</code>.</td></tr></tbody></table>
+<p>The status line reports whether the two mandatory inputs are present: <code>Everything needed for the build is set.</code> when both the source and the product name are given, and <code>No source selected.</code> otherwise. The line is informational; the full validation runs when the build starts.</p>
+<p>Three further options on this tab control what the package itself contains:</p>
+<ul><li><strong>Hide package (7z + config)</strong>: the payload and the configuration are hidden from archive tools. Pro edition only; in the Free edition the build stops with <code>Hide package: this feature requires a PRO licence.</code></li><li><strong>Watermark (build id)</strong>: an identifier is embedded in the package, so a leaked build can be traced back.</li><li><strong>Sign the output</strong>: the finished package is signed with a code-signing certificate from the Windows certificate store, including a timestamp. The certificate is not bundled; it is selected in the <strong>Settings</strong> window, where the list can be refreshed with the <strong>Refresh</strong> button.</li></ul>
+<h2>Build Process</h2>
+<ol><li>Verify the configuration summary. Correct any unintended parameters on their respective tabs.</li><li>Select <strong>Build Now</strong> (or press F5).</li><li>Monitor the <strong>Build Log</strong> panel for step-by-step build diagnostics.</li><li>When the final entry contains the name of the .exe file, the package is available in the output directory.</li></ol>
+<p>Build time grows with the payload size, and rises steeply with the compression level.</p>
+<figure id="fig-en-09-build-2"><a class="zoom" href="#z-en-09-build-2" title="Enlarge"><img src="../assets/img/en/09-build.png" alt="Build in progress: log and progress bar"></a><figcaption>Build in progress: log and progress bar</figcaption></figure><a class="lb" id="z-en-09-build-2" href="#fig-en-09-build-2" title="Close"><img src="../assets/img/en/09-build.png" alt="Build in progress: log and progress bar"><span class="x">&times;</span></a>
+<p>If a validation stops the build, the log states the reason in a red line:</p>
+<figure id="fig-en-09-build-3"><a class="zoom" href="#z-en-09-build-3" title="Enlarge"><img src="../assets/img/en/09-build-error.png" alt="Build stopped: the reason in the log"></a><figcaption>Build stopped: the reason in the log</figcaption></figure><a class="lb" id="z-en-09-build-3" href="#fig-en-09-build-3" title="Close"><img src="../assets/img/en/09-build-error.png" alt="Build stopped: the reason in the log"><span class="x">&times;</span></a>
+<h2>Package Integrity Validation</h2>
+<p>Cryptographic payload sealing is enforced through the Ed25519 signature of the configuration and the SHA256 hash of the payload.</p>
+<ul><li><strong>Enabled</strong>: the builder records the SHA256 hash and offset of the payload in the configuration, signed with Ed25519. Any unauthorized post-build modification of the payload triggers a fatal validation error during execution and blocks extraction.</li><li><strong>Disabled</strong>: the package is not self-validated. This configuration is appropriate only when the package is modified after the build, or when it is signed with a code-signing certificate and false positives must be avoided.</li></ul>
+<p>In the free edition the option is permanently enabled and cannot be modified. The <a href="11-verify.html">Verify a package</a> tab displays the integrity state of a built package.</p>
+<h2>Build Log Analysis</h2>
+<table><thead><tr><th>Color</th><th>Meaning</th></tr></thead><tbody><tr><td>White</td><td>Standard build step, for example payload compression.</td></tr><tr><td>Green</td><td>The step completed successfully.</td></tr><tr><td>Yellow</td><td>Warning. Build continues.</td></tr><tr><td>Red</td><td>Build aborted. The preceding entry identifies the cause.</td></tr></tbody></table>
+<p>Common fatal build errors (red indicators):</p>
+<ul><li><strong>ERROR: packer\7z.exe not found</strong>: the 7z binaries are missing from the <code>packer</code> folder of the application.</li><li><strong>ERROR: stub\7z.sfx not found</strong> / <strong>ERROR: installer stub (stub\7z-admin.sfx) not found - reinstall the builder</strong>: the package stub is missing.</li><li><strong>No signing keypair (keys\builder.key) - restart the app or activate the licence</strong>: the builder cannot sign the configuration.</li><li><strong>Cannot create the output folder</strong>: the output path is not writable.</li><li><strong>Installer mode: set the program to run (this becomes the shortcut and icon target)</strong>: installer mode requires a program to launch.</li><li><strong>The source archive is encrypted; the build needs its password</strong>: provide the archive password on the <strong>Source</strong> tab.</li><li><strong>The source is a single file above the 2 GB package limit - the package will probably not be runnable</strong>. The build stops before the payload is assembled; the limit is a product decision, not a technical one.</li></ul>
+<div class="note"><p>The <strong>Build Log</strong> is written in the selected interface language; the technical lines (<code>[scan]</code>, <code>[bld]</code>, <code>[cfg]</code>) are the same in every language.</p></div>
+<h2>Post-Build Verification</h2>
+<p>The generated executable is completely standalone and requires no external dependencies, including 7-Zip.</p>
+<p>Deployment verification: it is strongly recommended to execute the generated package in a clean, isolated environment (sandbox or virtual machine) to validate extraction integrity and runtime behavior.</p>
+    <div class="pager"><a class="prev" href="08-installer.html">&larr; Installer mode</a><a class="next" href="10-unpacker.html">Unpacker &rarr;</a></div>
+    <footer>Help &middot; 2026-11-15 &middot; Central PC Service Bt.</footer>
+  </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Run - CPC 7z SFX Builder</title>
+<style>/* CPC 7z SFX Builder - Help stylesheet
+ * Paletta: G:\CPC_Soft\_shell\theme-dark.json (Explorer-dark, design v2)
+ * Csak lokalis betu, csak lokalis fajlok - nincs CDN, nincs webfont.
+ */
+
+:root {
+  --bg:        #191919;
+  --panel:     #1C1C1C;
+  --panel-2:   #232323;
+  --border:    #333333;
+  --text:      #F0F0F0;
+  --text-ctrl: #C8C8C8;
+  --dim:       #9A9A9A;
+  --accent:    #4133A0;
+  --glyph:     #5B4BC4;
+  --link:      #8B7BFF;
+  --ok:        #2ECC71;
+  --warn:      #F39C12;
+  --err:       #E86060;
+  --radius:    5px;
+  --nav-w:     272px;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  background: var(--bg);
+  /* mindig van fuggoleges gordito-sav: nem ugrik a tartalom oldalvaltaskor */
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 15px/1.6 "Segoe UI", "Segoe UI Web (West European)", Tahoma, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ------------------------------------------------------------------ topbar */
+
+.top {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: 56px;
+  padding: 0 24px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.brand {
+  font-size: 15px;
+  color: var(--text);
+  letter-spacing: .2px;
+}
+
+.brand span {
+  margin-left: 10px;
+  padding: 1px 7px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--dim);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .8px;
+}
+
+a.lang {
+  color: var(--dim);
+  text-decoration: none;
+  font-size: 13px;
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+a.lang:hover { color: var(--text); background: var(--panel-2); }
+
+/* ------------------------------------------------------------------ layout */
+
+.wrap {
+  display: flex;
+  align-items: flex-start;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+aside {
+  flex: 0 0 var(--nav-w);
+  width: var(--nav-w);
+  position: sticky;
+  top: 56px;
+  max-height: calc(100vh - 56px);
+  overflow-y: auto;
+  padding: 24px 16px 40px 0;
+}
+
+nav ul { list-style: none; margin: 0; padding: 0; }
+
+nav a {
+  display: flex;
+  gap: 10px;
+  padding: 7px 10px;
+  border-radius: var(--radius);
+  color: var(--text-ctrl);
+  text-decoration: none;
+  font-size: 13.5px;
+  line-height: 1.35;
+}
+
+nav a:hover { background: var(--panel-2); color: var(--text); }
+
+nav li.on a {
+  background: #2D2D2D;
+  color: var(--text);
+  box-shadow: inset 2px 0 0 var(--glyph);
+}
+
+nav .n {
+  flex: 0 0 18px;
+  color: var(--dim);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+main {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: 780px;
+  /* rovid oldal se csokkenjen össze: a labléc ne ugorjon fel */
+  min-height: calc(100vh - 260px);
+  padding: 24px 0 64px;
+}
+
+/* ---------------------------------------------------------------- tartalom */
+
+h1 {
+  margin: 8px 0 20px;
+  font-size: 26px;
+  line-height: 1.25;
+  font-weight: 600;
+  letter-spacing: -.2px;
+}
+
+h2 {
+  margin: 36px 0 12px;
+  font-size: 19px;
+  font-weight: 600;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+h3 {
+  margin: 26px 0 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+h4 {
+  margin: 20px 0 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-ctrl);
+  text-transform: uppercase;
+  letter-spacing: .6px;
+}
+
+p { margin: 0 0 12px; }
+
+ul, ol { margin: 0 0 14px; padding-left: 22px; }
+
+li { margin: 0 0 6px; }
+
+li::marker { color: var(--dim); }
+
+strong { font-weight: 600; color: #FFFFFF; }
+
+em { color: var(--text-ctrl); }
+
+a { color: var(--link); text-decoration: none; }
+
+a:hover { text-decoration: underline; }
+
+code {
+  font-family: Consolas, "Cascadia Mono", monospace;
+  font-size: 13px;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 1px 5px;
+  color: #E0E0E0;
+}
+
+pre {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  overflow-x: auto;
+  margin: 0 0 16px;
+}
+
+pre code {
+  background: none;
+  border: 0;
+  padding: 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+hr {
+  height: 1px;
+  border: 0;
+  background: var(--border);
+  margin: 28px 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0 20px;
+  font-size: 14px;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+th {
+  color: var(--text-ctrl);
+  font-weight: 600;
+  background: var(--panel);
+  font-size: 12.5px;
+  text-transform: none;
+}
+
+tbody tr:hover { background: var(--panel-2); }
+
+td:first-child { color: var(--text); }
+
+/* tipp / figyelmeztetes */
+.note {
+  margin: 16px 0;
+  padding: 12px 16px;
+  background: var(--panel);
+  border-left: 3px solid var(--glyph);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.note > :last-child { margin-bottom: 0; }
+
+/* kepernyokep */
+figure {
+  margin: 20px 0;
+  padding: 0;
+}
+
+figure img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--panel);
+}
+
+figcaption {
+  margin-top: 8px;
+  font-size: 12.5px;
+  color: var(--dim);
+}
+
+/* helyorzo, amig nincs kesz kepernyokep */
+figure.ph .ph-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  min-height: 120px;
+  padding: 20px;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  background: repeating-linear-gradient(45deg, #1C1C1C, #1C1C1C 10px, #1E1E1E 10px, #1E1E1E 20px);
+  color: var(--dim);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+figure.ph .ph-box span {
+  text-transform: none;
+  letter-spacing: 0;
+  font-family: Consolas, monospace;
+  color: #6E6E6E;
+}
+
+/* lapozo + labléc */
+.pager {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 40px 0 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13.5px;
+}
+
+.pager a { color: var(--text-ctrl); }
+
+.pager a:hover { color: var(--text); }
+
+footer {
+  margin-top: 28px;
+  font-size: 12px;
+  color: #6E6E6E;
+}
+
+/* ------------------------------------------------------------------ mobil */
+
+@media (max-width: 860px) {
+  .wrap { display: block; padding: 0 16px; }
+  aside {
+    position: static;
+    width: auto;
+    max-height: none;
+    padding: 16px 0 24px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 8px;
+  }
+  nav ul { display: flex; flex-wrap: wrap; gap: 4px; }
+  nav a { padding: 5px 8px; }
+  main { max-width: none; }
+  h1 { font-size: 22px; }
+}
+
+/* ---------------------------------------------------------------- nyomtatas */
+
+@media print {
+  html, body { background: #FFFFFF; color: #1A1A1A; }
+  .top, aside, .pager { display: none; }
+  .wrap { display: block; padding: 0; max-width: none; }
+  main { max-width: none; }
+  h1, h2, h3, strong { color: #000000; }
+  a { color: #0B4F9E; }
+  code, pre { background: #F4F4F4; border-color: #CCCCCC; color: #1A1A1A; }
+  figure img { border-color: #CCCCCC; }
+}
+
+
+/* kep-nagyitas: fekete hatter, ugyanabban az ablakban.
+   A nagyitott kep <img>, max a sajat mereteig (1004 px) - NEM nagyitja fel. */
+figure a.zoom { position: relative; display: block; cursor: zoom-in; }
+figure a.zoom::after {
+  content: "";
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #4A4A4A;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, .72) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23F0F0F0' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M16.2 16.2 21 21'/%3E%3C/svg%3E") center / 16px 16px no-repeat;
+  opacity: 0;
+  transition: opacity .15s ease;
+  pointer-events: none;
+}
+figure a.zoom:hover::after, figure a.zoom:focus-visible::after { opacity: 1; }
+a.lb { display: none; }
+a.lb:target {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  padding: 40px;
+  background: rgba(0, 0, 0, .92);
+  cursor: zoom-out;
+}
+a.lb img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  border: 1px solid #3A3A3A;
+  box-shadow: 0 10px 48px rgba(0, 0, 0, .65);
+}
+a.lb .x {
+  position: fixed;
+  top: 14px;
+  right: 20px;
+  font-size: 26px;
+  line-height: 1;
+  color: #C8C8C8;
+  text-decoration: none;
+}
+a.lb:hover .x { color: #FFFFFF; }
+html:has(a.lb:target) { overflow: hidden; }
+@media print { a.lb, a.lb:target, figure a.zoom::after { display: none !important; } }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand">CPC 7z SFX Builder<span>Help</span></div>
+  <a class="lang" href="../hu/07-run.html">Magyar</a>
+</header>
+<div class="wrap">
+  <aside>
+    <nav><ul><li><a href="01-what-is-it.html"><span class="n">1</span>Purpose of the Application</a></li><li><a href="02-interface.html"><span class="n">2</span>The window at a glance</a></li><li><a href="03-profiles.html"><span class="n">3</span>Profiles</a></li><li><a href="04-source.html"><span class="n">4</span>Source</a></li><li><a href="05-output.html"><span class="n">5</span>Output</a></li><li><a href="06-password.html"><span class="n">6</span>Password</a></li><li class="on"><a href="07-run.html"><span class="n">7</span>Run</a></li><li><a href="08-installer.html"><span class="n">8</span>Installer mode</a></li><li><a href="09-build.html"><span class="n">9</span>Build</a></li><li><a href="10-unpacker.html"><span class="n">10</span>Unpacker</a></li><li><a href="11-verify.html"><span class="n">11</span>Verify a package</a></li><li><a href="12-license.html"><span class="n">12</span>License</a></li><li><a href="13-faq.html"><span class="n">13</span>Troubleshooting and FAQ</a></li></ul></nav>
+  </aside>
+  <main>
+    <h1>Run</h1>
+    <p>The <strong>Run</strong> tab configures the post-extraction execution sequence. This includes launching primary executables, deploying scripts, or displaying graphical completion notifications.</p>
+<figure id="fig-en-07-run-1"><a class="zoom" href="#z-en-07-run-1" title="Enlarge"><img src="../assets/img/en/07-run.png" alt="The Run tab"></a><figcaption>The Run tab</figcaption></figure><a class="lb" id="z-en-07-run-1" href="#fig-en-07-run-1" title="Close"><img src="../assets/img/en/07-run.png" alt="The Run tab"><span class="x">&times;</span></a>
+<h2>Execution Parameters</h2>
+<table><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td><strong>Program to run</strong></td><td>The primary payload executable launched automatically after extraction.</td></tr><tr><td><strong>Parameters</strong></td><td>Command-line arguments passed to the executable, for example <code>/S /L=1038</code>.</td></tr><tr><td><strong>Finish message</strong></td><td>An optional dialog displayed when the process finishes, for example <code>Installation complete.</code> It is valid only when the stub can ask: installer with wizard. For portable packages and for a silent installer the field is not editable.</td></tr><tr><td><strong>Extraction folder</strong></td><td>Where the package extracts its files: <strong>Temporary folder (Temp)</strong> (default), <strong>LocalAppData</strong>, <strong>AppData (Roaming)</strong>, <strong>ProgramData</strong>, or <strong>Folder of the SFX package</strong>. The field shows the resolved path. See <a href="#extraction-folder">Extraction folder</a>.</td></tr><tr><td><strong>Delete temporary files after running</strong></td><td>Deletes the extracted files after the program finishes. It does not change where the package extracts to.</td></tr><tr><td><strong>Delete temporary files and the launcher exe after running</strong></td><td>Deletes the extracted files and the parent launcher executable after the program finishes. The two switches are mutually exclusive.</td></tr></tbody></table>
+<h2>Appearance and visibility</h2>
+<p>The <strong>Package appearance</strong> setting is on the <strong>Password</strong> page: for portable packages you can choose <strong>Progress bar</strong> or <strong>Silent (no window)</strong>. When the installer is built with the wizard, the field is not editable, because the wizard is always interactive. A silent installer (no wizard) uses this setting exactly like a portable package.</p>
+<table><thead><tr><th>Element</th><th>Progress bar</th><th>Silent (no window)</th><th>Installer with wizard</th></tr></thead><tbody><tr><td>Splash screen</td><td>yes</td><td>no</td><td>yes</td></tr><tr><td>Progress bar</td><td>yes</td><td>no</td><td>yes</td></tr><tr><td>Password prompt at start</td><td>asks</td><td>does not ask</td><td>asks</td></tr><tr><td>Finish message</td><td>no</td><td>no</td><td>yes</td></tr><tr><td>Error window</td><td>yes</td><td>yes (closes automatically after 5 seconds)</td><td>yes</td></tr></tbody></table>
+<p>The error window appears in silent mode on purpose: if the package cannot extract, the user has to see the reason.</p>
+<p>With a Free license the splash screen and the progress bar cannot be turned off – they appear in every mode because of the branding. A fully silent package requires a <strong>Pro</strong> license.</p>
+<p>The two windows follow each other: the <strong>splash screen</strong> finishes first (for the configured minimum time), and only then does the <strong>progress bar</strong> appear, when the extraction starts.</p>
+<figure id="fig-en-07-run-2"><a class="zoom" href="#z-en-07-run-2" title="Enlarge"><img src="../assets/img/en/07-run-progress.png" alt="The progress bar during extraction"></a><figcaption>The progress bar during extraction</figcaption></figure><a class="lb" id="z-en-07-run-2" href="#fig-en-07-run-2" title="Close"><img src="../assets/img/en/07-run-progress.png" alt="The progress bar during extraction"><span class="x">&times;</span></a>
+<h2>Extraction folder</h2>
+<p>The <strong>Extraction folder</strong> field decides where the package extracts its files. The field always shows the resolved path; the drop-down list contains the available locations.</p>
+<table><thead><tr><th>Choice</th><th>Extraction folder</th></tr></thead><tbody><tr><td><strong>Temporary folder (Temp)</strong></td><td><code>%TEMP%\cpc-sfx-&lt;pid&gt;-&lt;tick&gt;\&lt;product&gt;\</code> – the program starts from here and the whole folder can be removed after the run</td></tr><tr><td><strong>LocalAppData</strong></td><td><code>%LOCALAPPDATA%\&lt;product&gt;\</code></td></tr><tr><td><strong>AppData (Roaming)</strong></td><td><code>%APPDATA%\&lt;product&gt;\</code></td></tr><tr><td><strong>ProgramData</strong></td><td><code>%ProgramData%\&lt;product&gt;\</code></td></tr><tr><td><strong>Folder of the SFX package</strong></td><td>a <code>&lt;product&gt;\</code> folder created next to the package</td></tr></tbody></table>
+<p>The extraction folder is always named after the <strong>product</strong>, so the user can find it. Outside the temp folder the builder writes a hidden <code>.cpc-sfx</code> marker file: deletion only happens when that marker is present, so the package can never remove a folder it did not create.</p>
+<div class="note"><p>The <strong>Extraction folder</strong> and deletion are two separate things. The field sets where the files go; the two checkboxes only control whether they are removed after the run.</p></div>
+<h2>Configuring the Primary Executable</h2>
+<ol><li>On the <strong>Run</strong> tab, open the list next to <strong>Program to run</strong>.</li><li>Select a file from the package. The list contains the executable files and scripts present in the source.</li><li>Specify <strong>Parameters</strong> if the executable requires them.</li><li>Enter a <strong>Finish message</strong> (installer mode only) if a completion notification is required.</li></ol>
+<h2>Using the list</h2>
+<p>The <strong>Program to run</strong>, <strong>Run after install</strong> and <strong>Pre-install files</strong> fields open the same selector, and the list contains the <strong>complete</strong> set of executable files in the source (there is no item limit).</p>
+<ul><li><strong>Order:</strong> the list starts with the files in the root directory, followed by subfolders in alphabetical order.</li><li><strong>Display:</strong> the folder name precedes the file name, for example <code>Sysinternals\autoruns64.exe</code>; the selected value is the relative path valid inside the package.</li><li><strong>Search:</strong> while the list is open, type the filter text - it also matches the folder name. The left side of the header shows the typed text, the right side the <code>matches / total</code> ratio; <strong>Backspace</strong> deletes the last character.</li><li><strong>Keys:</strong> ↑ / ↓ (row), PgUp / PgDn (page), Home / End (top and bottom of the list), <strong>Enter</strong> (select), <strong>Esc</strong> (close).</li><li><strong>Pre-install files:</strong> <strong>Space</strong> toggles the check mark and the list stays open. The <strong>order</strong> of selection is also the order of execution. The first row, <strong>- none -</strong>, clears every selection.</li><li><strong>No match:</strong> if the filter finds nothing, the list is empty; press <strong>Esc</strong> to close it.</li></ul>
+<h2>Executable Requirements</h2>
+<ul><li>The target file must reside within the archive root or a relative subdirectory. Absolute paths and directory traversal (<code>..</code>) sequences are prohibited.</li><li>The file type must be executable: .exe, .com, .bat, .cmd, .vbs, .ps1, or .msi.</li><li>Missing executables trigger a fatal build error during the build.</li><li>If <strong>Program to run</strong> is empty, the build stops: such a package would do nothing when started and the user would see no feedback at all. In portable mode there is no exception.</li></ul>
+<h2>Pre-install Files</h2>
+<p>Pre-install files (<code>.cmd</code>, <code>.exe</code>, <code>.reg</code>) execute sequentially after extraction, prior to the primary executable. This feature is used for registry modifications, environment preparation, or dependency deployment. The specified files must be present in the source directory for automatic inclusion.</p>
+<div class="note"><p>In portable mode <strong>Program to run</strong> is mandatory; an extract-only package cannot be produced. In installer mode the wizard provides the feedback, and the <strong>Finish message</strong> field is available.</p></div>
+    <div class="pager"><a class="prev" href="06-password.html">&larr; Password</a><a class="next" href="08-installer.html">Installer mode &rarr;</a></div>
+    <footer>Help &middot; 2026-11-15 &middot; Central PC Service Bt.</footer>
+  </main>
+</div>
+</body>
+</html>

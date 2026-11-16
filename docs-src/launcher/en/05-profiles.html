@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Profiles - CPC MInst Launcher</title>
+<style>/* CPC 7z SFX Builder - Help stylesheet
+ * Paletta: G:\CPC_Soft\_shell\theme-dark.json (Explorer-dark, design v2)
+ * Csak lokalis betu, csak lokalis fajlok - nincs CDN, nincs webfont.
+ */
+
+:root {
+  --bg:        #191919;
+  --panel:     #1C1C1C;
+  --panel-2:   #232323;
+  --border:    #333333;
+  --text:      #F0F0F0;
+  --text-ctrl: #C8C8C8;
+  --dim:       #9A9A9A;
+  --accent:    #4133A0;
+  --glyph:     #5B4BC4;
+  --link:      #8B7BFF;
+  --ok:        #2ECC71;
+  --warn:      #F39C12;
+  --err:       #E86060;
+  --radius:    5px;
+  --nav-w:     272px;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  background: var(--bg);
+  /* mindig van fuggoleges gordito-sav: nem ugrik a tartalom oldalvaltaskor */
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 15px/1.6 "Segoe UI", "Segoe UI Web (West European)", Tahoma, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ------------------------------------------------------------------ topbar */
+
+.top {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: 56px;
+  padding: 0 24px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.brand {
+  font-size: 15px;
+  color: var(--text);
+  letter-spacing: .2px;
+}
+
+.brand span {
+  margin-left: 10px;
+  padding: 1px 7px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--dim);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .8px;
+}
+
+a.lang {
+  color: var(--dim);
+  text-decoration: none;
+  font-size: 13px;
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+a.lang:hover { color: var(--text); background: var(--panel-2); }
+
+/* ------------------------------------------------------------------ layout */
+
+.wrap {
+  display: flex;
+  align-items: flex-start;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+aside {
+  flex: 0 0 var(--nav-w);
+  width: var(--nav-w);
+  position: sticky;
+  top: 56px;
+  max-height: calc(100vh - 56px);
+  overflow-y: auto;
+  padding: 24px 16px 40px 0;
+}
+
+nav ul { list-style: none; margin: 0; padding: 0; }
+
+nav a {
+  display: flex;
+  gap: 10px;
+  padding: 7px 10px;
+  border-radius: var(--radius);
+  color: var(--text-ctrl);
+  text-decoration: none;
+  font-size: 13.5px;
+  line-height: 1.35;
+}
+
+nav a:hover { background: var(--panel-2); color: var(--text); }
+
+nav li.on a {
+  background: #2D2D2D;
+  color: var(--text);
+  box-shadow: inset 2px 0 0 var(--glyph);
+}
+
+nav .n {
+  flex: 0 0 18px;
+  color: var(--dim);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+main {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: 780px;
+  /* rovid oldal se csokkenjen össze: a labléc ne ugorjon fel */
+  min-height: calc(100vh - 260px);
+  padding: 24px 0 64px;
+}
+
+/* ---------------------------------------------------------------- tartalom */
+
+h1 {
+  margin: 8px 0 20px;
+  font-size: 26px;
+  line-height: 1.25;
+  font-weight: 600;
+  letter-spacing: -.2px;
+}
+
+h2 {
+  margin: 36px 0 12px;
+  font-size: 19px;
+  font-weight: 600;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+h3 {
+  margin: 26px 0 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+h4 {
+  margin: 20px 0 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-ctrl);
+  text-transform: uppercase;
+  letter-spacing: .6px;
+}
+
+p { margin: 0 0 12px; }
+
+ul, ol { margin: 0 0 14px; padding-left: 22px; }
+
+li { margin: 0 0 6px; }
+
+li::marker { color: var(--dim); }
+
+strong { font-weight: 600; color: #FFFFFF; }
+
+em { color: var(--text-ctrl); }
+
+a { color: var(--link); text-decoration: none; }
+
+a:hover { text-decoration: underline; }
+
+code {
+  font-family: Consolas, "Cascadia Mono", monospace;
+  font-size: 13px;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 1px 5px;
+  color: #E0E0E0;
+}
+
+pre {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  overflow-x: auto;
+  margin: 0 0 16px;
+}
+
+pre code {
+  background: none;
+  border: 0;
+  padding: 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+hr {
+  height: 1px;
+  border: 0;
+  background: var(--border);
+  margin: 28px 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0 20px;
+  font-size: 14px;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+th {
+  color: var(--text-ctrl);
+  font-weight: 600;
+  background: var(--panel);
+  font-size: 12.5px;
+  text-transform: none;
+}
+
+tbody tr:hover { background: var(--panel-2); }
+
+td:first-child { color: var(--text); }
+
+/* tipp / figyelmeztetes */
+.note {
+  margin: 16px 0;
+  padding: 12px 16px;
+  background: var(--panel);
+  border-left: 3px solid var(--glyph);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.note > :last-child { margin-bottom: 0; }
+
+/* kepernyokep */
+figure {
+  margin: 20px 0;
+  padding: 0;
+}
+
+figure img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--panel);
+}
+
+figcaption {
+  margin-top: 8px;
+  font-size: 12.5px;
+  color: var(--dim);
+}
+
+/* helyorzo, amig nincs kesz kepernyokep */
+figure.ph .ph-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  min-height: 120px;
+  padding: 20px;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  background: repeating-linear-gradient(45deg, #1C1C1C, #1C1C1C 10px, #1E1E1E 10px, #1E1E1E 20px);
+  color: var(--dim);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+figure.ph .ph-box span {
+  text-transform: none;
+  letter-spacing: 0;
+  font-family: Consolas, monospace;
+  color: #6E6E6E;
+}
+
+/* lapozo + labléc */
+.pager {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 40px 0 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13.5px;
+}
+
+.pager a { color: var(--text-ctrl); }
+
+.pager a:hover { color: var(--text); }
+
+footer {
+  margin-top: 28px;
+  font-size: 12px;
+  color: #6E6E6E;
+}
+
+/* ------------------------------------------------------------------ mobil */
+
+@media (max-width: 860px) {
+  .wrap { display: block; padding: 0 16px; }
+  aside {
+    position: static;
+    width: auto;
+    max-height: none;
+    padding: 16px 0 24px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 8px;
+  }
+  nav ul { display: flex; flex-wrap: wrap; gap: 4px; }
+  nav a { padding: 5px 8px; }
+  main { max-width: none; }
+  h1 { font-size: 22px; }
+}
+
+/* ---------------------------------------------------------------- nyomtatas */
+
+@media print {
+  html, body { background: #FFFFFF; color: #1A1A1A; }
+  .top, aside, .pager { display: none; }
+  .wrap { display: block; padding: 0; max-width: none; }
+  main { max-width: none; }
+  h1, h2, h3, strong { color: #000000; }
+  a { color: #0B4F9E; }
+  code, pre { background: #F4F4F4; border-color: #CCCCCC; color: #1A1A1A; }
+  figure img { border-color: #CCCCCC; }
+}
+
+
+/* kep-nagyitas: fekete hatter, ugyanabban az ablakban.
+   A nagyitott kep <img>, max a sajat mereteig (1004 px) - NEM nagyitja fel. */
+figure a.zoom { position: relative; display: block; cursor: zoom-in; }
+figure a.zoom::after {
+  content: "";
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #4A4A4A;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, .72) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23F0F0F0' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M16.2 16.2 21 21'/%3E%3C/svg%3E") center / 16px 16px no-repeat;
+  opacity: 0;
+  transition: opacity .15s ease;
+  pointer-events: none;
+}
+figure a.zoom:hover::after, figure a.zoom:focus-visible::after { opacity: 1; }
+a.lb { display: none; }
+a.lb:target {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  padding: 40px;
+  background: rgba(0, 0, 0, .92);
+  cursor: zoom-out;
+}
+a.lb img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  border: 1px solid #3A3A3A;
+  box-shadow: 0 10px 48px rgba(0, 0, 0, .65);
+}
+a.lb .x {
+  position: fixed;
+  top: 14px;
+  right: 20px;
+  font-size: 26px;
+  line-height: 1;
+  color: #C8C8C8;
+  text-decoration: none;
+}
+a.lb:hover .x { color: #FFFFFF; }
+html:has(a.lb:target) { overflow: hidden; }
+@media print { a.lb, a.lb:target, figure a.zoom::after { display: none !important; } }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand">CPC MInst Launcher<span>Help</span></div>
+  
+</header>
+<div class="wrap">
+  <aside>
+    <nav><ul><li><a href="01-what-is-it.html"><span class="n">1</span>Purpose of the Application</a></li><li><a href="02-interface.html"><span class="n">2</span>The window at a glance</a></li><li><a href="03-groups.html"><span class="n">3</span>Groups</a></li><li><a href="04-search.html"><span class="n">4</span>Search</a></li><li class="on"><a href="05-profiles.html"><span class="n">5</span>Profiles</a></li><li><a href="06-icons.html"><span class="n">6</span>Icons and shortcuts</a></li><li><a href="07-winpe.html"><span class="n">7</span>WinPE</a></li><li><a href="08-command-line.html"><span class="n">8</span>Command line and files</a></li></ul></nav>
+  </aside>
+  <main>
+    <h1>Profiles</h1>
+    <p>A profile is the whole list: its groups, its items and their settings, stored in one <code>.ini</code> file. Switching profiles replaces the list without restarting the program, which is how one stick can serve two benches, two customers or two PE images.</p>
+<h2>The profile switch</h2>
+<p>The profile switch sits in the top bar and is also reachable with <strong>Ctrl+P</strong>. Selecting another profile loads it immediately; an editor that is open with unsaved changes is closed without keeping them, so decide before you switch.</p>
+<h2>Managing profiles</h2>
+<table><thead><tr><th>Action</th><th>Effect</th></tr></thead><tbody><tr><td><strong>Load</strong></td><td>Opens the selected profile and makes it active</td></tr><tr><td><strong>Duplicate</strong></td><td>Copies the active profile; the copy gets the suffix <code> - copy</code></td></tr><tr><td><strong>Rename</strong></td><td>Renames the file and updates the active name</td></tr><tr><td><strong>Delete</strong></td><td>Removes the profile; the active profile cannot be deleted</td></tr><tr><td><strong>Export (copy)</strong></td><td>Writes a copy to a location you choose, for backup or for another stick</td></tr><tr><td><strong>Open from file</strong></td><td>Opens a profile from anywhere on disk, for inspection</td></tr><tr><td><strong>Import (copy in)</strong></td><td>Copies an outside profile into the profile folder and opens it</td></tr></tbody></table>
+<p>A name that already exists is refused with a message instead of being overwritten.</p>
+<h2>Saving, and what happens if saving fails</h2>
+<p>Every save writes a timestamped backup into a <code>_backup</code> folder next to the profile before the file is replaced. Ten backups are kept; older ones are removed in rotation.</p>
+<p>If the backup cannot be written, the profile is <strong>not</strong> saved and the program says why — for example when the media is read-only. A half-written profile is worse than an unsaved one, so the operation stops.</p>
+<h2>The file format</h2>
+<p>Profiles are <code>.ini</code> files in the MInstAll layout: a <code>[MInst]</code> section for profile metadata, a <code>[Group]</code> section listing group names by number, one numbered section per item, and a hidden-group list. Twelve item keys are managed by the launcher; every other section and key is written back untouched when the profile is saved.</p>
+<p>A file that has no <code>[MInst]</code> or <code>[Group]</code> section is refused with a message rather than guessed at.</p>
+<figure class="ph"><div class="ph-box">Screenshot<span>../assets/img/en/05-profiles.png</span></div><figcaption>The profile switch in the top bar with the profile actions</figcaption></figure>
+<h2>Several profiles on one stick</h2>
+<p>Nothing stops a stick from carrying more than one profile — one per customer, per PE build or per technician. They share the tool folder, so the media does not have to be duplicated; only the lists differ.</p>
+    <div class="pager"><a class="prev" href="04-search.html">&larr; Search</a><a class="next" href="06-icons.html">Icons and shortcuts &rarr;</a></div>
+    <footer>Help &middot; 2026-11-16 &middot; Central PC Service Bt.</footer>
+  </main>
+</div>
+</body>
+</html>

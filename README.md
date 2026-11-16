@@ -49,6 +49,28 @@ Node 20+. No dependencies, no package.json, no framework.
 
 `tools/build.js` copies them into `site/docs/` and `site/docs/launcher/`. The web version is English only; the programs ship their own interface languages.
 
+### docs-src (vendored copy, 2026-11-16)
+
+The build prefers `docs-src/` over the `G:` paths, so the repository rebuilds on its own:
+
+- `docs-src/sfx-builder/` - built `en/` + `assets/` + the editable `content/` and the help's own `build.js`
+- `docs-src/launcher/` - same for the launcher
+
+Editing still happens in the `G:` folders (those are the working copies). After a help change, refresh the vendored copy:
+
+```powershell
+$repo = 'G:\CPC_Soft\cpcutils-site'
+Copy-Item 'G:\7zip_project\help\en'      "$repo\docs-src\sfx-builder\en"     -Recurse -Force
+Copy-Item 'G:\7zip_project\help\assets'  "$repo\docs-src\sfx-builder\assets" -Recurse -Force
+Copy-Item 'G:\7zip_project\help\content' "$repo\docs-src\sfx-builder\content" -Recurse -Force
+Copy-Item 'G:\CPC_Soft\launcher\help\en'      "$repo\docs-src\launcher\en"     -Recurse -Force
+Copy-Item 'G:\CPC_Soft\launcher\help\assets'  "$repo\docs-src\launcher\assets" -Recurse -Force
+Copy-Item 'G:\CPC_Soft\launcher\help\content' "$repo\docs-src\launcher\content" -Recurse -Force
+node tools\build.js
+```
+
+`data/changelog.json` is generated from the build history files by `node tools/changelog.js` - run it after a release, then rebuild.
+
 ## Deploy
 
 Cloudflare Pages, project `cpcutils-site`, publish directory `site`.
