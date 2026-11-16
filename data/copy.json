@@ -690,6 +690,23 @@
           "Русский",
           "Türkçe"
         ]
+      },
+      "spotlight2": {
+        "h": "One item, every field",
+        "p": "Name, target path, arguments, group and start folder in a single window. The icon can be changed by clicking it, and the checkbox row decides whether the item is hidden, 64-bit only, on the desktop, or runs at boot.",
+        "img": "launcher-edit.png",
+        "alt": "Edit window of CPC MInst Launcher with the fields of a backup tool selected",
+        "reverse": true,
+        "link": {
+          "label": "Free Download",
+          "href": "/download"
+        }
+      },
+      "gallery": {
+        "h": "Settings that fit in one screen",
+        "sub": "Language, startup behaviour, text size, tray behaviour and the log — no tabs, no registry, nothing to install.",
+        "img": "launcher-settings.png",
+        "alt": "Settings window of CPC MInst Launcher in English"
       }
     }
   },
