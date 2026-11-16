@@ -26,12 +26,12 @@
     },
     "shots": [
       {
-        "img": "hero-progress.png",
-        "alt": "CPC 7z SFX Builder extracting a 289 MB package at 55% with the live log"
-      },
-      {
         "img": "launcher-main.png",
         "alt": "CPC MInst Launcher with grouped tools, search field and the info bar of the selected program"
+      },
+      {
+        "img": "hero-progress.png",
+        "alt": "CPC 7z SFX Builder extracting a 289 MB package at 55% with the live log"
       }
     ]
   },
