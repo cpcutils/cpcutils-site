@@ -36,7 +36,7 @@ function nav(active = '') {
     .join('');
   return `<header class="topbar">
   <div class="wrap topbar-inner">
-    <a class="brand" href="/"><img class="brand-mark" src="/assets/img/logo-mark.png" alt="" width="26" height="26"><span class="brand-name">CPC Utils</span></a>
+    <a class="brand" href="/"><span class="brand-mark" aria-hidden="true"></span><span class="brand-name">CPC Utils</span></a>
     <nav class="nav" id="main-nav" aria-label="Main">
       <div class="nav-item">
         <a class="nav-link${active === 'products' ? ' is-active' : ''}" href="/#products">Products ${icon('chevron-down', 14)}</a>
@@ -70,7 +70,7 @@ function footer() {
   return `<footer class="footer">
   <div class="wrap footer-inner">
     <div class="foot-brand">
-      <a class="brand" href="/"><img class="brand-mark" src="/assets/img/logo-mark.png" alt="" width="26" height="26"><span class="brand-name">CPC Utils</span></a>
+      <a class="brand" href="/"><span class="brand-mark" aria-hidden="true"></span><span class="brand-name">CPC Utils</span></a>
       <p class="foot-note">Portable Windows tools that just run.<br>${esc(copy.footer.copyright)}</p>
     </div>
     ${cols}
@@ -98,10 +98,7 @@ function page({ title, description, content, active = '', scripts = '', ld = '',
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:image" content="${SITE}/assets/img/hero-progress.png">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
-<link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon-512.png">
-<link rel="apple-touch-icon" href="/assets/favicon-180.png">
-<meta name="theme-color" content="#000000">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/assets/site.css?v=${BUILDV}">
 ${ld}
 </head>
@@ -480,7 +477,7 @@ write('legal/third-party.html', page({
   </div>
   <p class="hint" style="margin-top:26px">The complete licence texts ship with each release and are linked from the program's License page.</p></section>`
 }));
-/* favicon: PNG a logo-mark-bol (2026-11-16) */
+write('assets/favicon.svg', '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#191919"/><path d="M10 22V10h4l3 6 3-6h4v12h-3v-7l-3 6h-2l-3-6v7z" fill="#8B7BFF"/></svg>');
 write('robots.txt', 'User-agent: *\nAllow: /\nSitemap: https://cpcutils.com/sitemap.xml\n');
 /* ---------- docs: a meglevo sugo bebontezese ---------- */
 /* 2026-11-16: a repoba tett masolat elsobbseget kap (docs-src), hogy a build

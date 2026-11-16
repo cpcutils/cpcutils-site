@@ -35,7 +35,7 @@ a:hover{color:var(--accent-text)}
 .topbar{position:sticky;top:0;z-index:60;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
 .topbar-inner{display:flex;align-items:center;gap:14px;height:76px}
 .brand{font-family:"Oxanium",system-ui,sans-serif;display:flex;align-items:center;gap:10px;color:var(--text);font-size:1.05rem;font-weight:700;letter-spacing:.02em}
-.brand-mark{width:36px;height:36px;display:block;object-fit:contain;box-shadow:0 6px 18px var(--glow)}
+.brand-mark{width:24px;height:24px;border-radius:7px;background:linear-gradient(140deg,var(--accent-hi),var(--accent));box-shadow:0 6px 18px var(--glow)}
 .nav{display:flex;align-items:center;gap:2px;margin-left:auto;white-space:nowrap}
 .nav-item{position:relative}
 .nav-link{display:inline-flex;align-items:center;gap:6px;color:var(--text-soft);font-size:.92rem;font-weight:600;padding:9px 10px;border-radius:8px}
