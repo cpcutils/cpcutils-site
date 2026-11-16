@@ -54,7 +54,7 @@ function nav(active = '') {
         </div>
       </div>
       <button class="theme-btn" id="theme-toggle" type="button" aria-label="Toggle light and dark theme" title="Light / dark">${icon('sun', 18)}</button>
-      <a class="btn btn-primary nav-cta" href="/download">${icon('download', 16)} Free Download</a>
+      <a class="btn btn-primary nav-cta" href="/download">${icon('download', 16)} Download</a>
     </nav>
     <button class="nav-burger" id="nav-burger" type="button" aria-label="Menu" aria-controls="main-nav" aria-expanded="false"><span class="i-menu">${icon('menu', 22)}</span><span class="i-x">${icon('x', 22)}</span></button>
   </div>
@@ -158,19 +158,19 @@ const home = page({
   <div class="hero-glow" aria-hidden="true"></div>
   <div class="wrap hero-grid">
     <div>
-      <p class="pill reveal"><span class="tag">New</span> <span id="hero-version">${esc(copy.hero.pillTop)}</span></p>
+      <p class="pill reveal"><span class="tag">${esc(copy.hero.tag)}</span> <span id="hero-version">${esc(copy.hero.pillTop)}</span></p>
       <h1 class="reveal">${heroLines}</h1>
       <p class="hero-sub reveal">${esc(copy.hero.sub)}</p>
       <div class="hero-actions reveal">
         <a class="btn btn-primary btn-lg" href="/download">${icon('download', 18)} ${esc(copy.hero.ctaPrimary)}</a>
-        <a class="btn btn-ghost btn-lg" href="#features">${esc(copy.hero.ctaSecondary)} ${icon('arrow-right', 16)}</a>
+        <a class="btn btn-ghost btn-lg" href="#products">${esc(copy.hero.ctaSecondary)} ${icon('arrow-right', 16)}</a>
       </div>
       <ul class="trust reveal">${copy.hero.trust.map(t => `<li>${esc(t)}</li>`).join('')}</ul>
       <a class="version-pill reveal" href="/download"><b id="version-text">latest release</b></a>
     </div>
     <div class="shots reveal">
-      <div class="shot shot-back"><div class="zoomwrap" data-zoom="/assets/img/hero-done.png" role="button" tabindex="0" aria-label="Enlarge screenshot"><img src="/assets/img/hero-done.png" alt="Finished build: config check, version, output size and Done"></div></div>
-      <div class="shot shot-main"><div class="zoomwrap" data-zoom="/assets/img/hero-progress.png" role="button" tabindex="0" aria-label="Enlarge screenshot"><img src="/assets/img/hero-progress.png" alt="Extracting a 289 MB package at 55% with the live log"></div></div>
+      <div class="shot shot-back"><div class="zoomwrap" data-zoom="/assets/img/${copy.hero.shots[0].img}" role="button" tabindex="0" aria-label="Enlarge screenshot"><img src="/assets/img/${copy.hero.shots[0].img}" alt="${esc(copy.hero.shots[0].alt)}"></div></div>
+      <div class="shot shot-main"><div class="zoomwrap" data-zoom="/assets/img/${copy.hero.shots[1].img}" role="button" tabindex="0" aria-label="Enlarge screenshot"><img src="/assets/img/${copy.hero.shots[1].img}" alt="${esc(copy.hero.shots[1].alt)}"></div></div>
       <div class="shot-card"><div class="k">${esc(copy.hero.shotCard.k)}</div><p>${esc(copy.hero.shotCard.p)}</p></div>
     </div>
   </div>
@@ -185,67 +185,38 @@ const home = page({
 
 <section class="section section-alt">
   <div class="wrap">
-    <div class="section-head"><h2 class="reveal">${esc(copy.steps.h2)}</h2><p class="section-sub reveal">${esc(copy.steps.sub)}</p></div>
-    <ol class="steps">
-      ${copy.steps.items.map((s, i) => `<li class="step reveal"><span class="step-no">${i + 1}</span><h3>${esc(s.h)}</h3><p>${esc(s.p)}</p></li>`).join('')}
-    </ol>
-  </div>
-</section>
-
-<section class="section" id="features">
-  <div class="wrap">
-    <div class="section-head"><h2 class="reveal">${esc(copy.features.h2)}</h2><p class="section-sub reveal">${esc(copy.features.sub)}</p></div>
+    <div class="section-head"><h2 class="reveal">${esc(copy.home.shared.h)}</h2><p class="section-sub reveal">${esc(copy.home.shared.sub)}</p></div>
     <div class="feature-grid">
-      ${copy.features.items.map(f => `<article class="card feature-card reveal"><h3>${esc(f.h)}</h3><p>${esc(f.p)}</p></article>`).join('')}
+      ${copy.home.shared.items.map(f => `<article class="card feature-card reveal"><h3>${esc(f.h)}</h3><p>${esc(f.p)}</p></article>`).join('')}
     </div>
-  </div>
-</section>
-
-<section class="section section-alt">
-  <div class="wrap split">
-    <div class="reveal">
-      <h2>${esc(copy.spotlight.h2)}</h2>
-      <p>${esc(copy.spotlight.p)}</p>
-      <a class="btn btn-ghost" href="/sfx-builder">${esc(copy.productCard.learnMore)} ${icon('arrow-right', 15)}</a>
-    </div>
-    <div class="zoomwrap reveal" data-zoom="/assets/img/spot-unpack.png" role="button" tabindex="0" aria-label="Enlarge screenshot"><img src="/assets/img/spot-unpack.png" alt="Unpacking a package at 55% with the live log and a cancel button" loading="lazy"></div>
   </div>
 </section>
 
 <section class="section">
-  <div class="wrap split reverse">
-    <div class="zoomwrap reveal" data-zoom="/assets/img/spot-installer.png" role="button" tabindex="0" aria-label="Enlarge screenshot"><img src="/assets/img/spot-installer.png" alt="Installer mode configured while the build runs at 54%" loading="lazy"></div>
-    <div class="reveal">
-      <h2>${esc(copy.spotlight.h2b)}</h2>
-      <p>${esc(copy.spotlight.pb)}</p>
-      <a class="btn btn-ghost" href="/download">${esc(copy.hero.ctaPrimary)} ${icon('arrow-right', 15)}</a>
+  <div class="wrap">
+    <div class="section-head"><h2 class="reveal">${esc(copy.home.whatIs.h)}</h2><p class="section-sub reveal">${esc(copy.home.whatIs.sub)}</p></div>
+    <div class="prose-grid">
+      ${products.products.filter(p => p.status !== 'placeholder').map(p => `<article class="card prose-card reveal"><h2>${esc(p.name)}</h2><p>${esc(p.blurb || p.tagline)}</p><p><a class="btn btn-ghost" href="/${p.id}">${esc(copy.productCard.learnMore)} ${icon('arrow-right', 15)}</a></p></article>`).join('')}
     </div>
   </div>
 </section>
 
-<section class="section section-alt">
+<section class="section section-alt" id="faq">
   <div class="wrap">
-    <div class="section-head"><h2 class="reveal">${esc(copy.gallery.h2)}</h2><p class="section-sub reveal">${esc(copy.gallery.sub)}</p></div>
-    <div class="zoomwrap reveal" data-zoom="/assets/img/gal-verify.png" role="button" tabindex="0" aria-label="Enlarge screenshot"><img src="/assets/img/gal-verify.png" alt="Verification: configuration authentic, payload intact, result passed" loading="lazy"></div>
-  </div>
-</section>
-
-<section class="section" id="faq">
-  <div class="wrap">
-    <div class="section-head"><h2 class="reveal">${esc(copy.faq.h2)}</h2></div>
+    <div class="section-head"><h2 class="reveal">${esc(copy.home.faq.h)}</h2></div>
     <div class="faq">
-      ${copy.faq.items.map((f, i) => `<details class="faq-item reveal"${i === 0 ? ' open' : ''}><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join('')}
+      ${copy.home.faq.items.map((f, i) => `<details class="faq-item reveal"${i === 0 ? ' open' : ''}><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join('')}
     </div>
   </div>
 </section>
 
 <section class="cta-band">
   <div class="wrap cta-inner">
-    <h2>${esc(copy.cta.h2)}</h2>
-    <p>${esc(copy.cta.p)}</p>
+    <h2>${esc(copy.home.cta.h2)}</h2>
+    <p>${esc(copy.home.cta.p)}</p>
     <div class="cta-actions">
-      <a class="btn btn-primary btn-lg" href="/download">${icon('download', 18)} ${esc(copy.hero.ctaPrimary)}</a>
-      <a class="btn btn-ghost btn-lg" href="/buy">Buy Now</a>
+      <a class="btn btn-primary btn-lg" href="/download">${icon('download', 18)} ${esc(copy.home.cta.primary)}</a>
+      <a class="btn btn-ghost btn-lg" href="/buy">${esc(copy.home.cta.secondary)}</a>
     </div>
   </div>
 </section>`,
@@ -260,7 +231,7 @@ function productPage(id) {
   const link = (l) => l ? `<a class="btn btn-ghost" href="${l.href}">${esc(l.label)} ${icon('arrow-right', 15)}</a>` : '';
 
   const actions = p.api
-    ? `<a class="btn btn-primary btn-lg" href="/download">${icon('download', 18)} ${esc(copy.hero.ctaPrimary)}</a>`
+    ? `<a class="btn btn-primary btn-lg" href="/download">${icon('download', 18)} ${esc(copy.productCard.download)}</a>`
     : `<a class="btn btn-primary btn-lg" href="${c.cta ? c.cta.actions[0].href : '/contact'}">${esc(c.cta ? c.cta.actions[0].label : 'Ask about availability')} ${icon('arrow-right', 15)}</a>`;
   const secondary = c.secondary
     ? `<a class="btn btn-ghost btn-lg" href="${c.secondary.href}">${esc(c.secondary.label)} ${icon('arrow-right', 15)}</a>` : '';
@@ -278,6 +249,11 @@ function productPage(id) {
       ${c.sections.map(s => `<article class="card prose-card reveal"><h2>${esc(s.h)}</h2><p>${esc(s.p)}</p></article>`).join('')}
     </div></section>`;
 
+  const steps = c.steps ? `<section class="section section-alt"><div class="wrap">
+      <div class="section-head"><h2 class="reveal">${esc(c.steps.h2)}</h2>${c.steps.sub ? `<p class="section-sub reveal">${esc(c.steps.sub)}</p>` : ''}</div>
+      <ol class="steps">${c.steps.items.map((x, i) => `<li class="step reveal"><span class="step-no">${i + 1}</span><h3>${esc(x.h)}</h3><p>${esc(x.p)}</p></li>`).join('')}</ol>
+    </div></section>` : '';
+
   const features = c.features ? `<section class="section section-alt"><div class="wrap">
       <div class="section-head"><h2 class="reveal">${esc(c.features.h)}</h2>${c.features.sub ? `<p class="section-sub reveal">${esc(c.features.sub)}</p>` : ''}</div>
       <div class="feature-grid">${c.features.items.map(f => `<article class="card feature-card reveal"><h3>${esc(f.h)}</h3><p>${esc(f.p)}</p></article>`).join('')}</div>
@@ -286,6 +262,16 @@ function productPage(id) {
   const spotlight = c.spotlight ? `<section class="section"><div class="wrap split${c.spotlight.reverse ? ' reverse' : ''}">
       ${zoom(c.spotlight, true)}
       <div class="reveal"><h2>${esc(c.spotlight.h)}</h2><p>${esc(c.spotlight.p)}</p>${link(c.spotlight.link)}</div>
+    </div></section>` : '';
+
+  const spotlight2 = c.spotlight2 ? `<section class="section section-alt"><div class="wrap split${c.spotlight2.reverse ? ' reverse' : ''}">
+      ${c.spotlight2.img ? zoom(c.spotlight2, true) : ''}
+      <div class="reveal"><h2>${esc(c.spotlight2.h)}</h2><p>${esc(c.spotlight2.p)}</p>${link(c.spotlight2.link)}</div>
+    </div></section>` : '';
+
+  const gallery = c.gallery ? `<section class="section"><div class="wrap">
+      <div class="section-head"><h2 class="reveal">${esc(c.gallery.h)}</h2>${c.gallery.sub ? `<p class="section-sub reveal">${esc(c.gallery.sub)}</p>` : ''}</div>
+      ${c.gallery.img ? zoom(c.gallery, true) : ''}
     </div></section>` : '';
 
   const closing = c.closing ? `<section class="section section-alt"><div class="wrap split">
@@ -308,33 +294,38 @@ function productPage(id) {
     active: 'products',
     ld: ldProduct(p, c),
     canonical: SITE + '/' + p.id,
-    content: hero + sections + features + spotlight + closing + faqBlock + ctaBlock
+    content: hero + sections + steps + features + spotlight + spotlight2 + gallery + closing + faqBlock + ctaBlock
   });
 }
 
 /* ---------- other pages ---------- */
 const download = page({
-  title: 'Free Download — CPC Utils',
-  description: 'Download CPC 7z SFX Builder for free. Version, size and SHA-256 are shown before the download, straight from the update server.',
+  title: 'Download — CPC Utils',
+  description: 'Download CPC 7z SFX Builder, or ask for the CPC MInst Launcher beta build. Version, size and SHA-256 come straight from the release server.',
   active: 'download',
   canonical: SITE + '/download',
   content: `<section class="page-head"><div class="wrap">
-    <h1>Free Download</h1>
-    <p class="lead">CPC 7z SFX Builder is free to download. The button always points at the current release; version, size and SHA-256 come from the update server.</p>
+    <h1>Download</h1>
+    <p class="lead">The builder is available now. The launcher is in beta: the current build is sent on request, because it is still changing.</p>
   </div></section>
   <section class="section"><div class="wrap">
+    ${products.products.filter(p => p.status !== 'placeholder').map(p => p.api ? `
     <article class="card download-card">
-      <div class="dl-head"><h2>CPC 7z SFX Builder</h2><span class="badge badge-ok">Available</span></div>
+      <div class="dl-head"><h2>${esc(p.name)}</h2><span class="badge badge-ok">${esc(p.statusLabel)}</span></div>
       <dl class="dl-meta">
         <div><dt>Version</dt><dd id="dl-version">—</dd></div>
         <div><dt>Released</dt><dd id="dl-date">—</dd></div>
         <div><dt>Size</dt><dd id="dl-size">—</dd></div>
         <div><dt>SHA-256</dt><dd id="dl-sha" class="mono">—</dd></div>
       </dl>
-      <a class="btn btn-primary btn-lg" id="dl-btn" href="#" rel="noopener">${icon('download', 18)} Free Download</a>
+      <a class="btn btn-primary btn-lg" id="dl-btn" href="#" rel="noopener">${icon('download', 18)} ${esc(copy.productCard.download)}</a>
       <p class="hint">No account, no email. The program is not code-signed yet, so Windows may show the SmartScreen prompt. A package you build can carry your own signature.</p>
-    </article>
-    <p class="hint" style="margin-top:24px">CPC MInst Launcher is in beta and not on this page yet. <a href="/launcher">What it does</a> \u00b7 <a href="/contact">Ask for the beta build</a>.</p>
+    </article>` : `
+    <article class="card download-card" style="margin-top:18px">
+      <div class="dl-head"><h2>${esc(p.name)}</h2><span class="badge">${esc(p.statusLabel)}</span></div>
+      <p class="hint" style="margin:10px 0 16px">${esc(p.blurb || p.tagline)} Not on this page yet: the beta build is sent by email with a test profile.</p>
+      <a class="btn btn-primary btn-lg" href="/contact">Ask for the beta build</a>
+    </article>`).join('')}
   </div></section>`,
   scripts: `<script src="/assets/download.js?v=${BUILDV}" defer></script>`
 });
