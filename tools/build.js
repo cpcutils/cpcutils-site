@@ -9,6 +9,16 @@ const OUT = path.join(ROOT, 'site');
 const copy = JSON.parse(fs.readFileSync(path.join(DATA, 'copy.json'), 'utf8'));
 const products = JSON.parse(fs.readFileSync(path.join(DATA, 'products.json'), 'utf8'));
 const LUCIDE = JSON.parse(fs.readFileSync(path.join(DATA, 'icons.json'), 'utf8'));
+// --- egyetlen verzioforras: data/changelog.json (tools/changelog.js generalja) ---
+const changelog = (() => {
+  try { return JSON.parse(fs.readFileSync(path.join(DATA, 'changelog.json'), 'utf8')); } catch { return null; }
+})();
+const latestRelease = (id) => {
+  const p = changelog && changelog.products ? changelog.products.find(x => x.id === id) : null;
+  return p && p.releases && p.releases.length ? p.releases[0] : null;
+};
+const versionOf = (id) => { const r = latestRelease(id); return r ? r.version : null; };
+const fmtSize = b => (b === undefined || b === null) ? '\u2014' : (b >= 1048576 ? (b / 1048576).toFixed(1) + ' MB' : Math.round(b / 1024) + ' KB');
 
 const BUILDV = Date.now().toString(36);
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -126,6 +136,8 @@ function ldProduct(p, c) {
     url: SITE + '/' + p.id,
     publisher: { '@type': 'Organization', name: 'Central PC Service Bt.' }
   };
+  const rel = latestRelease(p.id);
+  if (rel) { data.softwareVersion = rel.version; data.fileSize = rel.size + ' bytes'; data.datePublished = rel.date; }
   return `<script type="application/ld+json">${JSON.stringify(data)}</script>`;
 }
 
@@ -158,7 +170,7 @@ const home = page({
   <div class="hero-glow" aria-hidden="true"></div>
   <div class="wrap hero-grid">
     <div>
-      <p class="pill reveal"><span class="tag">${esc(copy.hero.tag)}</span> <span id="hero-version">${esc(copy.hero.pillTop)}</span></p>
+      <p class="pill reveal"><span class="tag">${esc(copy.hero.tag)}</span> <span id="hero-version">${esc((copy.hero.pillTop || '').replace('{version}', versionOf('sfx-builder') || ''))}</span></p>
       <h1 class="reveal">${heroLines}</h1>
       <p class="hero-sub reveal">${esc(copy.hero.sub)}</p>
       <div class="hero-actions reveal">
@@ -166,7 +178,7 @@ const home = page({
         <a class="btn btn-ghost btn-lg" href="#products">${esc(copy.hero.ctaSecondary)} ${icon('arrow-right', 16)}</a>
       </div>
       <ul class="trust reveal">${copy.hero.trust.map(t => `<li>${esc(t)}</li>`).join('')}</ul>
-      <a class="version-pill reveal" href="/download"><b id="version-text">latest release</b></a>
+      <a class="version-pill reveal" href="/download"><b id="version-text">${esc(versionOf('sfx-builder') || copy.hero.pillTop || '')}</b></a>
     </div>
     <div class="shots reveal">
       <div class="shot shot-back"><div class="zoomwrap" data-zoom="/assets/img/${copy.hero.shots[0].img}" role="button" tabindex="0" aria-label="Enlarge screenshot"><img src="/assets/img/${copy.hero.shots[0].img}" alt="${esc(copy.hero.shots[0].alt)}"></div></div>
@@ -326,10 +338,10 @@ const download = page({
     <article class="card download-card">
       <div class="dl-head"><h2>${esc(p.name)}</h2><span class="badge badge-ok">${esc(p.statusLabel)}</span></div>
       <dl class="dl-meta">
-        <div><dt>Version</dt><dd id="dl-version">—</dd></div>
-        <div><dt>Released</dt><dd id="dl-date">—</dd></div>
-        <div><dt>Size</dt><dd id="dl-size">—</dd></div>
-        <div><dt>SHA-256</dt><dd id="dl-sha" class="mono">—</dd></div>
+        <div><dt>Version</dt><dd id="dl-version">${esc(versionOf(p.id) || '—')}</dd></div>
+        <div><dt>Released</dt><dd id="dl-date">${esc((latestRelease(p.id) || {}).date || '—')}</dd></div>
+        <div><dt>Size</dt><dd id="dl-size">${fmtSize((latestRelease(p.id) || {}).size)}</dd></div>
+        <div><dt>SHA-256</dt><dd id="dl-sha" class="mono">${esc(((latestRelease(p.id) || {}).sha || '—').slice(0, 20))}…</dd></div>
       </dl>
       <a class="btn btn-primary btn-lg" id="dl-btn" href="#" rel="noopener">${icon('download', 18)} ${esc(copy.productCard.download)}</a>
       <p class="hint">No account, no email. The program is not code-signed yet, so Windows may show the SmartScreen prompt. A package you build can carry your own signature.</p>
@@ -398,11 +410,8 @@ write('launcher.html', productPage('launcher'));
 write('download.html', download);
 write('buy.html', buy);
 write('faq.html', faq);
-// --- kiadastortenet a data/changelog.json-bol (tools/changelog.js generalja) ---
-const chlog = (() => {
-  try { return JSON.parse(fs.readFileSync(path.join(DATA, 'changelog.json'), 'utf8')); } catch { return null; }
-})();
-const fmtSize = b => b >= 1048576 ? (b / 1048576).toFixed(1) + ' MB' : Math.round(b / 1024) + ' KB';
+// --- kiadastortenet: a fajl elejen betoltott changelog ---
+const chlog = changelog;
 const relTable = p => p.releases.length
   ? `<div class="rel-wrap"><table class="rel-table"><thead><tr><th>Version</th><th>Date</th><th>Size</th><th>SHA-256</th></tr></thead><tbody>
 ${p.releases.map(r => `<tr><td class="mono">${esc(r.version)}</td><td>${esc(r.date)}</td><td>${fmtSize(r.size)}</td><td class="mono">${esc(r.sha.slice(0, 16))}…</td></tr>`).join('\n')}
